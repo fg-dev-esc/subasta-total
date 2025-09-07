@@ -1,0 +1,1127 @@
+/* =====================================================
+SISTEMA DE TEMAS SIMPLIFICADO - SOLO COLORES AZULES
+Mantiene blancos, negros y grises originales
+Solo cambia elementos que ya tienen color azul #4F5DEC
+======================================================== */
+
+/* ===================
+TEMA ORIGINAL (POR DEFECTO)
+====================== */
+
+:root,
+:root.theme-original {
+  --primary-blue: #4F5DEC;
+  --primary-blue-hover: #0049D0;
+}
+
+/* ===================
+TEMA SUBASTA SEGURA
+====================== */
+
+:root.theme-subasta {
+  --primary-blue: #17a2b8;        /* Cyan/Teal para botones */
+  --primary-blue-hover: #138496;  /* Hover del cyan */
+  --danger-red: #ec2227;          /* Rojo para botones de peligro */
+  --dark-blue: #1a2c40;          /* Azul oscuro para navbar y footer */
+}
+
+/* ===================
+TEMA MODERNO
+====================== */
+
+:root.theme-modern {
+  --primary-blue: #667eea;
+  --primary-blue-hover: #5a6fd8;
+}
+
+/* ===================
+TEMA MODO OSCURO
+Siguiendo estándares WCAG 2.1 AA para contraste
+====================== */
+
+:root.theme-dark {
+  /* Colores primarios para modo oscuro - usando colores del proyecto */
+  --primary-blue: #17a2b8;           /* Cyan del tema subasta - contraste AA con fondos oscuros */
+  --primary-blue-hover: #138496;     /* Cyan hover del tema subasta */
+  --accent-color: #10b981;           /* Emerald-500 - acentos verdes */
+  --accent-hover: #059669;           /* Emerald-600 - hover verde */
+  --danger-red: #ec2227;             /* Rojo específico del proyecto */
+  --danger-red-hover: #d01e24;       /* Rojo hover */
+  
+  /* Fondos oscuros */
+  --bg-primary: #0f172a;             /* Slate-900 - fondo principal */
+  --bg-secondary: #1e293b;           /* Slate-800 - fondo secundario */
+  --bg-tertiary: #334155;            /* Slate-700 - fondo terciario */
+  
+  /* Superficies elevadas */
+  --surface-low: #1e293b;            /* Slate-800 - tarjetas bajas */
+  --surface-mid: #334155;            /* Slate-700 - tarjetas medias */
+  --surface-high: #475569;           /* Slate-600 - tarjetas altas */
+  
+  /* Textos con contraste WCAG AA */
+  --text-primary: #f8fafc;           /* Slate-50 - texto principal */
+  --text-secondary: #cbd5e1;         /* Slate-300 - texto secundario */
+  --text-muted: #94a3b8;             /* Slate-400 - texto desactivado */
+  
+  /* Bordes */
+  --border-primary: #475569;         /* Slate-600 - bordes principales */
+  --border-secondary: #334155;       /* Slate-700 - bordes secundarios */
+  
+  /* Estados */
+  --success: #10b981;                /* Emerald-500 */
+  --warning: #f59e0b;                /* Amber-500 */
+  --error: #ec2227;                  /* Rojo específico del proyecto */
+  --info: #17a2b8;                   /* Cyan específico del proyecto */
+}
+
+/* ===================
+SOBRESCRITURA ESPECÍFICA - SOLO ELEMENTOS AZULES
+Mantiene blancos, negros y grises originales
+====================== */
+
+/* SOLO elementos que originalmente tienen color #4F5DEC */
+/* Reemplaza únicamente el color azul primario */
+
+/* Links con hover azul */
+a:hover {
+  color: var(--primary-blue) !important;
+}
+
+/* Botones principales */
+.theme-btn,
+.btn-primary {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+.theme-btn:hover,
+.btn-primary:hover {
+  background-color: var(--primary-blue-hover) !important;
+  border-color: var(--primary-blue-hover) !important;
+}
+
+/* Botones outline */
+.btn-outline-primary {
+  border-color: var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* Textos con color primario */
+.text-primary {
+  color: var(--primary-blue) !important;
+}
+
+/* Navegación activa */
+.nav-link.active,
+.navbar-nav .nav-link.active {
+  color: var(--primary-blue) !important;
+}
+
+/* Elementos específicos del proyecto con color azul original */
+.car-price,
+.auction-timer,
+.site-title span,
+.section-title span,
+.site-title-tagline,
+.hero-single .hero-content .hero-sub-title {
+  color: var(--primary-blue) !important;
+}
+
+/* Palabras específicas que usan colores de tema */
+.car-area .site-title span,        /* "Destacados" en "Vehículos Destacados" */
+.sell-wizard .site-title span,     /* "Vehículo" en "Publica tu Vehículo" */
+.contact-header .site-title span   /* "Nosotros" en "Conecta con Nosotros" */
+{
+  color: var(--primary-blue) !important;  /* #4F5DEC en original, #17a2b8 en subasta */
+}
+
+/* Botones y elementos de cuenta */
+.header-account button {
+  background: var(--primary-blue) !important;
+}
+
+.header-account .dropdown-menu .dropdown-item i,
+.header-account .dropdown-menu .dropdown-item:hover {
+  color: var(--primary-blue) !important;
+}
+
+/* Bordes primarios */
+.border-primary,
+.heading-divider {
+  border-color: var(--primary-blue) !important;
+}
+
+/* Fondos primarios que ya eran azules */
+.bg-primary {
+  background-color: var(--primary-blue) !important;
+}
+
+/* Formularios focus */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 0 0 0.25rem rgba(79, 93, 236, 0.25) !important;
+}
+
+/* Badges y elementos activos */
+.badge-primary,
+.pagination .active .page-link {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* Elementos de navegación específicos */
+.custom-nav,
+.navbar-brand:hover,
+.nav-item.active .nav-link {
+  color: var(--primary-blue) !important;
+}
+
+/* Elementos decorativos que eran azules */
+.heading-divider::before,
+.heading-divider::after {
+  background-color: var(--primary-blue) !important;
+}
+
+/* Pseudoelementos específicos con color #4F5DEC */
+.custom-nav::before,
+.theme-btn2::before,
+.navbar .nav-item .dropdown-menu .dropdown-item::before,
+.cta-wrapper::before,
+.subscribe-form .theme-btn::before,
+.footer-widget-title::after,
+.footer-widget-title::before {
+  background: var(--primary-blue) !important;
+}
+
+/* ===================
+TODOS LOS ELEMENTOS CON COLOR #4F5DEC ESPECÍFICOS
+====================== */
+
+/* Tipografía y títulos */
+.site-title span,
+.hero-single .hero-content .hero-title span { color: #fff !important; }
+
+/* Botones en hero section deben ser blancos */
+.hero-single .hero-content .theme-btn2,
+.hero-single .theme-btn2 { color: #fff !important; }
+
+/* Elementos de hero section que deben ser blancos */
+.hero-single .hero-content .hero-sub-title,
+.hero-single .hero-content .hero-title,
+.hero-single .hero-content .hero-title span,
+.hero-single .hero-content h1,
+.hero-single .hero-content h6 { color: #fff !important; }
+
+/* Navegación y menús */
+.navbar .nav-item:hover .nav-link,
+.header-nav-link:hover,
+.navbar .nav-item .nav-link:hover,
+.mobile-menu-link:hover,
+.navbar .nav-item .dropdown-submenu a:hover { color: var(--primary-blue) !important; }
+
+/* Header y elementos del encabezado */
+.header-top-social a:hover { background: var(--primary-blue) !important; }
+.header-phone-number a { color: var(--primary-blue) !important; }
+.header-top-social a { color: var(--primary-blue) !important; }
+.header-top-contact-icon img { filter: brightness(0) invert(1) !important; }
+
+/* Botones y elementos interactivos */
+.theme-btn,
+.theme-btn2::before { background: var(--primary-blue) !important; }
+.theme-btn:hover { color: var(--primary-blue) !important; }
+
+/* Elementos de lista e iconos */
+.car-list i,
+.service-single-list i { color: var(--primary-blue) !important; }
+
+/* Precios y elementos destacados */
+.car-price { color: var(--primary-blue) !important; }
+.pricing-amount { color: var(--primary-blue) !important; }
+
+/* Formularios */
+.form-control:focus,
+.form-select:focus,
+.blog-comments-form .form-control:focus,
+.widget .search-form .form-control:focus,
+.contact-form .form-group .form-control:focus,
+.find-car-form .form-control:focus,
+.car-search-form .form-control:focus,
+.car-sort-box .form-select:focus,
+.car-booking-info-form .form-select:focus,
+.login-form .form-group .form-control:focus,
+.user-profile-form .form-control:focus { border-color: var(--primary-blue) !important; }
+
+/* Checkboxes y elementos de formulario */
+.car-widget .form-check-input:checked,
+.form-check-input:checked { 
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* Blog y contenido */
+.blog-item-meta a:hover,
+.blog-item-info h4 a:hover,
+.blog-meta a:hover,
+.blog-details-tags ul a:hover { color: var(--primary-blue) !important; }
+
+/* Testimonios y calificaciones */
+.car-single-rating i,
+.car-review-rating i,
+.testimonial-rate { color: var(--primary-blue) !important; }
+
+/* Elementos de galería */
+.gallery-link:hover { color: var(--primary-blue) !important; }
+
+/* Tabs y navegación de contenido */
+.car-single-details .nav-tabs .nav-link.active {
+  border-bottom: 2px solid var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+}
+
+/* Paginación */
+.pagination .page-item.active .page-link { background: var(--primary-blue) !important; }
+
+/* Elementos de servicio */
+.service-title a:hover { color: var(--primary-blue) !important; }
+.service-download a { border: 2px solid var(--primary-blue) !important; }
+.service-download a:hover { background-color: var(--primary-blue) !important; }
+
+/* Footer y elementos del pie */
+.copyright .footer-menu li a:hover,
+.copyright .copyright-text a,
+.footer-widget h5,
+.footer-list li a i,
+.footer-list li a:hover,
+.footer-contact li i { color: var(--primary-blue) !important; }
+
+/* Footer contact icons con fondo */
+.footer-contact li i {
+  background: var(--primary-blue) !important;
+  color: #fff !important;
+}
+
+/* Elementos de usuario y perfil */
+.user-profile-sidebar-list .active { background: var(--primary-blue) !important; }
+.transaction .car-table-btn { 
+  border-color: var(--primary-blue) !important;
+  color: var(--primary-blue) !important;
+}
+.transaction .car-table-btn:hover { background: var(--primary-blue-hover) !important; }
+
+/* Elementos específicos del detail view */
+.car-single-terms .section-title,
+.auction-summary .text-primary,
+.bidding-section .text-primary { 
+  color: var(--primary-blue) !important; 
+}
+
+/* Mantener textos específicos en negro (no cambiar) */
+.car-single-terms .term-label,
+.car-single-terms span.term-label { 
+  color: #000 !important; 
+}
+
+/* Car price en detail view */
+.car-single-content .car-price,
+.car-single-info .car-price { 
+  color: var(--primary-blue) !important; 
+}
+
+/* Iconos fa-heart específicos en cards */
+.fas.fa-heart.text-primary,
+.far.fa-heart.text-primary,
+.car-favorite-btn .fa-heart,
+.car-item .fa-heart { 
+  color: var(--primary-blue) !important; 
+}
+
+/* Login y autenticación */
+.login-form .login-header h3,
+.login-form .login-footer a,
+.login-form .forgot-pass,
+.login-form .form-check-label a { color: var(--primary-blue) !important; }
+
+/* Elementos diversos */
+.banner-item-content a:hover,
+.car-favorite-btn:hover,
+.car-single-share-icon a:hover,
+.widget .social-share-link a:hover,
+.widget .tag-list a:hover,
+.footer-social li a i:hover { background: var(--primary-blue) !important; }
+
+/* Iconos de corazón y favoritos */
+.fa-heart,
+.car-favorite-btn,
+.like-btn { color: var(--primary-blue) !important; }
+
+/* UI Datepicker */
+.ui-datepicker .ui-widget-header,
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+.ui-button:active,
+.ui-timepicker-standard a:hover { background: var(--primary-blue) !important; }
+
+/* Accordions y FAQ */
+.faq-area .accordion-button:not(.collapsed) { color: var(--primary-blue) !important; }
+.accordion-button:not(.collapsed) { border-bottom: 1px solid var(--primary-blue) !important; }
+
+/* Coming soon y newsletter */
+.coming-soon .newsletter-form button:hover { background-color: var(--primary-blue) !important; }
+.coming-social a:hover { 
+  background: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* Elementos de búsqueda */
+.widget .search-form button { color: var(--primary-blue) !important; }
+
+/* Elementos de booking */
+.booking-total li span { color: var(--primary-blue) !important; }
+
+/* Selectors para sobrescribir CSS inline */
+[style*="#4F5DEC"] {
+  color: var(--primary-blue) !important;
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+[style*="#0049D0"] {
+  color: var(--primary-blue-hover) !important;
+  background-color: var(--primary-blue-hover) !important;
+  border-color: var(--primary-blue-hover) !important;
+}
+
+/* ===================
+REGLAS ESPECÍFICAS PARA SECCIONES DE PERFIL
+====================== */
+
+/* Documentación - usar colores neutros en lugar del tema global */
+.documentacion-container .text-warning,
+.documentacion-container .fa-exclamation-circle {
+  color: #f59e0b !important; /* Mantener naranja warning original */
+}
+
+.documentacion-container .text-info,
+.documentacion-container .fa-info-circle {
+  color: #3b82f6 !important; /* Azul del acordeón Mi Perfil */
+}
+
+.documentacion-container .text-success {
+  color: #10b981 !important; /* Verde original */
+}
+
+.documentacion-container .text-danger {
+  color: #ef4444 !important; /* Rojo original */
+}
+
+.documentacion-container .text-secondary {
+  color: #6b7280 !important; /* Gris original */
+}
+
+/* ===================
+REGLAS ESPECÍFICAS PARA TEMA SUBASTA SEGURA
+====================== */
+
+/* Solo la parte del logo cambia a azul oscuro */
+.theme-subasta .custom-nav::before {
+  background: #1a2c40 !important;
+}
+
+/* Footer con color específico */
+.theme-subasta .footer-area,
+.theme-subasta .footer-widget {
+  background-color: #1a2c40 !important;
+}
+
+/* Botones con colores específicos de Subasta Segura */
+.theme-subasta .btn-danger,
+.theme-subasta .error-btn,
+.theme-subasta .delete-btn {
+  background-color: #ec2227 !important;
+  border-color: #ec2227 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .btn-danger:hover {
+  background-color: #d01e24 !important;
+  border-color: #d01e24 !important;
+}
+
+/* Botones principales con cyan */
+.theme-subasta .theme-btn,
+.theme-subasta .btn-primary {
+  background-color: #17a2b8 !important;
+  border-color: #17a2b8 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .theme-btn:hover,
+.theme-subasta .btn-primary:hover {
+  background-color: #138496 !important;
+  border-color: #138496 !important;
+}
+
+/* Elementos específicos que usan color rojo #ec2227 en Subasta Segura */
+.theme-subasta .header-phone-icon,
+.theme-subasta .header-account button {
+  background: #ec2227 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .site-title-tagline {
+  color: #ec2227 !important;
+}
+
+.theme-subasta .hero-single .hero-content .hero-sub-title {
+  background: #ec2227 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .login-form {
+  border-bottom: 4px solid #ec2227 !important;
+}
+
+.theme-subasta .login-form .login-header h3,
+.theme-subasta .login-form .login-footer a,
+.theme-subasta .login-form .forgot-pass,
+.theme-subasta .login-form .form-check-label a {
+  color: #ec2227 !important;
+}
+
+.theme-subasta .footer-social li a i {
+  color: #ec2227 !important;
+}
+
+.theme-subasta .footer-social li a i:hover {
+  background: #ec2227 !important;
+}
+
+.theme-subasta .footer-widget-title::after,
+.theme-subasta .footer-widget-title::before {
+  background-color: #ec2227 !important;
+}
+
+.theme-subasta .footer-contact li i {
+  background: #ec2227 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .footer-list li a i,
+.theme-subasta .footer-list li a:hover {
+  color: #ec2227 !important;
+}
+
+.theme-subasta .copyright .footer-menu li a:hover,
+.theme-subasta .copyright .copyright-text a {
+  color: #ec2227 !important;
+}
+
+.theme-subasta #scroll-top {
+  background-color: #ec2227 !important;
+}
+
+.theme-subasta #scroll-top:hover {
+  background-color: #d01e24 !important;
+}
+
+.theme-subasta .social-login-list a {
+  background: #ec2227 !important;
+}
+
+.theme-subasta .social-login-list a:hover {
+  background: #d01e24 !important;
+}
+
+.theme-subasta .header-account .dropdown-menu .dropdown-item i,
+.theme-subasta .header-account .dropdown-menu .dropdown-item:hover {
+  color: #ec2227 !important;
+}
+
+/* Header top con iconos específicos */
+.theme-subasta .header-top-social a {
+  background: #ec2227 !important;
+  color: #fff !important;
+}
+
+.theme-subasta .header-top-social a:hover {
+  background: #d01e24 !important;
+  color: #fff !important;
+}
+
+/* Iconos de contacto del header-top (info y horario) - solo líneas blancas sin fondo */
+.theme-subasta .header-top-contact-icon {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.theme-subasta .header-top-contact ul li a {
+  color: #fff !important;
+}
+
+/* Barra de desplazamiento personalizada para tema Subasta Segura */
+html.theme-subasta ::-webkit-scrollbar,
+body.theme-subasta ::-webkit-scrollbar,
+.theme-subasta ::-webkit-scrollbar,
+.theme-subasta * ::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+html.theme-subasta ::-webkit-scrollbar-track,
+body.theme-subasta ::-webkit-scrollbar-track,
+.theme-subasta ::-webkit-scrollbar-track,
+.theme-subasta * ::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  border-radius: 6px !important;
+}
+
+html.theme-subasta ::-webkit-scrollbar-thumb,
+body.theme-subasta ::-webkit-scrollbar-thumb,
+.theme-subasta ::-webkit-scrollbar-thumb,
+.theme-subasta * ::-webkit-scrollbar-thumb {
+  background: #17a2b8 !important;
+  border-radius: 6px !important;
+  border: 2px solid #f1f1f1 !important;
+}
+
+html.theme-subasta ::-webkit-scrollbar-thumb:hover,
+body.theme-subasta ::-webkit-scrollbar-thumb:hover,
+.theme-subasta ::-webkit-scrollbar-thumb:hover,
+.theme-subasta * ::-webkit-scrollbar-thumb:hover {
+  background: #138496 !important;
+}
+
+/* Firefox scrollbar con mayor especificidad */
+html.theme-subasta,
+html.theme-subasta *,
+body.theme-subasta,
+body.theme-subasta *,
+.theme-subasta,
+.theme-subasta * {
+  scrollbar-width: thin !important;
+  scrollbar-color: #17a2b8 #f1f1f1 !important;
+}
+
+/* ===================
+ELEMENTOS ESPECÍFICOS DE SUBASTA SEGURA - HISTORIAL Y COMENTARIOS
+====================== */
+
+/* Cambiar "carway" de azul a verde en tema Subasta Segura */
+.theme-subasta .brand-text,
+.theme-subasta .carway-text,
+.theme-subasta .logo-text { 
+  color: #28a745 !important; 
+}
+
+/* Iconos de usuario en naranja para tema Subasta Segura */
+.theme-subasta .user-icon,
+.theme-subasta .fas.fa-user,
+.theme-subasta .far.fa-user,
+.theme-subasta .bid-avatar-container i { 
+  color: #fd7e14 !important; 
+}
+
+/* Textos azules en historial de ofertas - cambiar al tema */
+.theme-subasta .blog-comments-single .text-primary,
+.theme-subasta .bid-avatar-container .text-primary,
+.theme-subasta .bidding-history .text-primary { 
+  color: #17a2b8 !important; 
+}
+
+/* Textos azules en comentarios - cambiar al tema */
+.theme-subasta .comments-section .text-primary,
+.theme-subasta .blog-comments .text-primary { 
+  color: #17a2b8 !important; 
+}
+
+/* Valores específicos en cyan para tema Subasta Segura */
+.theme-subasta .car-single-terms .term-value,
+.theme-subasta .term-item span:not(.term-label),
+.theme-subasta .auction-summary span:not(.text-danger) { 
+  color: #17a2b8 !important; 
+}
+
+/* ===================
+CARDS DE AUTOS - TAMAÑOS FIJOS
+====================== */
+
+/* Card principal con altura mínima fija */
+.car-item {
+  min-height: 450px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Imagen con altura fija */
+.car-item .car-img {
+  height: 200px !important;
+  overflow: hidden !important;
+}
+
+.car-item .car-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Contenido con altura flexible pero controlada */
+.car-item .car-content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 15px !important;
+}
+
+/* Header con título y corazón alineados */
+.car-item .car-top {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  height: 48px !important;
+  margin-bottom: 10px !important;
+  padding: 0 !important;
+}
+
+/* Título del carro con altura fija */
+.car-item .car-content h4,
+.car-item .car-content h5 {
+  flex: 1 !important;
+  height: 48px !important;
+  line-height: 24px !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  margin: 0 !important;
+  margin-right: 10px !important;
+}
+
+/* Corazón de favorito alineado */
+.car-item .car-top .car-favorite-btn,
+.car-item .car-top .fa-heart {
+  flex-shrink: 0 !important;
+  margin-top: 0 !important;
+  align-self: flex-start !important;
+  height: 24px !important;
+  line-height: 24px !important;
+}
+
+/* Lista de especificaciones con altura fija */
+.car-item .car-list {
+  height: 80px !important;
+  overflow: hidden !important;
+  margin-bottom: 15px !important;
+}
+
+.car-item .car-list li {
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  margin-bottom: 5px !important;
+  margin-right: 15px !important;
+}
+
+/* Timer badge con posición fija */
+.car-item .auction-timer-badge {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 3 !important;
+}
+
+.car-item .auction-timer-badge .badge {
+  font-size: 14px !important;
+  padding: 6px 12px !important;
+  white-space: nowrap !important;
+}
+
+/* Footer con altura fija */
+.car-item .car-footer {
+  margin-top: auto !important;
+  padding-top: 15px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  min-height: 60px !important;
+}
+
+/* Precio con tamaño fijo */
+.car-item .car-price {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  max-width: 60% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .car-item {
+    min-height: 400px !important;
+  }
+  
+  .car-item .car-img {
+    height: 180px !important;
+  }
+  
+  .car-item .car-content h4,
+  .car-item .car-content h5 {
+    height: 40px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+  
+  .car-item .car-list {
+    height: 70px !important;
+  }
+  
+  .car-item .car-price {
+    font-size: 18px !important;
+  }
+}
+
+/* Texto danger específico en historial de ofertas */
+.theme-subasta .auction-summary .text-danger,
+.theme-subasta .auction-summary span.text-danger,
+.theme-subasta .bidding-history .text-danger,
+.theme-subasta .time-remaining,
+.theme-subasta .auction-timer-inline,
+.theme-subasta .auction-timer-time-only,
+.theme-subasta .auction-timer-value-only { 
+  color: #ec2227 !important; 
+}
+
+/* ===================
+TEMA MODO OSCURO - REGLAS ESPECÍFICAS
+Siguiendo estándares WCAG 2.1 AA
+====================== */
+
+/* Fondos principales */
+.theme-dark body,
+.theme-dark .bg,
+.theme-dark .section {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Header y navegación */
+.theme-dark .header-area,
+.theme-dark .navbar,
+.theme-dark .header-top {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.theme-dark .navbar-nav .nav-link,
+.theme-dark .header-top a,
+.theme-dark .header-phone-number a {
+  color: var(--text-secondary) !important;
+}
+
+.theme-dark .navbar-nav .nav-link:hover,
+.theme-dark .navbar-nav .nav-link.active {
+  color: var(--primary-blue) !important;
+}
+
+/* Footer */
+.theme-dark .footer-area,
+.theme-dark .footer-widget {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.theme-dark .footer-widget h5,
+.theme-dark .footer-widget-title {
+  color: var(--text-primary) !important;
+}
+
+/* Cards y superficies elevadas */
+.theme-dark .car-item,
+.theme-dark .card,
+.theme-dark .service-item,
+.theme-dark .blog-item {
+  background-color: var(--surface-low) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-dark .car-item:hover {
+  background-color: var(--surface-mid) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Textos y títulos */
+.theme-dark h1, .theme-dark h2, .theme-dark h3, 
+.theme-dark h4, .theme-dark h5, .theme-dark h6 {
+  color: var(--text-primary) !important;
+}
+
+.theme-dark p, .theme-dark span, .theme-dark li {
+  color: var(--text-secondary) !important;
+}
+
+.theme-dark .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Botones primarios */
+.theme-dark .theme-btn,
+.theme-dark .btn-primary {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+  color: var(--bg-primary) !important;
+}
+
+.theme-dark .theme-btn:hover,
+.theme-dark .btn-primary:hover {
+  background-color: var(--primary-blue-hover) !important;
+  border-color: var(--primary-blue-hover) !important;
+}
+
+/* Botones secundarios */
+.theme-dark .theme-btn2 {
+  background-color: var(--surface-mid) !important;
+  color: var(--primary-blue) !important;
+  border: 1px solid var(--border-primary) !important;
+}
+
+.theme-dark .theme-btn2:hover {
+  background-color: var(--primary-blue) !important;
+  color: var(--bg-primary) !important;
+}
+
+/* Formularios */
+.theme-dark .form-control,
+.theme-dark .form-select {
+  background-color: var(--surface-low) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-dark .form-control:focus,
+.theme-dark .form-select:focus {
+  background-color: var(--surface-mid) !important;
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 0 0 0.25rem rgba(96, 165, 250, 0.25) !important;
+}
+
+.theme-dark .form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Hero section para modo oscuro */
+.theme-dark .hero-single::before {
+  background: rgba(15, 23, 42, 0.7) !important; /* Overlay oscuro */
+}
+
+.theme-dark .hero-single .hero-content .hero-sub-title {
+  background: var(--primary-blue) !important;
+  color: var(--bg-primary) !important;
+}
+
+/* Precios y elementos destacados */
+.theme-dark .car-price {
+  color: var(--accent-color) !important;  /* Verde esmeralda para precios */
+}
+
+/* Iconos y elementos interactivos */
+.theme-dark .fas.fa-heart,
+.theme-dark .far.fa-heart {
+  color: var(--danger-red) !important;  /* Rojo específico #ec2227 */
+}
+
+.theme-dark .car-list i {
+  color: var(--primary-blue) !important;  /* Cyan #17a2b8 */
+}
+
+/* Elementos que usan el rojo específico #ec2227 */
+.theme-dark .header-phone-icon,
+.theme-dark .header-account button,
+.theme-dark .btn-danger,
+.theme-dark .error-btn,
+.theme-dark .delete-btn {
+  background-color: var(--danger-red) !important;
+  border-color: var(--danger-red) !important;
+  color: #fff !important;
+}
+
+.theme-dark .btn-danger:hover,
+.theme-dark .error-btn:hover,
+.theme-dark .delete-btn:hover {
+  background-color: var(--danger-red-hover) !important;
+  border-color: var(--danger-red-hover) !important;
+}
+
+/* Elementos de tiempo y countdown */
+.theme-dark .auction-timer,
+.theme-dark .time-remaining,
+.theme-dark .auction-timer-inline,
+.theme-dark .auction-timer-time-only,
+.theme-dark .auction-timer-value-only {
+  color: var(--danger-red) !important;  /* Rojo para urgencia */
+}
+
+/* Header top y elementos sociales */
+.theme-dark .header-top-social a {
+  background: var(--danger-red) !important;
+  color: #fff !important;
+}
+
+.theme-dark .header-top-social a:hover {
+  background: var(--danger-red-hover) !important;
+}
+
+/* Estados de éxito, advertencia y error */
+.theme-dark .alert-success {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+
+.theme-dark .alert-warning {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  border-color: var(--warning) !important;
+  color: var(--warning) !important;
+}
+
+.theme-dark .alert-danger {
+  background-color: rgba(236, 34, 39, 0.1) !important;  /* Fondo con rojo específico */
+  border-color: var(--danger-red) !important;
+  color: var(--danger-red) !important;
+}
+
+/* Footer y scroll button */
+.theme-dark #scroll-top {
+  background-color: var(--danger-red) !important;
+}
+
+.theme-dark #scroll-top:hover {
+  background-color: var(--danger-red-hover) !important;
+}
+
+/* Footer contact icons */
+.theme-dark .footer-contact li i {
+  background: var(--danger-red) !important;
+  color: #fff !important;
+}
+
+.theme-dark .footer-list li a i,
+.theme-dark .footer-list li a:hover {
+  color: var(--danger-red) !important;
+}
+
+.theme-dark .copyright .footer-menu li a:hover,
+.theme-dark .copyright .copyright-text a {
+  color: var(--danger-red) !important;
+}
+
+/* Bordes y separadores */
+.theme-dark hr,
+.theme-dark .border,
+.theme-dark .car-footer {
+  border-color: var(--border-secondary) !important;
+}
+
+/* Dropdowns y menús */
+.theme-dark .dropdown-menu {
+  background-color: var(--surface-mid) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.theme-dark .dropdown-item {
+  color: var(--text-secondary) !important;
+}
+
+.theme-dark .dropdown-item:hover {
+  background-color: var(--surface-high) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Scrollbar personalizada para modo oscuro */
+.theme-dark ::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+.theme-dark ::-webkit-scrollbar-track {
+  background: var(--bg-secondary) !important;
+  border-radius: 6px !important;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb {
+  background: var(--surface-high) !important;
+  border-radius: 6px !important;
+  border: 2px solid var(--bg-secondary) !important;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue) !important;
+}
+
+/* Firefox scrollbar */
+.theme-dark,
+.theme-dark * {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--surface-high) var(--bg-secondary) !important;
+}
+
+/* Links */
+.theme-dark a {
+  color: var(--primary-blue) !important;
+}
+
+.theme-dark a:hover {
+  color: var(--primary-blue-hover) !important;
+}
+
+/* Tablas */
+.theme-dark .table {
+  color: var(--text-primary) !important;
+  border-color: var(--border-secondary) !important;
+}
+
+.theme-dark .table th {
+  background-color: var(--surface-mid) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.theme-dark .table td {
+  border-color: var(--border-secondary) !important;
+}
+
+/* Breadcrumbs */
+.theme-dark .breadcrumb {
+  background-color: var(--surface-low) !important;
+}
+
+.theme-dark .breadcrumb-item a {
+  color: var(--primary-blue) !important;
+}
+
+/* Tooltips y popovers */
+.theme-dark .tooltip .tooltip-inner {
+  background-color: var(--surface-high) !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-dark .popover {
+  background-color: var(--surface-mid) !important;
+  border-color: var(--border-primary) !important;
+}
+
+/* Palabras específicas para modo oscuro */
+.theme-dark .car-area .site-title span,        /* "Destacados" */
+.theme-dark .sell-wizard .site-title span,     /* "Vehículo" */
+.theme-dark .contact-header .site-title span   /* "Nosotros" */
+{
+  color: var(--primary-blue) !important;  /* Cyan #17a2b8 para destacar */
+}
+
+

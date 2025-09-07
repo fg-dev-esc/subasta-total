@@ -1,0 +1,972 @@
+/* =====================================================
+Compradores Page Styles - Subasta Total  
+Basado en Screenshots 11-15 con estilos Carway modernos
+======================================================*/
+
+/* Hero Section + Propuesta de Valor - Based on Screenshot 11 */
+.st-compradores-hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-compradores-hero {
+  padding: 120px 0;
+  background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.st-compradores-hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.85) 0%, rgba(26, 64, 60, 0.75) 100%);
+  z-index: -1;
+}
+
+.st-compradores-hero-content {
+  text-align: center;
+  animation: fadeInUp 1.2s ease-out;
+  position: relative;
+  z-index: 2;
+}
+
+.st-compradores-hero-title {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  line-height: 1.2;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Propuesta Cards */
+.st-propuesta-cards {
+  margin-top: 60px;
+}
+
+.st-propuesta-card {
+  background: white;
+  color: var(--st-gray-800);
+  padding: 40px 35px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(33, 80, 76, 0.15);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  backdrop-filter: blur(15px);
+  height: 100%;
+}
+
+.st-propuesta-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 25px 25px 0 0;
+}
+
+.st-propuesta-card::after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(33, 80, 76, 0.05) 0%, transparent 70%);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.st-propuesta-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(33, 80, 76, 0.2);
+}
+
+.st-propuesta-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+}
+
+/* Ventajas Section - Based on Screenshots 12-13 */
+.st-ventajas-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.st-ventajas-image img {
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: auto;
+}
+
+.st-ventajas-intro {
+  padding-left: 40px;
+}
+
+.st-ventajas-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--st-green);
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+.st-ventajas-grid {
+  margin-top: 80px;
+}
+
+.st-ventaja-card {
+  background: white;
+  border-radius: 20px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  height: 100%;
+}
+
+.st-ventaja-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.st-ventaja-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(33, 80, 76, 0.15);
+}
+
+.st-ventaja-card:hover::before {
+  transform: scaleX(1);
+}
+
+.st-ventaja-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.st-ventaja-card:hover .st-ventaja-icon {
+  transform: scale(1.1);
+}
+
+.st-ventaja-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.st-ventaja-text {
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* CTA Final Compradores - Based on Screenshot 14 */
+.st-compradores-final-cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--st-green-dark) 0%, var(--st-green) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.st-compradores-final-cta-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(100px, -100px);
+}
+
+.st-compradores-final-cta-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transform: translate(-50px, 50px);
+}
+
+.st-compradores-final-cta-content {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.st-compradores-final-cta-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.3;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.st-compradores-final-cta-description {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.st-compradores-final-cta-btn {
+  background: white;
+  color: var(--st-green);
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 2px solid transparent;
+}
+
+.st-compradores-final-cta-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(33, 80, 76, 0.1), transparent);
+  transition: left 0.6s;
+  z-index: -1;
+}
+
+.st-compradores-final-cta-btn:hover {
+  background: var(--st-green);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+.st-compradores-final-cta-btn:hover::before {
+  left: 100%;
+}
+
+.st-compradores-final-cta-btn i {
+  transition: transform 0.3s ease;
+}
+
+.st-compradores-final-cta-btn:hover i {
+  transform: translateX(5px);
+}
+
+/* Proceso de Participación Section - Based on Screenshot 15 */
+.st-proceso-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+}
+
+.st-proceso-intro {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.st-proceso-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.st-proceso-subtitle {
+  font-size: 20px;
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.st-proceso-steps {
+  position: relative;
+}
+
+.st-proceso-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.st-proceso-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.st-proceso-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.st-proceso-step {
+  text-align: center;
+  position: relative;
+  min-width: 180px;
+  max-width: 200px;
+}
+
+.st-proceso-step-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+  transition: all 0.3s ease;
+}
+
+.st-proceso-step:hover .st-proceso-step-icon {
+  transform: scale(1.1);
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.4);
+}
+
+.st-proceso-step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.st-proceso-step-text {
+  font-size: 14px;
+  color: var(--st-gray-600);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.st-proceso-arrow-horizontal {
+  color: var(--st-green);
+  font-size: 28px;
+  opacity: 0.8;
+  animation: bounceHorizontal 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+}
+
+.st-proceso-arrow-down {
+  color: var(--st-green);
+  font-size: 32px;
+  opacity: 0.8;
+  animation: bounceVertical 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.st-arrow-reverse {
+  animation: bounceHorizontalReverse 2s infinite;
+}
+
+@keyframes bounceHorizontal {
+  0%, 100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(5px); opacity: 1; }
+}
+
+@keyframes bounceHorizontalReverse {
+  0%, 100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(-5px); opacity: 1; }
+}
+
+@keyframes bounceVertical {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
+/* Responsive Design */
+@media all and (max-width: 1199px) {
+  .st-compradores-hero-title {
+    font-size: 48px;
+  }
+  
+  .st-ventajas-title {
+    font-size: 36px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .st-compradores-hero {
+    padding: 80px 0;
+    background-attachment: scroll;
+  }
+  
+  .st-compradores-hero-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .st-ventajas-section,
+  .st-compradores-final-cta-section,
+  .st-proceso-section {
+    padding: 80px 0;
+  }
+  
+  .st-ventajas-intro {
+    padding-left: 0;
+    margin-bottom: 40px;
+  }
+  
+  .st-ventajas-title {
+    font-size: 32px;
+  }
+  
+  .st-ventajas-grid {
+    margin-top: 60px;
+  }
+  
+  .st-proceso-flow {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .st-proceso-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media all and (max-width: 767px) {
+  .st-compradores-hero-title {
+    font-size: 32px;
+  }
+  
+  .st-compradores-hero {
+    padding: 60px 0;
+  }
+  
+  .st-ventajas-section,
+  .st-compradores-final-cta-section,
+  .st-proceso-section {
+    padding: 60px 0;
+  }
+  
+  .st-propuesta-card {
+    padding: 30px 25px;
+    margin-bottom: 20px;
+  }
+  
+  .st-propuesta-card p {
+    font-size: 15px;
+  }
+  
+  .st-ventajas-title {
+    font-size: 28px;
+  }
+  
+  .st-ventaja-card {
+    padding: 30px 20px;
+  }
+  
+  .st-compradores-final-cta-title {
+    font-size: 28px;
+  }
+  
+  .st-compradores-final-cta-description {
+    font-size: 16px;
+  }
+  
+  .st-proceso-title {
+    font-size: 28px;
+  }
+  
+  .st-proceso-subtitle {
+    font-size: 16px;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.st-animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.st-animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Requisitos de Registro Section - Based on Screenshot 16 */
+.st-requisitos-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+}
+
+.st-requisitos-intro {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.st-requisitos-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.st-requisitos-description {
+  font-size: 18px;
+  color: var(--st-gray-600);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.st-requisitos-cta {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.2);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.st-requisitos-cta-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.st-requisitos-pasos {
+  margin-top: 80px;
+}
+
+.st-requisito-paso {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  height: 100%;
+  text-align: center;
+}
+
+.st-requisito-paso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(33, 80, 76, 0.15);
+}
+
+.st-requisito-paso-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 auto 25px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+}
+
+.st-requisito-paso-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.st-requisito-paso-text {
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Documentación Requerida Section - Based on Screenshot 17 */
+.st-documentacion-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.st-documentacion-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.st-documentacion-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.st-documentacion-card {
+  background: white;
+  border-radius: 25px;
+  padding: 40px 35px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  height: 100%;
+}
+
+.st-documentacion-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 25px 25px 0 0;
+}
+
+.st-documentacion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(33, 80, 76, 0.15);
+}
+
+.st-documentacion-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.st-documentacion-card-title i {
+  font-size: 22px;
+  color: var(--st-green);
+  margin-right: 12px;
+}
+
+.st-documentacion-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.st-documentacion-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(33, 80, 76, 0.1);
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.st-documentacion-list li:last-child {
+  border-bottom: none;
+}
+
+.st-documentacion-list li i {
+  color: var(--st-green);
+  font-size: 18px;
+  width: 25px;
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.st-documentacion-final-message {
+  margin-top: 60px;
+}
+
+.st-documentacion-final-card {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  padding: 50px 40px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(33, 80, 76, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.st-documentacion-final-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.st-documentacion-final-card i {
+  font-size: 60px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.st-documentacion-final-card h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.st-documentacion-final-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.95;
+  position: relative;
+  z-index: 2;
+}
+
+.st-documentacion-final-btn {
+  background: white;
+  color: var(--st-green);
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.st-documentacion-final-btn:hover {
+  background: var(--st-green-dark);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.st-documentacion-final-btn i {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.st-documentacion-final-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Información Legal Section - Based on Screenshots 18-19 */
+.st-legal-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+}
+
+.st-legal-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.st-legal-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.st-legal-description {
+  font-size: 18px;
+  color: var(--st-gray-600);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.st-legal-section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.st-accordion {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-accordion-item {
+  border-bottom: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.st-accordion-header {
+  padding: 0;
+}
+
+.st-accordion-button {
+  background: white;
+  border: none;
+  padding: 25px 30px;
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--st-green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.st-accordion-button::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  color: var(--st-green-light);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--st-green-light);
+}
+
+.st-accordion-button.collapsed::after {
+  transform: translateY(-50%) rotate(-90deg);
+  border-top: 10px solid var(--st-green-light);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+.st-accordion-button:hover {
+  background: rgba(33, 80, 76, 0.05);
+  color: var(--st-green-dark);
+}
+
+.st-accordion-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.st-accordion-collapse {
+  transition: all 0.3s ease;
+}
+
+.st-accordion-body {
+  padding: 0 30px 25px 30px;
+  color: var(--st-gray-600);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.st-accordion-body p {
+  margin: 0;
+}

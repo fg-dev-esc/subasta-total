@@ -1,0 +1,695 @@
+/* =====================================================
+Subastas Page Styles - Subasta Total  
+Página placeholder con diseño moderno
+======================================================*/
+
+/* Hero Section */
+.st-subastas-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-subastas-hero {
+  padding: 100px 0;
+  background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.st-subastas-hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.8) 0%, rgba(26, 64, 60, 0.8) 100%);
+  z-index: -1;
+}
+
+.st-subastas-hero-content {
+  text-align: center;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.st-subastas-hero-title {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.st-subastas-hero-subtitle {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estado Actual Section */
+.st-subastas-status-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.st-subastas-status-card {
+  background: white;
+  border-radius: 30px;
+  padding: 80px 60px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-subastas-status-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 30px 30px 0 0;
+}
+
+.st-subastas-status-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.st-subastas-status-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.st-subastas-status-description {
+  font-size: 18px;
+  color: var(--st-gray-600);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.st-subastas-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.st-subastas-btn {
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.st-subastas-btn.primary {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+}
+
+.st-subastas-btn.primary:hover {
+  background: var(--st-green-dark);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(33, 80, 76, 0.4);
+}
+
+.st-subastas-btn.secondary {
+  background: white;
+  color: var(--st-green);
+  border: 2px solid var(--st-green);
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.2);
+}
+
+.st-subastas-btn.secondary:hover {
+  background: var(--st-green);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+}
+
+.st-subastas-btn i {
+  transition: transform 0.3s ease;
+}
+
+.st-subastas-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Información Adicional Section */
+.st-subastas-info-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
+  position: relative;
+}
+
+.st-subastas-info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  height: 100%;
+}
+
+.st-subastas-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.st-subastas-info-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.st-subastas-info-card:hover .st-subastas-info-icon {
+  transform: scale(1.1);
+}
+
+.st-subastas-info-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 15px;
+}
+
+.st-subastas-info-text {
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media all and (max-width: 1199px) {
+  .st-subastas-hero-title {
+    font-size: 48px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .st-subastas-hero {
+    padding: 80px 0;
+    background-attachment: scroll;
+  }
+  
+  .st-subastas-hero-title {
+    font-size: 40px;
+  }
+  
+  .st-subastas-status-section,
+  .st-subastas-info-section {
+    padding: 80px 0;
+  }
+  
+  .st-subastas-status-card {
+    padding: 60px 40px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .st-subastas-hero-title {
+    font-size: 32px;
+  }
+  
+  .st-subastas-hero {
+    padding: 60px 0;
+  }
+  
+  .st-subastas-status-section,
+  .st-subastas-info-section {
+    padding: 60px 0;
+  }
+  
+  .st-subastas-status-card {
+    padding: 40px 30px;
+    margin: 0 15px;
+  }
+  
+  .st-subastas-status-title {
+    font-size: 28px;
+  }
+  
+  .st-subastas-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .st-subastas-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+}
+
+/* Countdown Timer Section */
+.st-countdown-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.st-countdown-card {
+  background: white;
+  border-radius: 30px;
+  padding: 60px 40px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-countdown-header {
+  margin-bottom: 50px;
+}
+
+.st-countdown-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-countdown-subtitle {
+  font-size: 18px;
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.st-countdown-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.st-time-block {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 20px;
+  padding: 25px 20px;
+  min-width: 100px;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.st-time-block:hover {
+  transform: scale(1.05);
+}
+
+.st-time-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.st-time-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.st-time-separator {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin: 0 10px;
+}
+
+.st-countdown-btn {
+  padding: 20px 40px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+}
+
+.st-countdown-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(33, 80, 76, 0.4);
+  background: var(--st-green-dark);
+  color: white;
+}
+
+/* Featured Property Section */
+.st-featured-property-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.st-property-images {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-main-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+}
+
+.st-main-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Hover effect disabled to prevent image jumping */
+
+.st-property-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+  animation: pulse 2s infinite;
+  z-index: 2;
+}
+
+.st-property-details {
+  padding: 40px 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.st-property-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.st-property-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--st-gray-600);
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.st-property-location i {
+  color: var(--st-green);
+  font-size: 20px;
+}
+
+.st-property-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.st-spec {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-spec i {
+  color: var(--st-green);
+  font-size: 18px;
+  width: 20px;
+}
+
+.st-spec span {
+  color: var(--st-gray-700);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.st-property-description {
+  margin-bottom: 30px;
+}
+
+.st-property-description p {
+  color: var(--st-gray-600);
+  line-height: 1.7;
+  font-size: 16px;
+  margin: 0;
+}
+
+.st-property-pricing {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.st-current-bid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.st-bid-label, .st-starting-label {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.st-bid-amount {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.st-starting-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.st-starting-amount {
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.st-property-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.st-property-btn {
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.st-property-btn.primary {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+}
+
+.st-property-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(33, 80, 76, 0.4);
+  background: var(--st-green-dark);
+  color: white;
+}
+
+.st-property-btn.secondary {
+  background: white;
+  color: var(--st-green);
+  border: 2px solid var(--st-green);
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.2);
+}
+
+.st-property-btn.secondary:hover {
+  background: var(--st-green);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design Updates */
+@media all and (max-width: 991px) {
+  .st-property-details {
+    padding: 40px 20px 0 20px;
+    text-align: center;
+  }
+  
+  .st-property-images {
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  
+  .st-main-image {
+    margin: 0 auto;
+  }
+  
+  .st-property-specs {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 30px auto;
+  }
+  
+  .st-property-actions {
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .st-countdown-display {
+    gap: 15px;
+  }
+  
+  .st-time-block {
+    min-width: 80px;
+    padding: 20px 15px;
+  }
+  
+  .st-time-number {
+    font-size: 28px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .st-countdown-display {
+    gap: 10px;
+  }
+  
+  .st-time-separator {
+    display: none;
+  }
+  
+  .st-property-actions {
+    flex-direction: column;
+  }
+  
+  .st-property-btn {
+    justify-content: center;
+  }
+  
+  .st-current-bid, .st-starting-price {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+}

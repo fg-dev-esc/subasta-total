@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'IcoMoon';
+  src:  url('../fonts/icomoon.eot');
+  src:  url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.svg#IcoMoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'IcoMoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.icon-car:before {
+  content: "\e906";
+}
+.icon-sedan-car-model:before {
+  content: "\e907";
+}
+.icon-minivan-car:before {
+  content: "\e908";
+}
+.icon-microbus:before {
+  content: "\e909";
+}
+.icon-car-suv:before {
+  content: "\e90a";
+}
+.icon-magnifying-glass:before {
+  content: "\e900";
+}
+.icon-shopping-cart:before {
+  content: "\e901";
+}
+.icon-right-arrow:before {
+  content: "\e902";
+}
+.icon-left-arrow:before {
+  content: "\e91d";
+}
+.icon-farm:before {
+  content: "\e903";
+}
+.icon-plus:before {
+  content: "\e904";
+}
+.icon-mat:before {
+  content: "\e905";
+}
+.icon-car-service:before {
+  content: "\e90b";
+}
+.icon-car-service-1:before {
+  content: "\e90c";
+}
+.icon-car-service-2:before {
+  content: "\e90d";
+}
+.icon-car-wash:before {
+  content: "\e90e";
+}
+.icon-tire:before {
+  content: "\e917";
+}
+.icon-heart:before {
+  content: "\e918";
+}
+.icon-brake-disc:before {
+  content: "\e919";
+}
+.icon-car-wash-1:before {
+  content: "\e91a";
+}
+.icon-car-wash-2:before {
+  content: "\e91b";
+}
+.icon-tire-1:before {
+  content: "\e91c";
+}
+.icon-phone-call:before {
+  content: "\e90f";
+}
+.icon-car-service-3:before {
+  content: "\e910";
+}
+.icon-brush:before {
+  content: "\e911";
+}
+.icon-polish:before {
+  content: "\e912";
+}
+.icon-car-service-4:before {
+  content: "\e913";
+}
+.icon-seat:before {
+  content: "\e914";
+}
+.icon-car-service-5:before {
+  content: "\e915";
+}
+.icon-vacuum-cleaner:before {
+  content: "\e916";
+}

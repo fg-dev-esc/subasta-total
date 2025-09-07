@@ -1,0 +1,507 @@
+/* =====================================================
+Contacto Page Styles - Subasta Total  
+Basado en Screenshot 24 con estilos Carway modernos
+======================================================*/
+
+/* Hero Section Contacto - Based on Screenshot 24 */
+.st-contacto-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-contacto-hero {
+  padding: 100px 0;
+  background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.st-contacto-hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.8) 0%, rgba(26, 64, 60, 0.8) 100%);
+  z-index: -1;
+}
+
+.st-contacto-hero-content {
+  text-align: center;
+  animation: fadeInUp 1.2s ease-out;
+  max-width: 900px;
+}
+
+.st-contacto-hero-title {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.st-contacto-hero-description {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.st-contacto-hero-subtitle {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Formulario de Contacto Section */
+.st-contacto-form-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.st-contacto-form-card {
+  background: white;
+  border-radius: 30px;
+  padding: 60px 50px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-contacto-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 30px 30px 0 0;
+}
+
+.st-contacto-form-card::after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.03) 0%, transparent 100%);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.st-contacto-form {
+  position: relative;
+  z-index: 2;
+}
+
+/* Form Styles */
+.st-form-group {
+  position: relative;
+}
+
+.st-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--st-green);
+  font-size: 16px;
+  position: relative;
+}
+
+.st-form-label::after {
+  content: "*";
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+.st-form-control {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid rgba(33, 80, 76, 0.2);
+  border-radius: 15px;
+  font-size: 16px;
+  color: var(--st-gray-700);
+  background: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.st-form-control:focus {
+  outline: none;
+  border-color: var(--st-green);
+  box-shadow: 0 0 0 4px rgba(33, 80, 76, 0.1);
+  transform: translateY(-1px);
+}
+
+.st-form-control::placeholder {
+  color: var(--st-gray-400);
+  font-weight: 400;
+}
+
+.st-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* Submit Button */
+.st-contacto-submit-btn {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  color: white;
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.st-contacto-submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+  z-index: -1;
+}
+
+.st-contacto-submit-btn:hover:not(:disabled) {
+  background: var(--st-green-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(33, 80, 76, 0.4);
+}
+
+.st-contacto-submit-btn:hover::before {
+  left: 100%;
+}
+
+.st-contacto-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.st-contacto-submit-btn i {
+  transition: transform 0.3s ease;
+}
+
+.st-contacto-submit-btn:hover:not(:disabled) i {
+  transform: translateX(3px);
+}
+
+/* Spinner */
+.st-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Submit Message */
+.st-submit-message {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.st-submit-message.success {
+  background: rgba(46, 204, 113, 0.1);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.st-submit-message.error {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* Información de Contacto Section */
+.st-contacto-info-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
+  position: relative;
+}
+
+.st-contacto-info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border: 1px solid rgba(33, 80, 76, 0.1);
+}
+
+.st-contacto-info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.st-contacto-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.st-contacto-info-card:hover::before {
+  transform: scaleX(1);
+}
+
+.st-contacto-info-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  box-shadow: 0 10px 25px rgba(33, 80, 76, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.st-contacto-info-card:hover .st-contacto-info-icon {
+  transform: scale(1.1);
+}
+
+.st-contacto-info-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 15px;
+}
+
+.st-contacto-info-text {
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+}
+
+.st-contacto-info-text a {
+  color: var(--st-gray-700);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.st-contacto-info-text a:hover {
+  color: var(--st-green);
+}
+
+/* Social Links */
+.st-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.st-social-link {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  background: white;
+  border: 2px solid var(--st-gray-200);
+}
+
+.st-social-link.facebook {
+  color: #1877f2;
+}
+
+.st-social-link.facebook:hover {
+  background: #1877f2;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3);
+  border-color: #1877f2;
+}
+
+.st-social-link.instagram {
+  color: #E4405F;
+}
+
+.st-social-link.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(228, 64, 95, 0.3);
+  border-color: #E4405F;
+}
+
+.st-social-link.linkedin {
+  color: #0077b5;
+}
+
+.st-social-link.linkedin:hover {
+  background: #0077b5;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 119, 181, 0.3);
+  border-color: #0077b5;
+}
+
+.st-social-link.youtube {
+  color: #ff0000;
+}
+
+.st-social-link.youtube:hover {
+  background: #ff0000;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+  border-color: #ff0000;
+}
+
+/* Responsive Design */
+@media all and (max-width: 1199px) {
+  .st-contacto-hero-title {
+    font-size: 48px;
+  }
+}
+
+@media all and (max-width: 991px) {
+  .st-contacto-hero {
+    padding: 80px 0;
+    background-attachment: scroll;
+  }
+  
+  .st-contacto-hero-title {
+    font-size: 40px;
+  }
+  
+  .st-contacto-form-section,
+  .st-contacto-info-section {
+    padding: 80px 0;
+  }
+  
+  .st-contacto-form-card {
+    padding: 40px 30px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .st-contacto-hero-title {
+    font-size: 32px;
+  }
+  
+  .st-contacto-hero {
+    padding: 60px 0;
+  }
+  
+  .st-contacto-form-section,
+  .st-contacto-info-section {
+    padding: 60px 0;
+  }
+  
+  .st-contacto-form-card {
+    padding: 30px 20px;
+    margin: 0 15px;
+  }
+  
+  .st-contacto-hero-description {
+    font-size: 18px;
+  }
+  
+  .st-contacto-hero-subtitle {
+    font-size: 16px;
+  }
+  
+  .st-form-control {
+    padding: 12px 15px;
+  }
+  
+  .st-social-links {
+    gap: 8px;
+  }
+  
+  .st-social-link {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.st-animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.st-animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
