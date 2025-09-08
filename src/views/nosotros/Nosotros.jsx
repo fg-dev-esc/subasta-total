@@ -93,8 +93,8 @@ const Nosotros = () => {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="st-cta-medio-content">
-                <h2 className="st-cta-medio-title">
-                  ¡Únete a la mejor experiencia de <span className="text-accent">subastas de inmuebles!</span>
+                <h2 className="st-cta-medio-title" style={{color: 'white'}}>
+                  ¡Únete a la mejor experiencia de <span style={{color: 'white'}}>subastas de inmuebles!</span>
                 </h2>
                 <p className="st-cta-medio-description">
                   Ya sea que estés buscando tu próximo hogar, vendiendo propiedades o maximizando tu inversión, 

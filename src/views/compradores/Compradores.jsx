@@ -219,7 +219,7 @@ const Compradores = () => {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="st-compradores-final-cta-content">
-                <h2 className="st-compradores-final-cta-title">
+                <h2 className="st-compradores-final-cta-title" style={{color: 'white'}}>
                   ¡Encuentra la casa de tus sueños o tu mejor inversión en nuestras subastas inmobiliarias!
                 </h2>
                 <p className="st-compradores-final-cta-description">
@@ -364,7 +364,7 @@ const Compradores = () => {
                   participar en nuestras subastas de manera segura y confiable.
                 </p>
                 <div className="st-requisitos-cta">
-                  <h3 className="st-requisitos-cta-title">
+                  <h3 className="st-requisitos-cta-title" style={{color: 'white'}}>
                     ¡Descubre cómo participar en nuestras subastas de manera segura!
                   </h3>
                 </div>
@@ -496,7 +496,7 @@ const Compradores = () => {
               <div className="st-documentacion-final-message st-animate-on-scroll">
                 <div className="st-documentacion-final-card">
                   <i className="fas fa-check-circle"></i>
-                  <h3>¡Listo, ahora puedes comenzar a ofertar inmuebles!</h3>
+                  <h3 style={{color: 'white'}}>¡Listo, ahora puedes comenzar a ofertar inmuebles!</h3>
                   <p>Una vez que tengas toda tu documentación completa y validada, podrás participar en todas nuestras subastas inmobiliarias.</p>
                   <a href="/auth" className="st-documentacion-final-btn">
                     Comenzar Registro <i className="fas fa-arrow-right"></i>

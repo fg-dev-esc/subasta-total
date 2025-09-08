@@ -207,7 +207,7 @@ const Vendedores = () => {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="st-vendedores-final-cta-content">
-                <h2 className="st-vendedores-final-cta-title">
+                <h2 className="st-vendedores-final-cta-title" style={{color: 'white'}}>
                   ¡Descubre el poder de nuestras subastas inmobiliarias!
                 </h2>
                 <p className="st-vendedores-final-cta-subtitle">

@@ -99,7 +99,7 @@ const Homepage = () => {
             <div className="col-lg-10">
               <div className="st-properties-hero">
                 <div className="st-properties-content">
-                  <h2 className="st-properties-title">
+                  <h2 className="st-properties-title" style={{color: 'white'}}>
                     Explora las propiedades que tenemos en subasta
                   </h2>
                   <p className="st-properties-subtitle">
@@ -133,7 +133,7 @@ const Homepage = () => {
 
           {/* Main CTA Text */}
           <div className="st-main-cta st-animate-on-scroll">
-            <h2 className="st-main-cta-title">
+            <h2 className="st-main-cta-title" style={{color: 'white'}}>
               ¿Quieres comprar un inmueble al mejor precio posible?
             </h2>
             <p className="st-main-cta-subtitle">
@@ -385,7 +385,7 @@ const Homepage = () => {
       <section className="st-final-cta-section st-animate-on-scroll">
         <div className="container">
           <div className="st-final-cta-content">
-            <h2 className="st-final-cta-title">
+            <h2 className="st-final-cta-title" style={{color: 'white'}}>
               ¡Encuentra la casa de tus sueños o tu mejor inversión en bienes raíces!
             </h2>
             <p className="st-final-cta-subtitle">
