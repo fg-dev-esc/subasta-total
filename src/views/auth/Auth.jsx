@@ -198,7 +198,7 @@ const Auth = () => {
                     <form onSubmit={handleLoginSubmit} className="st-auth-form">
                       <div className="st-form-group">
                         <label htmlFor="login-email" className="st-form-label">
-                          Email *
+                          Email <span className="required">*</span>
                         </label>
                         <input
                           type="email"
@@ -214,7 +214,7 @@ const Auth = () => {
 
                       <div className="st-form-group">
                         <label htmlFor="login-password" className="st-form-label">
-                          Contraseña *
+                          Contraseña <span className="required">*</span>
                         </label>
                         <input
                           type="password"
@@ -269,7 +269,7 @@ const Auth = () => {
                         <div className="col-md-6">
                           <div className="st-form-group">
                             <label htmlFor="register-nombre" className="st-form-label">
-                              Nombre *
+                              Nombre <span className="required">*</span>
                             </label>
                             <input
                               type="text"
@@ -286,7 +286,7 @@ const Auth = () => {
                         <div className="col-md-6">
                           <div className="st-form-group">
                             <label htmlFor="register-apellidos" className="st-form-label">
-                              Apellidos *
+                              Apellidos <span className="required">*</span>
                             </label>
                             <input
                               type="text"
@@ -304,7 +304,7 @@ const Auth = () => {
 
                       <div className="st-form-group">
                         <label htmlFor="register-email" className="st-form-label">
-                          Email *
+                          Email <span className="required">*</span>
                         </label>
                         <input
                           type="email"
@@ -320,7 +320,7 @@ const Auth = () => {
 
                       <div className="st-form-group">
                         <label htmlFor="register-telefono" className="st-form-label">
-                          Teléfono *
+                          Teléfono <span className="required">*</span>
                         </label>
                         <input
                           type="tel"
@@ -336,7 +336,7 @@ const Auth = () => {
 
                       <div className="st-form-group">
                         <label htmlFor="register-tipo" className="st-form-label">
-                          Tipo de Persona *
+                          Tipo de Persona <span className="required">*</span>
                         </label>
                         <select
                           id="register-tipo"
@@ -355,7 +355,7 @@ const Auth = () => {
                         <div className="col-md-6">
                           <div className="st-form-group">
                             <label htmlFor="register-password" className="st-form-label">
-                              Contraseña *
+                              Contraseña <span className="required">*</span>
                             </label>
                             <input
                               type="password"
@@ -372,7 +372,7 @@ const Auth = () => {
                         <div className="col-md-6">
                           <div className="st-form-group">
                             <label htmlFor="register-confirm" className="st-form-label">
-                              Confirmar Contraseña *
+                              Confirmar Contraseña <span className="required">*</span>
                             </label>
                             <input
                               type="password"

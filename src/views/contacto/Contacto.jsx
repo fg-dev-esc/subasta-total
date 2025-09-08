@@ -118,7 +118,7 @@ const Contacto = () => {
                     <div className="col-md-6 mb-4">
                       <div className="st-form-group">
                         <label htmlFor="nombre" className="st-form-label">
-                          Nombre *
+                          Nombre <span className="required">*</span>
                         </label>
                         <input
                           type="text"
@@ -136,7 +136,7 @@ const Contacto = () => {
                     <div className="col-md-6 mb-4">
                       <div className="st-form-group">
                         <label htmlFor="telefono" className="st-form-label">
-                          Teléfono *
+                          Teléfono <span className="required">*</span>
                         </label>
                         <input
                           type="tel"
@@ -154,7 +154,7 @@ const Contacto = () => {
                     <div className="col-12 mb-4">
                       <div className="st-form-group">
                         <label htmlFor="email" className="st-form-label">
-                          Email *
+                          Email <span className="required">*</span>
                         </label>
                         <input
                           type="email"
@@ -172,7 +172,7 @@ const Contacto = () => {
                     <div className="col-12 mb-4">
                       <div className="st-form-group">
                         <label htmlFor="mensaje" className="st-form-label">
-                          Mensaje *
+                          Mensaje <span className="required">*</span>
                         </label>
                         <textarea
                           id="mensaje"

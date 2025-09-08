@@ -178,12 +178,6 @@ Portal de acceso con formularios de login y registro
   position: relative;
 }
 
-.st-form-label::after {
-  content: "*";
-  color: #e74c3c;
-  margin-left: 4px;
-}
-
 .st-form-control {
   width: 100%;
   padding: 15px 20px;

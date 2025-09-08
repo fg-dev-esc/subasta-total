@@ -131,12 +131,6 @@ Basado en Screenshot 24 con estilos Carway modernos
   position: relative;
 }
 
-.st-form-label::after {
-  content: "*";
-  color: #e74c3c;
-  margin-left: 4px;
-}
-
 .st-form-control {
   width: 100%;
   padding: 15px 20px;

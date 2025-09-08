@@ -40,6 +40,12 @@
 .text-st-white { color: var(--st-white); }
 .text-st-dark { color: var(--st-gray-800); }
 
+/* Form required asterisk */
+.required {
+  color: #dc3545;
+  font-weight: bold;
+}
+
 .btn-st {
   padding: 12px 24px;
   border-radius: 6px;
