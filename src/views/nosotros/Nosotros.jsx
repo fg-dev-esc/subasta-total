@@ -27,7 +27,7 @@ const Nosotros = () => {
   }, []);
 
   return (
-    <div className="nosotros-page">
+    <div className="nosotros-page page-container">
       {/* Hero Section Nosotros - Based on Screenshot 08 */}
       <section className="st-nosotros-hero-section">
         <div className="st-nosotros-hero">

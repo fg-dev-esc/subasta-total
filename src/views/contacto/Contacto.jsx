@@ -81,7 +81,7 @@ const Contacto = () => {
   };
 
   return (
-    <div className="contacto-page">
+    <div className="contacto-page page-container">
       {/* Hero Section Contacto - Based on Screenshot 24 */}
       <section className="st-contacto-hero-section">
         <div className="st-contacto-hero">

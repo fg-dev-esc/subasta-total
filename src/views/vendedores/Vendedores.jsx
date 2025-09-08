@@ -27,7 +27,7 @@ const Vendedores = () => {
   }, []);
 
   return (
-    <div className="vendedores-page">
+    <div className="vendedores-page page-container">
       {/* Hero + Propuesta Vendedores - Based on Screenshots 20-21 */}
       <section className="st-vendedores-hero-section">
         <div className="st-vendedores-hero">

@@ -6,6 +6,19 @@ const Homepage = () => {
   // useScrollTrigger(); // Disabled to check if this causes hero animation
 
   useEffect(() => {
+    // Add loading class initially, remove after animations start
+    document.body.classList.add('loading');
+    const timer = setTimeout(() => {
+      document.body.classList.remove('loading');
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.classList.remove('loading');
+    };
+  }, []);
+
+  useEffect(() => {
     // Animate elements on scroll but exclude images
     const observerOptions = {
       threshold: 0.1,
@@ -34,7 +47,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="homepage">
+    <div className="homepage page-container">
       {/* Hero Section - Cutting Edge Design */}
       <section className="st-hero-section">
         <div className="st-hero-single">

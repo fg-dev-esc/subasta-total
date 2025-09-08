@@ -47,7 +47,6 @@
   text-decoration: none;
   display: inline-block;
   border: 2px solid transparent;
-  transition: all 0.3s ease;
 }
 
 .btn-st-primary {
@@ -128,7 +127,6 @@
 *,
 *:before,
 *:after {
-  transition: all 0.2s ease !important;
 }
 
 /* Override global transitions for hero */
@@ -161,230 +159,8 @@ button,
 .btn-st,
 .footer-social a,
 .header-account button {
-  transition: all 0.2s ease !important;
 }
 
-/* === TRANSICIONES DE PÁGINA === */
-@keyframes pageEnter {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pageExit {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-/* Animación al cargar la página - DISABLED */
-body {
-  /* animation: pageEnter 0.2s ease-in-out; */
-}
-
-/* Contenedores principales con animación - DISABLED */
-.homepage,
-#root > * {
-  /* animation: pageEnter 0.25s ease-in-out; */
-}
-
-/* Animación para elementos que aparecen - DISABLED */
-.fade-in-up {
-  /* animation: pageEnter 0.2s ease-in-out; */
-}
-
-.fade-in-down {
-  /* animation: pageEnter 0.15s ease-in-out; */
-}
-
-/* Animación específica para hero - DISABLED */
-.st-hero {
-  /* animation: pageEnter 0.3s ease-in-out 0.05s both; */
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-.st-hero * {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-/* Prevent any reflow or jump in hero section container */
-.st-hero-section,
-.st-hero-single {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: none !important;
-  will-change: auto !important;
-}
-
-/* Hero text animations */
-.st-hero-content {
-  animation: heroContentEnter 0.6s ease-out;
-}
-
-.st-hero-sub-title {
-  animation: heroTextEnter 0.4s ease-out 0.2s both;
-}
-
-.st-hero-title {
-  animation: heroTextEnter 0.5s ease-out 0.4s both;
-}
-
-.st-hero-description {
-  animation: heroTextEnter 0.4s ease-out 0.6s both;
-}
-
-.st-hero .theme-btn,
-.st-hero .btn-st {
-  animation: heroTextEnter 0.4s ease-out 0.8s both;
-}
-
-/* Hero animation keyframes */
-@keyframes heroContentEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes heroTextEnter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Stagger animation para secciones */
-.st-section:nth-child(2) {
-  animation: pageEnter 0.2s ease-in-out 0.05s both;
-}
-
-.st-section:nth-child(3) {
-  animation: pageEnter 0.2s ease-in-out 0.1s both;
-}
-
-/* Animaciones rápidas para elementos individuales */
-.hero-content > * {
-  animation: pageEnter 0.15s ease-in-out calc(var(--delay, 0) * 0.02s) both;
-}
-
-.hero-sub-title {
-  --delay: 1;
-}
-
-.hero-title {
-  --delay: 2;
-}
-
-.hero-gradient-description {
-  --delay: 3;
-}
-
-.hero-btn {
-  --delay: 4;
-}
-
-/* Cards rápidas */
-.st-card {
-  animation: pageEnter 0.15s ease-in-out calc(var(--card-delay, 0) * 0.03s) both;
-}
-
-.col-md-4:nth-child(1) .st-card {
-  --card-delay: 1;
-}
-
-.col-md-4:nth-child(2) .st-card {
-  --card-delay: 2;
-}
-
-.col-md-4:nth-child(3) .st-card {
-  --card-delay: 3;
-}
-
-/* Elementos del navbar */
-.nav-item {
-  animation: pageEnter 0.1s ease-in-out calc(var(--nav-delay, 0) * 0.01s) both;
-}
-
-.nav-item:nth-child(1) { --nav-delay: 1; }
-.nav-item:nth-child(2) { --nav-delay: 2; }
-.nav-item:nth-child(3) { --nav-delay: 3; }
-.nav-item:nth-child(4) { --nav-delay: 4; }
-.nav-item:nth-child(5) { --nav-delay: 5; }
-.nav-item:nth-child(6) { --nav-delay: 6; }
-
-/* Smooth scroll para toda la página */
-html {
-  scroll-behavior: smooth;
-}
-
-/* === SCROLL TRIGGERED ANIMATIONS === */
-.scroll-trigger {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.4s ease-out;
-}
-
-.scroll-trigger.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Variaciones de entrada */
-.scroll-trigger-left {
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.3s ease-out;
-}
-
-.scroll-trigger-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-trigger-right {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.3s ease-out;
-}
-
-.scroll-trigger-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-trigger-scale {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.3s ease-out;
-}
-
-.scroll-trigger-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
 
 /* === BOOTSTRAP OVERRIDES === */
 .navbar-nav .nav-link.active {
@@ -448,7 +224,6 @@ html {
   text-decoration: none;
   border-radius: 4px;
   display: inline-block;
-  transition: all 0.3s ease;
 }
 
 .theme-btn:hover {
@@ -543,7 +318,6 @@ html {
   border-radius: 10px !important;
   background: var(--st-green) !important;
   text-align: center !important;
-  transition: 0.3s !important;
   color: var(--st-white) !important;
 }
 

@@ -27,7 +27,7 @@ const Compradores = () => {
   }, []);
 
   return (
-    <div className="compradores-page">
+    <div className="compradores-page page-container">
       {/* Hero Section + Propuesta de Valor (3 Cards) - Based on Screenshot 11 */}
       <section className="st-compradores-hero-section">
         <div className="st-compradores-hero">

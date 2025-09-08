@@ -142,7 +142,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-page page-container">
       {/* Hero Section */}
       <section className="st-auth-hero-section">
         <div className="st-auth-hero">

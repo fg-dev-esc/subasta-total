@@ -3,6 +3,7 @@ Homepage Styles - Subasta Total
 Basado en Carway con paleta Subasta Total
 ======================================================*/
 
+
 /* Hero Section - Cutting Edge Design */
 .st-hero-section {
   position: relative;
@@ -43,7 +44,6 @@ Basado en Carway con paleta Subasta Total
 .st-hero-content {
   height: 100%;
   text-align: center;
-  /* animation: fadeInUp 1s ease-out; */ /* Disabled - hero should appear immediately */
 }
 
 .st-hero-sub-title {

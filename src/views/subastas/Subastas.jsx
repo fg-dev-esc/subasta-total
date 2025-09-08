@@ -60,7 +60,7 @@ const Subastas = () => {
   }, []);
 
   return (
-    <div className="subastas-page">
+    <div className="subastas-page page-container">
       {/* Hero Section */}
       <section className="st-subastas-hero-section">
         <div className="st-subastas-hero">
