@@ -52,6 +52,7 @@
 
 .navbar-brand .logo-img {
   max-height: 50px;
+  max-width: fit-content;
   margin-top: 6px;
 }
 
