@@ -96,7 +96,7 @@ const SubastaDetalle = () => {
             {error}
           </div>
           <button 
-            className="btn btn-primary"
+            className="st-destacados-cta-btn"
             onClick={() => navigate('/subastas')}
           >
             Volver a Subastas
@@ -115,7 +115,11 @@ const SubastaDetalle = () => {
             <div className="col-12">
               <div className="d-flex align-items-center mb-4">
                 <button 
-                  className="btn btn-outline-primary me-3"
+                  className="st-destacados-cta-btn me-3"
+                  style={{
+                    padding: '10px 20px',
+                    fontSize: '14px'
+                  }}
                   onClick={() => navigate('/subastas')}
                 >
                   <i className="fas fa-arrow-left me-2"></i>
@@ -205,7 +209,7 @@ const SubastaDetalle = () => {
 
                       <div className="st-property-actions mt-3">
                         <button 
-                          className="btn btn-primary w-100"
+                          className="st-property-btn"
                           onClick={() => handleViewProperty(torre.torreID)}
                         >
                           Ver Detalles y Ofertar

@@ -85,6 +85,35 @@ const Subastas = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    // Initialize Bootstrap carousels
+    const initCarousels = () => {
+      if (typeof window !== 'undefined' && window.bootstrap) {
+        const backgroundCarousel = document.getElementById('backgroundCarousel');
+        const auctionsCarousel = document.getElementById('auctionsCarousel');
+        
+        if (backgroundCarousel) {
+          new window.bootstrap.Carousel(backgroundCarousel, {
+            interval: 2000,
+            ride: 'carousel',
+            pause: false
+          });
+        }
+        
+        if (auctionsCarousel) {
+          new window.bootstrap.Carousel(auctionsCarousel, {
+            interval: 4000,
+            ride: 'carousel',
+            pause: false
+          });
+        }
+      }
+    };
+
+    // Wait a bit for the DOM to be ready and Bootstrap to load
+    setTimeout(initCarousels, 100);
+  }, [subastas]);
+
   const handleViewAuctionDetails = (subastaId) => {
     navigate(`/subasta-detalle/${subastaId}`);
   };
@@ -151,16 +180,18 @@ const Subastas = () => {
             <div className="col-lg-10">
               <div className="position-relative" style={{borderRadius: '20px', overflow: 'hidden'}}>
                 {/* Carrousel de imágenes de fondo */}
-                <div id="backgroundCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div id="backgroundCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
                   <div className="carousel-inner">
                     {[
                       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
                       'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
                       'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
                       'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80'
+                      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80'
                     ].map((imageUrl, index) => (
-                      <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                      <div key={`bg-${index}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                         <img 
                           src={imageUrl}
                           className="d-block w-100"
@@ -362,7 +393,7 @@ const Subastas = () => {
       </section>
 
       {/* Featured Property Section */}
-      <section className="st-featured-property-section">
+      {/* <section className="st-featured-property-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -461,7 +492,7 @@ const Subastas = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Información Adicional */}
       <section className="st-subastas-info-section">

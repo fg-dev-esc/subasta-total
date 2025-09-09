@@ -18,30 +18,34 @@ const Detalle = () => {
     const fetchPropertyData = async () => {
       try {
         setLoading(true);
-        // En el contexto real, esto vendría del API
-        // Por ahora, vamos a simular los datos basados en el ID
-        const mockData = {
-          torreID: id,
-          numeroTorre: 1,
-          nombre: `Propiedad ${id}`,
-          descripcion: "Hermosa propiedad con excelente ubicación y acabados de primera calidad. Ideal para inversión o residencia.",
-          montoSalida: 3500000,
-          fechaFin: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-          estado: "Ciudad de México",
-          municipio: "Polanco",
-          categoria: "Residencial",
-          subCategoria: "Casa",
-          foto: {
-            url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2075&q=80"
-          },
-          estatusJuridico: "Libre de gravamen",
-          tipoVenta: "Subasta pública",
-          latLng: "19.4326,-99.1332"
-        };
+        // Buscar la propiedad en todas las subastas disponibles
+        const subastasResponse = await fetch('https://demo-subasta.backend.secure9000.net/api/subasta/getSubastas');
+        const subastasData = await subastasResponse.json();
         
-        // Simular delay del API
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setPropertyData(mockData);
+        let foundProperty = null;
+        
+        // Buscar en cada subasta hasta encontrar la propiedad
+        for (const subasta of subastasData) {
+          try {
+            const torresResponse = await fetch(`https://demo-subasta.backend.secure9000.net/api/subasta/getTorres/${subasta.subastaID}`);
+            const torresData = await torresResponse.json();
+            
+            if (torresData.torres) {
+              foundProperty = torresData.torres.find(torre => torre.torreID === id);
+              if (foundProperty) {
+                break;
+              }
+            }
+          } catch (error) {
+            console.error(`Error fetching torres for subasta ${subasta.subastaID}:`, error);
+          }
+        }
+        
+        if (foundProperty) {
+          setPropertyData(foundProperty);
+        } else {
+          setError('Propiedad no encontrada');
+        }
       } catch (err) {
         setError('Error cargando los detalles de la propiedad');
         console.error('Error fetching property data:', err);
@@ -74,7 +78,10 @@ const Detalle = () => {
   };
 
   const getPlaceholderImage = () => {
-    // Imagen única para detalle individual
+    // Si hay foto real, usarla; si no, usar placeholder
+    if (propertyData?.foto?.url) {
+      return propertyData.foto.url;
+    }
     return 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
   };
 
@@ -112,7 +119,7 @@ const Detalle = () => {
             {error || 'Propiedad no encontrada'}
           </div>
           <button 
-            className="btn btn-primary"
+            className="st-destacados-cta-btn"
             onClick={() => navigate('/subastas')}
           >
             Volver a Subastas
@@ -129,21 +136,29 @@ const Detalle = () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <button 
-                      className="btn btn-link p-0"
-                      onClick={() => navigate('/subastas')}
-                    >
-                      Subastas
-                    </button>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    {propertyData.nombre}
-                  </li>
-                </ol>
-              </nav>
+              <div className="d-flex align-items-center mb-3">
+                <button 
+                  className="st-destacados-cta-btn me-3"
+                  style={{
+                    padding: '10px 20px',
+                    fontSize: '14px'
+                  }}
+                  onClick={() => navigate('/subastas')}
+                >
+                  <i className="fas fa-arrow-left me-2"></i>
+                  Volver a Subastas
+                </button>
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb mb-0">
+                    <li className="breadcrumb-item">
+                      <span style={{color: '#21504c'}}>Subastas</span>
+                    </li>
+                    <li className="breadcrumb-item active" aria-current="page">
+                      {propertyData.nombre}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
@@ -161,7 +176,7 @@ const Detalle = () => {
                   alt={propertyData.nombre}
                   className="st-property-main-image"
                   onError={(e) => {
-                    e.target.src = getPlaceholderImage();
+                    e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
                   }}
                 />
                 <div className="st-property-status-badge">
@@ -209,14 +224,19 @@ const Detalle = () => {
 
                 <div className="st-property-actions">
                   <button 
-                    className="btn btn-primary btn-lg w-100 mb-3"
+                    className="st-property-btn mb-3"
                     onClick={() => setShowBidModal(true)}
                   >
                     <i className="fas fa-hand-paper me-2"></i>
                     Hacer Puja
                   </button>
                   <button 
-                    className="btn btn-outline-primary w-100"
+                    className="st-destacados-cta-btn w-100"
+                    style={{
+                      background: 'transparent',
+                      border: '2px solid var(--st-green)',
+                      color: 'var(--st-green)'
+                    }}
                     onClick={() => navigate('/contacto')}
                   >
                     <i className="fas fa-info-circle me-2"></i>
@@ -285,7 +305,10 @@ const Detalle = () => {
                   >
                     Cancelar
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button 
+                    type="submit" 
+                    className="st-property-btn"
+                  >
                     Confirmar Puja
                   </button>
                 </div>
