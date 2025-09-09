@@ -1,0 +1,176 @@
+.subasta-detalle-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.st-subasta-detalle-hero-section {
+  padding: 80px 0 40px;
+}
+
+.st-properties-grid-section {
+  padding: 40px 0 80px;
+}
+
+.st-property-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.st-property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.st-property-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.st-property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.st-property-card:hover .st-property-image img {
+  transform: scale(1.05);
+}
+
+.st-property-status {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+}
+
+.st-property-status .badge {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.st-property-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.st-property-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.st-property-location {
+  color: #718096;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.st-property-details {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.st-property-description {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.st-property-description p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.st-property-pricing {
+  margin-bottom: 15px;
+}
+
+.st-starting-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #21504c;
+  border-radius: 12px;
+  color: white;
+}
+
+.st-price-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.st-price-amount {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.st-property-info {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #e2e8f0;
+  border-radius: 8px;
+}
+
+.st-property-actions {
+  margin-top: auto;
+}
+
+.st-property-actions .btn {
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.st-property-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .st-subasta-detalle-hero-section {
+    padding: 60px 0 30px;
+  }
+  
+  .st-property-card {
+    margin-bottom: 20px;
+  }
+  
+  .st-property-image {
+    height: 200px;
+  }
+  
+  .st-property-content {
+    padding: 20px;
+  }
+}
+
+/* Loading and error states */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.alert {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}

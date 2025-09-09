@@ -1,0 +1,207 @@
+.detalle-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.st-detalle-nav-section {
+  padding: 20px 0;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb .btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.st-detalle-content-section {
+  padding: 40px 0 80px;
+}
+
+.st-property-image-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.st-property-main-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.st-property-status-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+.st-property-status-badge .badge {
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+.st-property-details-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.st-property-header {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 20px;
+}
+
+.st-property-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.st-property-location {
+  color: #718096;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.st-property-pricing {
+  margin-bottom: 25px;
+}
+
+.st-starting-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #21504c;
+  border-radius: 15px;
+  color: white;
+}
+
+.st-price-label {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.st-price-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.st-property-info {
+  margin-bottom: 30px;
+}
+
+.st-info-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f3f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.st-info-item:last-child {
+  border-bottom: none;
+}
+
+.st-property-actions .btn {
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.st-property-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.st-property-description-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.st-property-description-card h3 {
+  color: #2d3748;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.st-property-description-card p {
+  color: #4a5568;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Modal customization */
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e9ecef;
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef;
+  border-radius: 0 0 15px 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .st-detalle-content-section {
+    padding: 20px 0 40px;
+  }
+  
+  .st-property-main-image {
+    height: 300px;
+  }
+  
+  .st-property-details-card {
+    margin-top: 20px;
+    position: static;
+  }
+  
+  .st-property-title {
+    font-size: 1.5rem;
+  }
+  
+  .st-price-amount {
+    font-size: 1.2rem;
+  }
+}
+
+/* Loading and error states */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.alert {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}

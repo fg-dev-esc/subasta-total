@@ -1,9 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import './homepage.css';
 
 const Homepage = () => {
+  const navigate = useNavigate();
   // useScrollTrigger(); // Disabled to check if this causes hero animation
+  
+  // State for destacados
+  const [destacados, setDestacados] = useState([]);
+  const [loadingDestacados, setLoadingDestacados] = useState(true);
+
+  // Fetch destacados
+  useEffect(() => {
+    const fetchDestacados = async () => {
+      try {
+        setLoadingDestacados(true);
+        const response = await fetch('https://demo-subasta.backend.secure9000.net/api/actions/getDestacados');
+        const data = await response.json();
+        setDestacados(data.slice(0, 3)); // Mostrar solo 3 destacados
+      } catch (error) {
+        console.error('Error fetching destacados:', error);
+      } finally {
+        setLoadingDestacados(false);
+      }
+    };
+
+    fetchDestacados();
+  }, []);
 
   useEffect(() => {
     // Add loading class initially, remove after animations start
@@ -46,6 +70,35 @@ const Homepage = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Helper functions
+  const getPlaceholderImage = (index) => {
+    // Array de imágenes de casas de Unsplash
+    const houseImages = [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    ];
+    
+    // Retorna imagen basada en el índice, si no hay índice usa la primera
+    return houseImages[index % houseImages.length] || houseImages[0];
+  };
+
+  const formatPrice = (price) => {
+    if (!price) return 'Precio a consultar';
+    return new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN',
+      minimumFractionDigits: 0
+    }).format(price);
+  };
+
+  const handleViewProperty = (articuloId) => {
+    navigate(`/detalle/${articuloId}`);
+  };
+
   return (
     <div className="homepage page-container">
       {/* Hero Section - Cutting Edge Design */}
@@ -82,6 +135,114 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Destacados Section */}
+      <section className="st-destacados-section st-animate-on-scroll">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 mx-auto">
+              <div className="st-section-heading text-center">
+                <span className="st-section-tagline">Propiedades Destacadas</span>
+                <h2 className="st-section-title">
+                  Encuentra tu <span>oportunidad perfecta</span>
+                </h2>
+                <div className="st-heading-divider"></div>
+                <p className="st-section-description">
+                  Descubre las mejores propiedades disponibles en nuestras subastas inmobiliarias
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {loadingDestacados ? (
+            <div className="text-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Cargando...</span>
+              </div>
+              <p className="mt-3 text-muted">Cargando propiedades destacadas...</p>
+            </div>
+          ) : (
+            <div className="row">
+              {destacados.length > 0 ? (
+                destacados.map((propiedad, index) => (
+                  <div key={propiedad.articuloID} className="col-lg-4 col-md-6 mb-4">
+                    <div className="st-property-card">
+                      <div className="st-property-image">
+                        <img 
+                          src={propiedad.foto?.url || getPlaceholderImage(index)}
+                          alt={propiedad.nombre}
+                          onError={(e) => {
+                            e.target.src = getPlaceholderImage(index);
+                          }}
+                        />
+                        <div className="st-property-status-badge">
+                          <span className="badge bg-success">
+                            <i className="fas fa-gavel me-1"></i>
+                            Destacado
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="st-property-content">
+                        <h4 className="st-property-title">
+                          {propiedad.nombre}
+                        </h4>
+                        <p className="st-property-location">
+                          <i className="fas fa-map-marker-alt me-2"></i>
+                          {propiedad.municipio}, {propiedad.estado}
+                        </p>
+                        
+                        <div className="st-property-details">
+                          <div className="st-property-detail">
+                            <i className="fas fa-building me-2"></i>
+                            <span>{propiedad.categoria}</span>
+                          </div>
+                          <div className="st-property-detail">
+                            <i className="fas fa-home me-2"></i>
+                            <span>{propiedad.subCategoria}</span>
+                          </div>
+                          <div className="st-property-detail">
+                            <i className="fas fa-gavel me-2"></i>
+                            <span>{propiedad.tipoVenta}</span>
+                          </div>
+                        </div>
+
+                        <div className="st-property-description">
+                          <p>{propiedad.descripcion}</p>
+                        </div>
+
+                        <div className="st-property-actions">
+                          <button 
+                            className="st-property-btn"
+                            onClick={() => handleViewProperty(propiedad.articuloID)}
+                          >
+                            Ver Detalles
+                            <i className="fas fa-arrow-right ms-2"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="col-12 text-center py-5">
+                  <div className="st-no-results">
+                    <i className="fas fa-exclamation-circle mb-3"></i>
+                    <h4>No hay propiedades destacadas disponibles</h4>
+                    <p className="text-muted">Próximamente tendremos nuevas propiedades destacadas.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="text-center mt-4">
+            <a href="/subastas" className="st-destacados-cta-btn">
+              Ver Todas las Subastas <i className="fas fa-arrow-right ms-2"></i>
+            </a>
           </div>
         </div>
       </section>

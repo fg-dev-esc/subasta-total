@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import './subastas.css';
 
 const Subastas = () => {
+  const navigate = useNavigate();
   useScrollTrigger();
+  
+  // State for auctions data
+  const [subastas, setSubastas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   // Countdown timer state
   const [timeLeft, setTimeLeft] = useState({
@@ -17,6 +24,25 @@ const Subastas = () => {
   const auctionEndDate = new Date();
   auctionEndDate.setDate(auctionEndDate.getDate() + 7);
   auctionEndDate.setHours(15, 30, 0, 0);
+
+  // Fetch auctions data
+  useEffect(() => {
+    const fetchSubastas = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://demo-subasta.backend.secure9000.net/api/subasta/getSubastas');
+        const data = await response.json();
+        setSubastas(data);
+      } catch (err) {
+        setError('Error cargando las subastas');
+        console.error('Error fetching auctions:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSubastas();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -59,6 +85,43 @@ const Subastas = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleViewAuctionDetails = (subastaId) => {
+    navigate(`/subasta-detalle/${subastaId}`);
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="subastas-page page-container">
+        <div className="container text-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Cargando...</span>
+          </div>
+          <p className="mt-3">Cargando subastas...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="subastas-page page-container">
+        <div className="container text-center py-5">
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="subastas-page page-container">
       {/* Hero Section */}
@@ -69,11 +132,174 @@ const Subastas = () => {
               <div className="col-lg-10">
                 <div className="st-subastas-hero-content">
                   <h1 className="st-subastas-hero-title">
-                    Subasta Activa
+                    Subastas Disponibles
                   </h1>
                   <p className="st-subastas-hero-subtitle">
-                    Participa en nuestra subasta inmobiliaria y encuentra la propiedad de tus sueños
+                    Explora nuestras subastas inmobiliarias activas y encuentra la propiedad perfecta
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Auctions Carousel Section */}
+      <section className="st-auctions-carousel-section">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-10">
+              <div className="position-relative" style={{borderRadius: '20px', overflow: 'hidden'}}>
+                {/* Carrousel de imágenes de fondo */}
+                <div id="backgroundCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                  <div className="carousel-inner">
+                    {[
+                      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
+                      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80'
+                    ].map((imageUrl, index) => (
+                      <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                        <img 
+                          src={imageUrl}
+                          className="d-block w-100"
+                          alt={`Casa ${index + 1}`}
+                          style={{ height: '600px', objectFit: 'cover' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Carrousel de contenido de subastas */}
+                <div id="auctionsCarousel" className="carousel slide position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel" data-bs-interval="4000">
+                  <div className="carousel-inner h-100">
+                    {subastas.map((subasta, index) => (
+                      <div key={subasta.subastaID} className={`carousel-item h-100 ${index === 0 ? 'active' : ''}`}>
+                        <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
+                          <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
+                            <div className="mb-2">
+                              <span className="badge bg-success">
+                                <i className="fas fa-gavel me-1"></i>
+                                En Subasta
+                              </span>
+                            </div>
+                            
+                            <h3 className="text-dark fw-bold mb-2">{subasta.nombre}</h3>
+                            <p className="text-muted mb-3">
+                              <i className="fas fa-calendar-alt me-2"></i>
+                              Subasta activa hasta {formatDate(subasta.fechaFin)}
+                            </p>
+                            
+                            <div className="row mb-3">
+                              <div className="col-6">
+                                <small className="text-muted">
+                                  <i className="fas fa-calendar-check me-1"></i>
+                                  Fecha inicio
+                                </small>
+                                <div className="text-dark fw-semibold">{formatDate(subasta.fechaInicio)}</div>
+                              </div>
+                              <div className="col-6">
+                                <small className="text-muted">
+                                  <i className="fas fa-building me-1"></i>
+                                  Propiedades
+                                </small>
+                                <div className="text-dark fw-semibold">{subasta.torres} inmuebles</div>
+                              </div>
+                            </div>
+                            
+                            <div className="mb-3">
+                              <small className="text-muted">
+                                <i className="fas fa-info-circle me-1"></i>
+                                Descripción
+                              </small>
+                              <p className="text-dark mb-0 small">{subasta.descripcion}</p>
+                            </div>
+                            
+                            <div className="row mb-3">
+                              <div className="col-12">
+                                <div className="bg-success bg-opacity-10 p-3 rounded-2">
+                                  <small className="text-success fw-semibold">Estado de Subasta:</small>
+                                  <div className="text-success fw-bold">Activa - {subasta.torres} propiedades disponibles</div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="d-flex gap-2">
+                              <button 
+                                className="btn btn-success flex-fill"
+                                onClick={() => handleViewAuctionDetails(subasta.subastaID)}
+                              >
+                                <i className="fas fa-eye me-1"></i>
+                                Ver Propiedades
+                              </button>
+                              <a href="/contacto" className="btn btn-outline-success">
+                                <i className="fas fa-info-circle"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  
+                  {subastas.length === 0 && (
+                    <div className="carousel-item h-100 active">
+                      <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
+                        <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
+                          <div className="mb-2">
+                            <span className="badge bg-warning">
+                              <i className="fas fa-exclamation-circle me-1"></i>
+                              Sin Subastas
+                            </span>
+                          </div>
+                          
+                          <h3 className="text-dark fw-bold mb-2">No hay subastas disponibles</h3>
+                          <p className="text-muted mb-3">
+                            <i className="fas fa-clock me-2"></i>
+                            Próximamente tendremos nuevas oportunidades
+                          </p>
+                          
+                          <div className="mb-3">
+                            <small className="text-muted">
+                              <i className="fas fa-info-circle me-1"></i>
+                              Estado
+                            </small>
+                            <p className="text-dark mb-0 small">
+                              Estamos preparando nuevas subastas inmobiliarias. 
+                              Regresa pronto para encontrar excelentes oportunidades.
+                            </p>
+                          </div>
+                          
+                          <div className="d-flex gap-2">
+                            <a href="/contacto" className="btn btn-primary flex-fill">
+                              <i className="fas fa-envelope me-1"></i>
+                              Contactar
+                            </a>
+                            <a href="/" className="btn btn-outline-primary">
+                              <i className="fas fa-home"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {subastas.length > 1 && (
+                  <div className="carousel-indicators">
+                    {subastas.map((_, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        data-bs-target="#auctionsCarousel"
+                        data-bs-slide-to={index}
+                        className={index === 0 ? 'active' : ''}
+                        aria-label={`Slide ${index + 1}`}
+                      ></button>
+                    ))}
+                  </div>
+                )}
                 </div>
               </div>
             </div>

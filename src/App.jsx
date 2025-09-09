@@ -8,6 +8,8 @@ import Contacto from './views/contacto/Contacto';
 import Compradores from './views/compradores/Compradores';
 import Vendedores from './views/vendedores/Vendedores';
 import Subastas from './views/subastas/Subastas';
+import SubastaDetalle from './views/subasta-detalle/SubastaDetalle';
+import Detalle from './views/detalle/Detalle';
 import Auth from './views/auth/Auth';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/compradores" element={<Compradores />} />
           <Route path="/vendedores" element={<Vendedores />} />
           <Route path="/subastas" element={<Subastas />} />
+          <Route path="/subasta-detalle/:id" element={<SubastaDetalle />} />
+          <Route path="/detalle/:id" element={<Detalle />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
