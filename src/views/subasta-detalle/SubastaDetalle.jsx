@@ -42,8 +42,6 @@ const SubastaDetalle = () => {
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'MXN',
       minimumFractionDigits: 0
     }).format(price);
   };
@@ -192,18 +190,21 @@ const SubastaDetalle = () => {
                         <p>{torre.descripcion}</p>
                       </div>
 
-                      <div className="st-property-pricing st-starting-price">
-                        <span className="st-price-label">Precio Inicial:</span>
-                        <span className="st-price-amount">{formatPrice(torre.montoSalida)}</span>
-                      </div>
-
-                      <div className="st-property-info">
-                        <div className="row">
-                          <div className="col-12">
-                            <small className="text-muted">Fecha de Finalización:</small>
-                            <br />
-                            <strong>{formatDate(torre.fechaFin)}</strong>
+                      <div className="st-property-specs-simple mb-3">
+                        <div className="st-spec-simple">
+                          <div className="st-spec-label">
+                            <span className="text-muted">Precio Inicial</span>
                           </div>
+                          <div className="st-spec-value fw-bold text-success">
+                            $ {formatPrice(torre.montoSalida)}
+                          </div>
+                        </div>
+                        <div className="st-spec-simple">
+                          <div className="st-spec-label">
+                            <i className="fas fa-calendar-times text-danger me-2"></i>
+                            <span className="text-muted">Fecha de Finalización</span>
+                          </div>
+                          <div className="st-spec-value fw-bold text-dark">{formatDate(torre.fechaFin)}</div>
                         </div>
                       </div>
 

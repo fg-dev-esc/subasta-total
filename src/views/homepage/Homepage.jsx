@@ -89,8 +89,6 @@ const Homepage = () => {
   const formatPrice = (price) => {
     if (!price) return 'Precio a consultar';
     return new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'MXN',
       minimumFractionDigits: 0
     }).format(price);
   };
@@ -196,17 +194,17 @@ const Homepage = () => {
                         </p>
                         
                         <div className="st-property-details">
-                          <div className="st-property-detail">
-                            <i className="fas fa-building me-2"></i>
-                            <span>{propiedad.categoria}</span>
-                          </div>
-                          <div className="st-property-detail">
-                            <i className="fas fa-home me-2"></i>
-                            <span>{propiedad.subCategoria}</span>
-                          </div>
-                          <div className="st-property-detail">
-                            <i className="fas fa-gavel me-2"></i>
-                            <span>{propiedad.tipoVenta}</span>
+                          <div className="row">
+                            <div className="col-6">
+                              <small className="text-muted">Categoría:</small>
+                              <br />
+                              <strong>{propiedad.categoria}</strong>
+                            </div>
+                            <div className="col-6">
+                              <small className="text-muted">Subcategoría:</small>
+                              <br />
+                              <strong>{propiedad.subCategoria}</strong>
+                            </div>
                           </div>
                         </div>
 
@@ -214,12 +212,36 @@ const Homepage = () => {
                           <p>{propiedad.descripcion}</p>
                         </div>
 
+                        <div className="st-property-specs-simple mb-3">
+                          <div className="st-spec-simple">
+                            <div className="st-spec-label">
+                              <i className="fas fa-handshake text-success me-2"></i>
+                              <span className="text-muted">Tipo de Venta</span>
+                            </div>
+                            <div className="st-spec-value fw-bold text-dark">{propiedad.tipoVenta}</div>
+                          </div>
+                          <div className="st-spec-simple">
+                            <div className="st-spec-label">
+                              <i className="fas fa-balance-scale text-warning me-2"></i>
+                              <span className="text-muted">Status Jurídico</span>
+                            </div>
+                            <div className="st-spec-value fw-bold text-dark">{propiedad.estatusJuridico}</div>
+                          </div>
+                          <div className="st-spec-simple">
+                            <div className="st-spec-label">
+                              <i className="fas fa-map-marker-alt text-danger me-2"></i>
+                              <span className="text-muted">Estado</span>
+                            </div>
+                            <div className="st-spec-value fw-bold text-dark">{propiedad.estado}</div>
+                          </div>
+                        </div>
+
                         <div className="st-property-actions">
                           <button 
                             className="st-property-btn"
                             onClick={() => handleViewProperty(propiedad.articuloID)}
                           >
-                            Ver Detalles
+                            Ver Detalles y Ofertar
                             <i className="fas fa-arrow-right ms-2"></i>
                           </button>
                         </div>
