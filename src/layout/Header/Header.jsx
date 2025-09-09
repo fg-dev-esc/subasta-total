@@ -61,7 +61,7 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg">
           <div className="container custom-nav">
             <Link className="navbar-brand" to="/">
-              <img className="logo-img" src="/assets/img/logo/logo-blanco.png" alt="Subasta Total" />
+              <img className="logo-img" src="/assets/img/logo/subasta-total.png" alt="Subasta Total" />
             </Link>
             
             <div className="mobile-menu-right">
