@@ -83,26 +83,30 @@
 
 .st-property-pricing {
   margin-bottom: 25px;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
 }
 
 .st-starting-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: #21504c;
-  border-radius: 15px;
-  color: white;
+  padding: 20px 0;
+  color: #21504c;
 }
 
 .st-price-label {
   font-size: 1rem;
+  color: #21504c;
   opacity: 0.9;
 }
 
 .st-price-amount {
   font-size: 1.4rem;
   font-weight: 700;
+  color: #21504c;
 }
 
 .st-property-info {

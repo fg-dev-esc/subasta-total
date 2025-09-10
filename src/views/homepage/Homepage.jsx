@@ -118,9 +118,9 @@ const Homepage = () => {
                   </p>
                   
                   {/* Status Badge */}
-                  <div className="st-hero-status">
+                  {/* <div className="st-hero-status">
                     <strong>Subasta activa:</strong> Casa residencial en Polanco - 7 días restantes
-                  </div>
+                  </div> */}
 
                   <div className="st-hero-btn">
                     <a href="/compradores" className="st-theme-btn">
@@ -270,7 +270,7 @@ const Homepage = () => {
       </section>
 
       {/* Status Section */}
-      <section className="st-status-section st-animate-on-scroll">
+      {/* <section className="st-status-section st-animate-on-scroll">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -286,7 +286,7 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Properties Section - Based on Screenshot 02 */}
       <section className="st-properties-section st-animate-on-scroll">
@@ -339,7 +339,7 @@ const Homepage = () => {
               En Subasta Total, te ofrecemos una plataforma amigable para adquirir bienes raíces. 
               Participa en subastas públicas en línea y encuentra la propiedad que estás buscando.
             </p>
-            <a href="/compradores" className="st-main-cta-btn">
+            <a href="/nosotros" className="st-main-cta-btn">
               Comenzar ahora <i className="fas fa-arrow-right ms-2"></i>
             </a>
           </div>
@@ -459,15 +459,15 @@ const Homepage = () => {
       </section>
 
       {/* Property Types Section - Based on Screenshots 05-06 */}
-      <section className="st-property-types-section st-animate-on-scroll">
+      {/* <section className="st-property-types-section st-animate-on-scroll">
         <div className="container">
           <h2 className="st-property-types-title">
             ¿Qué tipo de propiedades puedes encontrar en nuestras subastas inmobiliarias?
           </h2>
 
-          <div className="st-property-types-layout">
+          <div className="st-property-types-layout"> */}
             {/* Left Side - Property Images */}
-            <div className="st-property-images">
+            {/* <div className="st-property-images">
               <div className="st-property-image-card">
                 <img 
                   src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
@@ -500,10 +500,10 @@ const Homepage = () => {
                   <p className="st-property-image-desc">Hospital La Fe - Arquitectura institucional moderna</p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Right Side - Property Types List */}
-            <div className="st-property-list">
+            {/* <div className="st-property-list">
               <h3 className="st-property-list-title">Tipos de Propiedades</h3>
               
               <div className="st-property-columns">
@@ -575,10 +575,10 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final Homepage CTA Section - Based on Screenshot 07 */}
-      <section className="st-final-cta-section st-animate-on-scroll">
+      {/* <section className="st-final-cta-section st-animate-on-scroll">
         <div className="container">
           <div className="st-final-cta-content">
             <h2 className="st-final-cta-title" style={{color: 'white'}}>
@@ -593,7 +593,6 @@ const Homepage = () => {
             </a>
           </div>
 
-          {/* Floating Decorative Elements */}
           <div className="st-floating-element" style={{fontSize: '60px'}}>
             <i className="fas fa-home"></i>
           </div>
@@ -604,7 +603,7 @@ const Homepage = () => {
             <i className="fas fa-gavel"></i>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

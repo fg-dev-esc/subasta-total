@@ -148,10 +148,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background: #21504c;
-  border-radius: 12px;
-  color: white;
+  padding: 15px 0;
+  color: #21504c;
 }
 
 .st-price-label {
