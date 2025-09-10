@@ -16,7 +16,7 @@ Basado en Carway con paleta Subasta Total
 .st-hero-single {
   padding: 0;
   height: 100vh;
-  background-image: url('/context/auction-hammer.jpg');
+  background-image: url('/auction-hammer.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
