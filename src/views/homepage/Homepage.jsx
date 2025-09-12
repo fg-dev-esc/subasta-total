@@ -145,7 +145,7 @@ const Homepage = () => {
               <div className="st-section-heading text-center">
                 <span className="st-section-tagline">Propiedades Destacadas</span>
                 <h2 className="st-section-title">
-                  Encuentra tu <span>oportunidad perfecta</span>
+                  Encuentra <span>el artículo que necesitas</span>
                 </h2>
                 <div className="st-heading-divider"></div>
                 <p className="st-section-description">
