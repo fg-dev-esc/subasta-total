@@ -13,6 +13,7 @@ const Detalle = () => {
   const [error, setError] = useState(null);
   const [bidAmount, setBidAmount] = useState('');
   const [showBidModal, setShowBidModal] = useState(false);
+  const [subastaId, setSubastaId] = useState(null);
 
   useEffect(() => {
     const fetchPropertyData = async () => {
@@ -33,6 +34,7 @@ const Detalle = () => {
             if (torresData.torres) {
               foundProperty = torresData.torres.find(torre => torre.torreID === id);
               if (foundProperty) {
+                setSubastaId(subasta.subastaID);
                 break;
               }
             }
@@ -58,6 +60,19 @@ const Detalle = () => {
       fetchPropertyData();
     }
   }, [id]);
+
+  useEffect(() => {
+    // Add loading class initially, remove after animations start
+    document.body.classList.add('loading');
+    const timer = setTimeout(() => {
+      document.body.classList.remove('loading');
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.classList.remove('loading');
+    };
+  }, []);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
@@ -98,20 +113,16 @@ const Detalle = () => {
     setBidAmount('');
   };
 
-  if (loading) {
-    return (
-      <div className="detalle-page page-container">
-        <div className="container text-center py-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
-          <p className="mt-3">Cargando detalles de la propiedad...</p>
-        </div>
-      </div>
-    );
-  }
+  const handleGoBack = () => {
+    if (subastaId) {
+      navigate(`/subasta-detalle/${subastaId}`);
+    } else {
+      navigate('/subastas');
+    }
+  };
 
-  if (error || !propertyData) {
+
+  if (error || (!loading && !propertyData)) {
     return (
       <div className="detalle-page page-container">
         <div className="container text-center py-5">
@@ -120,9 +131,9 @@ const Detalle = () => {
           </div>
           <button 
             className="st-destacados-cta-btn"
-            onClick={() => navigate('/subastas')}
+            onClick={handleGoBack}
           >
-            Volver a Subastas
+            {subastaId ? 'Volver a Subasta' : 'Volver a Subastas'}
           </button>
         </div>
       </div>
@@ -143,10 +154,10 @@ const Detalle = () => {
                     padding: '10px 20px',
                     fontSize: '14px'
                   }}
-                  onClick={() => navigate('/subastas')}
+                  onClick={handleGoBack}
                 >
                   <i className="fas fa-arrow-left me-2"></i>
-                  Volver a Subastas
+                  {subastaId ? 'Volver a Subasta' : 'Volver a Subastas'}
                 </button>
                 <nav aria-label="breadcrumb">
                   <ol className="breadcrumb mb-0">
@@ -154,7 +165,7 @@ const Detalle = () => {
                       <span style={{color: '#21504c'}}>Subastas</span>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                      {propertyData.nombre}
+                      {propertyData?.nombre || ''}
                     </li>
                   </ol>
                 </nav>
@@ -171,20 +182,24 @@ const Detalle = () => {
             {/* Property Image */}
             <div className="col-lg-8 mb-4">
               <div className="st-property-image-container">
-                <img 
-                  src={propertyData.foto?.url || getPlaceholderImage()}
-                  alt={propertyData.nombre}
-                  className="st-property-main-image"
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
-                  }}
-                />
-                <div className="st-property-status-badge">
-                  <span className="badge bg-success">
-                    <i className="fas fa-gavel me-1"></i>
-                    En Subasta
-                  </span>
-                </div>
+                {propertyData && (
+                  <>
+                    <img 
+                      src={propertyData?.foto?.url || getPlaceholderImage()}
+                      alt={propertyData?.nombre || 'Propiedad'}
+                      className="st-property-main-image"
+                      onError={(e) => {
+                        e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+                      }}
+                    />
+                    <div className="st-property-status-badge">
+                      <span className="badge bg-success">
+                        <i className="fas fa-gavel me-1"></i>
+                        En Subasta
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -192,69 +207,75 @@ const Detalle = () => {
             <div className="col-lg-4">
               <div className="st-property-details-card">
                 <div className="st-property-header">
-                  <h1 className="st-property-title">{propertyData.nombre}</h1>
+                  <h1 className="st-property-title">{propertyData?.nombre || ''}</h1>
                   <p className="st-property-location">
                     <i className="fas fa-map-marker-alt me-2"></i>
-                    {propertyData.municipio}, {propertyData.estado}
+                    {propertyData?.municipio && propertyData?.estado ? `${propertyData.municipio}, ${propertyData.estado}` : ''}
                   </p>
                 </div>
 
-                <div className="st-property-pricing st-starting-price">
-                  <span className="st-price-label">Precio Inicial</span>
-                  <span className="st-price-amount">{formatPrice(propertyData.montoSalida)}</span>
-                </div>
+                {propertyData && (
+                  <>
+                  <div className="st-property-pricing st-starting-price">
+                    <span className="st-price-label">Precio Inicial</span>
+                    <span className="st-price-amount">{formatPrice(propertyData.montoSalida || 0)}</span>
+                  </div>
 
-                <div className="st-property-info">
-                  <div className="st-info-item">
-                    <strong>Categoría:</strong> {propertyData.categoria}
+                  <div className="st-property-info">
+                    <div className="st-info-item">
+                      <strong>Categoría:</strong> {propertyData.categoria}
+                    </div>
+                    <div className="st-info-item">
+                      <strong>Subcategoría:</strong> {propertyData.subCategoria}
+                    </div>
+                    <div className="st-info-item">
+                      <strong>Status Jurídico:</strong> {propertyData.estatusJuridico}
+                    </div>
+                    <div className="st-info-item">
+                      <strong>Tipo de Venta:</strong> {propertyData.tipoVenta}
+                    </div>
+                    <div className="st-info-item">
+                      <strong>Fecha Fin:</strong> {formatDate(propertyData.fechaFin)}
+                    </div>
                   </div>
-                  <div className="st-info-item">
-                    <strong>Subcategoría:</strong> {propertyData.subCategoria}
-                  </div>
-                  <div className="st-info-item">
-                    <strong>Status Jurídico:</strong> {propertyData.estatusJuridico}
-                  </div>
-                  <div className="st-info-item">
-                    <strong>Tipo de Venta:</strong> {propertyData.tipoVenta}
-                  </div>
-                  <div className="st-info-item">
-                    <strong>Fecha Fin:</strong> {formatDate(propertyData.fechaFin)}
-                  </div>
-                </div>
 
-                <div className="st-property-actions">
-                  <button 
-                    className="st-property-btn mb-3"
-                    onClick={() => setShowBidModal(true)}
-                  >
-                    <i className="fas fa-hand-paper me-2"></i>
-                    Hacer Puja
-                  </button>
-                  <button 
-                    className="st-destacados-cta-btn w-100"
-                    style={{
-                      background: 'transparent',
-                      border: '2px solid var(--st-green)',
-                      color: 'var(--st-green)'
-                    }}
-                    onClick={() => navigate('/contacto')}
-                  >
-                    <i className="fas fa-info-circle me-2"></i>
-                    Más Información
-                  </button>
-                </div>
+                  <div className="st-property-actions">
+                    <button 
+                      className="st-property-btn mb-3"
+                      onClick={() => setShowBidModal(true)}
+                    >
+                      <i className="fas fa-hand-paper me-2"></i>
+                      Hacer Puja
+                    </button>
+                    <button 
+                      className="st-destacados-cta-btn w-100"
+                      style={{
+                        background: 'transparent',
+                        border: '2px solid var(--st-green)',
+                        color: 'var(--st-green)'
+                      }}
+                      onClick={() => navigate('/contacto')}
+                    >
+                      <i className="fas fa-info-circle me-2"></i>
+                      Más Información
+                    </button>
+                  </div>
+                </>
+                )}
               </div>
             </div>
-          </div>
 
-          {/* Property Description */}
-          <div className="row mt-5">
-            <div className="col-12">
-              <div className="st-property-description-card">
-                <h3>Descripción de la Propiedad</h3>
-                <p>{propertyData.descripcion}</p>
+            {/* Property Description */}
+            {propertyData && (
+              <div className="row mt-5">
+                <div className="col-12">
+                  <div className="st-property-description-card">
+                    <h3>Descripción de la Propiedad</h3>
+                    <p>{propertyData.descripcion || ''}</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

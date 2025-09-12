@@ -1,5 +1,4 @@
 .detalle-page {
-  min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
@@ -22,6 +21,10 @@
 
 .st-detalle-content-section {
   padding: 40px 0 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .st-property-image-container {
