@@ -833,7 +833,111 @@ Basado en Carway con paleta Subasta Total
   font-weight: 600;
 }
 
-/* Destacados Section */
+/* Categories Section */
+.st-categories-section {
+  padding: 120px 0;
+  background: var(--st-gray-50);
+}
+
+.st-category-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--st-white);
+  border-radius: 20px;
+  padding: 50px 30px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(33, 80, 76, 0.08);
+  border: 1px solid var(--st-gray-200);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.st-category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.st-category-card:hover {
+  color: inherit;
+  text-decoration: none;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(33, 80, 76, 0.15);
+  border-color: var(--st-green-light);
+}
+
+.st-category-card:hover::before {
+  transform: scaleX(1);
+}
+
+.st-category-icon {
+  margin-bottom: 30px;
+}
+
+.st-category-icon i {
+  font-size: 70px;
+  color: var(--st-green);
+  transition: all 0.4s ease;
+}
+
+.st-category-card:hover .st-category-icon i {
+  color: var(--st-green-light);
+  transform: scale(1.1);
+}
+
+.st-category-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--st-gray-900);
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.st-category-description {
+  font-size: 16px;
+  color: var(--st-gray-600);
+  line-height: 1.6;
+  margin-bottom: 0;
+  transition: color 0.3s ease;
+}
+
+.st-category-card:hover .st-category-title {
+  color: var(--st-green);
+}
+
+.st-category-card:hover .st-category-description {
+  color: var(--st-gray-700);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .st-category-card {
+    padding: 40px 20px;
+  }
+  
+  .st-category-icon i {
+    font-size: 60px;
+  }
+  
+  .st-category-title {
+    font-size: 20px;
+  }
+  
+  .st-category-description {
+    font-size: 14px;
+  }
+}
+
+/* Destacados Section - Legacy (keeping for fallback) */
 .st-destacados-section {
   padding: 80px 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
