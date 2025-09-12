@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#215044"/>
+  
+  <!-- House icon -->
+  <path d="M8 18L16 12L24 18V26C24 26.55 23.55 27 23 27H9C8.45 27 8 26.55 8 26V18Z" fill="white" fill-opacity="0.9"/>
+  <path d="M12 27V21H20V27" fill="#215044"/>
+  
+  <!-- Auction hammer -->
+  <path d="M21 8L24 11L22 13L19 10L21 8Z" fill="#56B0A7"/>
+  <rect x="18" y="11" width="1" height="8" rx="0.5" fill="#56B0A7" transform="rotate(45 18.5 15)"/>
+</svg>
