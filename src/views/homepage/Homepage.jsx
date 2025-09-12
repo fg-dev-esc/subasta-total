@@ -272,8 +272,8 @@ const Homepage = () => {
                 background: 'white'
               }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" 
-                  alt="Pareja feliz con llaves de casa nueva"
+                  src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" 
+                  alt="Equipo profesional inmobiliario en reunión corporativa"
                   style={{
                     width: '100%',
                     height: '100%',
@@ -295,19 +295,19 @@ const Homepage = () => {
                   padding: '40px 25px 25px',
                   textAlign: 'center'
                 }}>
-                  <h4 style={{fontSize: '20px', fontWeight: '700', marginBottom: '8px', margin: 0}}>Tu nueva casa te espera</h4>
-                  <p style={{fontSize: '14px', opacity: 0.9, margin: 0}}>Pareja celebrando la compra de su nuevo hogar</p>
+                  <h4 style={{fontSize: '20px', fontWeight: '700', marginBottom: '8px', margin: 0}}>Servicio Inmobiliario Profesional</h4>
+                  <p style={{fontSize: '14px', opacity: 0.9, margin: 0}}>Expertos en ventas y subastas de propiedades</p>
                 </div>
               </div>
 
               <div className="st-benefit-image-card">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" 
-                  alt="Reunión de profesionales inmobiliarios"
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" 
+                  alt="Subasta inmobiliaria profesional"
                 />
                 <div className="st-benefit-image-overlay">
-                  <h4 className="st-benefit-image-title">Asesoría profesional</h4>
-                  <p className="st-benefit-image-desc">Equipo de expertos inmobiliarios a tu servicio</p>
+                  <h4 className="st-benefit-image-title">Subastas Inmobiliarias</h4>
+                  <p className="st-benefit-image-desc">Proceso transparente y profesional de ventas</p>
                 </div>
               </div>
             </div>

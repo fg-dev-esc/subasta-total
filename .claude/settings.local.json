@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:demo-subasta.backend.secure9000.net)"
-    ],
-    "deny": [],
-    "ask": []
-  }
-}

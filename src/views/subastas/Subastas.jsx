@@ -145,6 +145,21 @@ const Subastas = () => {
       {/* Hero Section */}
       <section className="st-subastas-hero-section">
         <div className="st-subastas-hero">
+          {/* Floating SVG Icons */}
+          <div className="st-floating-icon st-floating-icon-1">
+            <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
+              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+            </svg>
+          </div>
+          <div className="st-floating-icon st-floating-icon-2">
+            <svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <path d="M7 8h10"></path>
+              <path d="M7 12h6"></path>
+              <path d="M7 16h4"></path>
+            </svg>
+          </div>
+          
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">

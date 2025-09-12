@@ -31,6 +31,20 @@ const Nosotros = () => {
       {/* Hero Section Nosotros - Based on Screenshot 08 */}
       <section className="st-nosotros-hero-section">
         <div className="st-nosotros-hero">
+          {/* Floating SVG Icons */}
+          <div className="st-floating-icon st-floating-icon-1">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div className="st-floating-icon st-floating-icon-2">
+            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9,22 9,12 15,12 15,22"></polyline>
+            </svg>
+          </div>
+          
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">

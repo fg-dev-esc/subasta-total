@@ -31,6 +31,19 @@ const Vendedores = () => {
       {/* Hero + Propuesta Vendedores - Based on Screenshots 20-21 */}
       <section className="st-vendedores-hero-section">
         <div className="st-vendedores-hero">
+          {/* Floating SVG Icons */}
+          <div className="st-floating-icon st-floating-icon-1">
+            <svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
+              <polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"></polygon>
+            </svg>
+          </div>
+          <div className="st-floating-icon st-floating-icon-2">
+            <svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
