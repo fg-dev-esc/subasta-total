@@ -65,6 +65,19 @@ const Subastas = () => {
   }, []);
 
   useEffect(() => {
+    // Add loading class initially, remove after animations start
+    document.body.classList.add('loading');
+    const timer = setTimeout(() => {
+      document.body.classList.remove('loading');
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.classList.remove('loading');
+    };
+  }, []);
+
+  useEffect(() => {
     // Animate elements on scroll
     const observerOptions = {
       threshold: 0.1,
@@ -126,30 +139,6 @@ const Subastas = () => {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="subastas-page page-container">
-        <div className="container text-center py-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
-          <p className="mt-3">Cargando subastas...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="subastas-page page-container">
-        <div className="container text-center py-5">
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="subastas-page page-container">
@@ -206,21 +195,26 @@ const Subastas = () => {
                 {/* Carrousel de contenido de subastas */}
                 <div id="auctionsCarousel" className="carousel slide position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel" data-bs-interval="4000">
                   <div className="carousel-inner h-100">
-                    {subastas.map((subasta, index) => (
-                      <div key={subasta.subastaID} className={`carousel-item h-100 ${index === 0 ? 'active' : ''}`}>
+                    {loading ? (
+                      <div className="carousel-item h-100 active">
                         <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
                           <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
                             <div className="mb-2">
-                              <span className="badge bg-success">
-                                <i className="fas fa-gavel me-1"></i>
-                                En Subasta
+                              <span className="badge bg-primary">
+                                <i className="fas fa-spinner fa-spin me-1"></i>
+                                Cargando
                               </span>
                             </div>
                             
-                            <h3 className="text-dark fw-bold mb-2">{subasta.nombre}</h3>
+                            <h3 className="text-dark fw-bold mb-2">
+                              <div className="placeholder-glow">
+                                <span className="placeholder col-8"></span>
+                              </div>
+                            </h3>
                             <p className="text-muted mb-3">
-                              <i className="fas fa-calendar-alt me-2"></i>
-                              Subasta activa hasta {formatDate(subasta.fechaFin)}
+                              <div className="placeholder-glow">
+                                <span className="placeholder col-6"></span>
+                              </div>
                             </p>
                             
                             <div className="row mb-3">
@@ -229,14 +223,18 @@ const Subastas = () => {
                                   <i className="fas fa-calendar-check me-1"></i>
                                   Fecha inicio
                                 </small>
-                                <div className="text-dark fw-semibold">{formatDate(subasta.fechaInicio)}</div>
+                                <div className="placeholder-glow">
+                                  <span className="placeholder col-10"></span>
+                                </div>
                               </div>
                               <div className="col-6">
                                 <small className="text-muted">
                                   <i className="fas fa-building me-1"></i>
                                   Propiedades
                                 </small>
-                                <div className="text-dark fw-semibold">{subasta.torres} inmuebles</div>
+                                <div className="placeholder-glow">
+                                  <span className="placeholder col-8"></span>
+                                </div>
                               </div>
                             </div>
                             
@@ -245,79 +243,165 @@ const Subastas = () => {
                                 <i className="fas fa-info-circle me-1"></i>
                                 Descripción
                               </small>
-                              <p className="text-dark mb-0 small">{subasta.descripcion}</p>
-                            </div>
-                            
-                            <div className="row mb-3">
-                              <div className="col-12">
-                                <div className="bg-success bg-opacity-10 p-3 rounded-2">
-                                  <small className="text-success fw-semibold">Estado de Subasta:</small>
-                                  <div className="text-success fw-bold">Activa - {subasta.torres} propiedades disponibles</div>
-                                </div>
+                              <div className="placeholder-glow">
+                                <span className="placeholder col-12 mb-1"></span>
+                                <span className="placeholder col-8"></span>
                               </div>
                             </div>
                             
                             <div className="d-flex gap-2">
-                              <button 
-                                className="btn btn-success flex-fill"
-                                onClick={() => handleViewAuctionDetails(subasta.subastaID)}
-                              >
+                              <div className="btn btn-secondary flex-fill disabled">
                                 <i className="fas fa-eye me-1"></i>
-                                Ver Propiedades
+                                Cargando...
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : error ? (
+                      <div className="carousel-item h-100 active">
+                        <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
+                          <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
+                            <div className="mb-2">
+                              <span className="badge bg-danger">
+                                <i className="fas fa-exclamation-triangle me-1"></i>
+                                Error
+                              </span>
+                            </div>
+                            
+                            <h3 className="text-dark fw-bold mb-2">Error al cargar subastas</h3>
+                            <p className="text-muted mb-3">
+                              <i className="fas fa-wifi me-2"></i>
+                              {error}
+                            </p>
+                            
+                            <div className="d-flex gap-2">
+                              <button 
+                                className="btn btn-primary flex-fill"
+                                onClick={() => window.location.reload()}
+                              >
+                                <i className="fas fa-refresh me-1"></i>
+                                Reintentar
                               </button>
-                              <a href="/contacto" className="btn btn-outline-success">
+                              <a href="/contacto" className="btn btn-outline-primary">
                                 <i className="fas fa-info-circle"></i>
                               </a>
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  
-                  {subastas.length === 0 && (
-                    <div className="carousel-item h-100 active">
-                      <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
-                        <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
-                          <div className="mb-2">
-                            <span className="badge bg-warning">
-                              <i className="fas fa-exclamation-circle me-1"></i>
-                              Sin Subastas
-                            </span>
+                    ) : subastas.length > 0 ? (
+                      subastas.map((subasta, index) => (
+                        <div key={subasta.subastaID} className={`carousel-item h-100 ${index === 0 ? 'active' : ''}`}>
+                          <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
+                            <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
+                              <div className="mb-2">
+                                <span className="badge bg-success">
+                                  <i className="fas fa-gavel me-1"></i>
+                                  En Subasta
+                                </span>
+                              </div>
+                              
+                              <h3 className="text-dark fw-bold mb-2">{subasta.nombre}</h3>
+                              <p className="text-muted mb-3">
+                                <i className="fas fa-calendar-alt me-2"></i>
+                                Subasta activa hasta {formatDate(subasta.fechaFin)}
+                              </p>
+                              
+                              <div className="row mb-3">
+                                <div className="col-6">
+                                  <small className="text-muted">
+                                    <i className="fas fa-calendar-check me-1"></i>
+                                    Fecha inicio
+                                  </small>
+                                  <div className="text-dark fw-semibold">{formatDate(subasta.fechaInicio)}</div>
+                                </div>
+                                <div className="col-6">
+                                  <small className="text-muted">
+                                    <i className="fas fa-building me-1"></i>
+                                    Propiedades
+                                  </small>
+                                  <div className="text-dark fw-semibold">{subasta.torres} inmuebles</div>
+                                </div>
+                              </div>
+                              
+                              <div className="mb-3">
+                                <small className="text-muted">
+                                  <i className="fas fa-info-circle me-1"></i>
+                                  Descripción
+                                </small>
+                                <p className="text-dark mb-0 small">{subasta.descripcion}</p>
+                              </div>
+                              
+                              <div className="row mb-3">
+                                <div className="col-12">
+                                  <div className="bg-success bg-opacity-10 p-3 rounded-2">
+                                    <small className="text-success fw-semibold">Estado de Subasta:</small>
+                                    <div className="text-success fw-bold">Activa - {subasta.torres} propiedades disponibles</div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div className="d-flex gap-2">
+                                <button 
+                                  className="btn btn-success flex-fill"
+                                  onClick={() => handleViewAuctionDetails(subasta.subastaID)}
+                                >
+                                  <i className="fas fa-eye me-1"></i>
+                                  Ver Propiedades
+                                </button>
+                                <a href="/contacto" className="btn btn-outline-success">
+                                  <i className="fas fa-info-circle"></i>
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          
-                          <h3 className="text-dark fw-bold mb-2">No hay subastas disponibles</h3>
-                          <p className="text-muted mb-3">
-                            <i className="fas fa-clock me-2"></i>
-                            Próximamente tendremos nuevas oportunidades
-                          </p>
-                          
-                          <div className="mb-3">
-                            <small className="text-muted">
-                              <i className="fas fa-info-circle me-1"></i>
-                              Estado
-                            </small>
-                            <p className="text-dark mb-0 small">
-                              Estamos preparando nuevas subastas inmobiliarias. 
-                              Regresa pronto para encontrar excelentes oportunidades.
+                        </div>
+                      ))
+                    ) : (
+                      <div className="carousel-item h-100 active">
+                        <div className="position-absolute text-start" style={{left: '5%', right: '50%', bottom: '10%', zIndex: 10}}>
+                          <div className="bg-white bg-opacity-95 p-4 rounded-3 shadow">
+                            <div className="mb-2">
+                              <span className="badge bg-warning">
+                                <i className="fas fa-exclamation-circle me-1"></i>
+                                Sin Subastas
+                              </span>
+                            </div>
+                            
+                            <h3 className="text-dark fw-bold mb-2">No hay subastas disponibles</h3>
+                            <p className="text-muted mb-3">
+                              <i className="fas fa-clock me-2"></i>
+                              Próximamente tendremos nuevas oportunidades
                             </p>
-                          </div>
-                          
-                          <div className="d-flex gap-2">
-                            <a href="/contacto" className="btn btn-primary flex-fill">
-                              <i className="fas fa-envelope me-1"></i>
-                              Contactar
-                            </a>
-                            <a href="/" className="btn btn-outline-primary">
-                              <i className="fas fa-home"></i>
-                            </a>
+                            
+                            <div className="mb-3">
+                              <small className="text-muted">
+                                <i className="fas fa-info-circle me-1"></i>
+                                Estado
+                              </small>
+                              <p className="text-dark mb-0 small">
+                                Estamos preparando nuevas subastas inmobiliarias. 
+                                Regresa pronto para encontrar excelentes oportunidades.
+                              </p>
+                            </div>
+                            
+                            <div className="d-flex gap-2">
+                              <a href="/contacto" className="btn btn-primary flex-fill">
+                                <i className="fas fa-envelope me-1"></i>
+                                Contactar
+                              </a>
+                              <a href="/" className="btn btn-outline-primary">
+                                <i className="fas fa-home"></i>
+                              </a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
                 
-                {subastas.length > 1 && (
+                {!loading && !error && subastas.length > 1 && (
                   <div className="carousel-indicators">
                     {subastas.map((_, index) => (
                       <button
