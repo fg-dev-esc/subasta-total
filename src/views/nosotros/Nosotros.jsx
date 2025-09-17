@@ -28,39 +28,32 @@ const Nosotros = () => {
 
   return (
     <div className="nosotros-page page-container">
-      {/* Hero Section Nosotros - Based on Screenshot 08 */}
+      {/* Hero Section Nosotros - Based on Homepage */}
       <section className="st-nosotros-hero-section">
-        <div className="st-nosotros-hero">
-          {/* Floating SVG Icons */}
-          <div className="st-floating-icon st-floating-icon-1">
-            <svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <div className="st-floating-icon st-floating-icon-2">
-            <svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9,22 9,12 15,12 15,22"></polyline>
-            </svg>
-          </div>
-
+        <div className="st-nosotros-hero-single">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="st-nosotros-hero-content">
+                  <div className="st-nosotros-hero-sub-title">
+                    Líderes en subastas inmobiliarias
+                  </div>
                   <h1 className="st-nosotros-hero-title">
-                    Transformando el mundo de las subastas de inmuebles
+                    Transformando el <span>mundo de las subastas</span> de inmuebles
                   </h1>
                   <p className="st-nosotros-hero-description">
-                    Somos un grupo de mexicanos apasionados y expertos en el fascinante mundo de las subastas.
-                    Con más de 14 años de dedicación, nos enorgullece liderar la primera plataforma online
-                    especializada en subastas de inmuebles en México.
+                    Más de 14 años de experiencia liderando la primera plataforma online
+                    especializada en subastas inmobiliarias de México.
                   </p>
-                  <p className="st-nosotros-hero-subtitle">
-                    Subasta Total fue creada con la visión de democratizar y simplificar el mundo de las subastas,
-                    brindando oportunidades únicas tanto a corporativos como a compradores.
-                  </p>
+
+                  <div className="st-nosotros-hero-btn">
+                    <a href="/subastas" className="st-theme-btn">
+                      Ver Subastas <i className="fas fa-eye"></i>
+                    </a>
+                    <a href="/contacto" className="st-theme-btn-outline st-theme-btn">
+                      Contáctanos <i className="fas fa-envelope"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

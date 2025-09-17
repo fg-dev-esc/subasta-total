@@ -28,63 +28,78 @@ const Compradores = () => {
 
   return (
     <div className="compradores-page page-container">
-      {/* Hero Section + Propuesta de Valor (3 Cards) - Based on Screenshot 11 */}
+      {/* Hero Section - Based on Homepage */}
       <section className="st-compradores-hero-section">
-        <div className="st-compradores-hero">
-          {/* Floating SVG Icons */}
-          <div className="st-floating-icon st-floating-icon-1">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-          </div>
-          <div className="st-floating-icon st-floating-icon-2">
-            <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
-            </svg>
-          </div>
-          
+        <div className="st-compradores-hero-single">
           <div className="container">
             <div className="row justify-content-center">
-              <div className="col-lg-12">
+              <div className="col-lg-10">
                 <div className="st-compradores-hero-content">
+                  <div className="st-compradores-hero-sub-title">
+                    Inversiones inmobiliarias inteligentes
+                  </div>
                   <h1 className="st-compradores-hero-title">
-                    ¡Descubre una nueva forma de invertir en bienes raíces con nuestras subastas inmobiliarias!
+                    Tu próxima <span>inversión inmobiliaria</span> está aquí
                   </h1>
-                  
-                  <div className="st-propuesta-cards">
-                    <div className="row">
-                      <div className="col-lg-4 col-md-6 mb-4">
-                        <div className="st-propuesta-card st-animate-on-scroll">
-                          <p>
-                            En Subasta Total, estamos revolucionando la manera en que compras propiedades. 
-                            Nuestra plataforma te brinda acceso exclusivo a una amplia gama de inmuebles 
-                            disponibles en subastas en línea.
-                          </p>
-                        </div>
+                  <p className="st-compradores-hero-description">
+                    Descubre oportunidades únicas en nuestras subastas inmobiliarias online.
+                    Accede a propiedades exclusivas con precios competitivos.
+                  </p>
+
+                  <div className="st-compradores-hero-btn">
+                    <a href="/auth" className="st-theme-btn">
+                      Comenzar Ahora <i className="fas fa-play"></i>
+                    </a>
+                    <a href="/subastas" className="st-theme-btn-outline st-theme-btn">
+                      Ver Subastas <i className="fas fa-search"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Propuesta de Valor Section */}
+      <section className="st-compradores-propuesta-section st-animate-on-scroll">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-10">
+              <div className="st-compradores-propuesta-content">
+                <h2 className="st-compradores-propuesta-title">
+                  Revolucionamos la manera en que compras propiedades
+                </h2>
+
+                <div className="st-propuesta-cards">
+                  <div className="row">
+                    <div className="col-lg-4 col-md-6 mb-4">
+                      <div className="st-propuesta-card st-animate-on-scroll">
+                        <p>
+                          En Subasta Total, estamos revolucionando la manera en que compras propiedades.
+                          Nuestra plataforma te brinda acceso exclusivo a una amplia gama de inmuebles
+                          disponibles en subastas en línea.
+                        </p>
                       </div>
-                      
-                      <div className="col-lg-4 col-md-6 mb-4">
-                        <div className="st-propuesta-card st-animate-on-scroll">
-                          <p>
-                            Te ofrecemos una nueva plataforma de remates que te permite explorar y adquirir 
-                            propiedades de manera segura y transparente. Olvídate de las complicaciones 
-                            tradicionales y descubre oportunidades únicas.
-                          </p>
-                        </div>
+                    </div>
+
+                    <div className="col-lg-4 col-md-6 mb-4">
+                      <div className="st-propuesta-card st-animate-on-scroll">
+                        <p>
+                          Te ofrecemos una nueva plataforma de remates que te permite explorar y adquirir
+                          propiedades de manera segura y transparente. Olvídate de las complicaciones
+                          tradicionales y descubre oportunidades únicas.
+                        </p>
                       </div>
-                      
-                      <div className="col-lg-4 col-md-12 mb-4">
-                        <div className="st-propuesta-card st-animate-on-scroll">
-                          <p>
-                            Subasta Total es el lugar para hacer realidad tus sueños de inversión inmobiliaria. 
-                            Con nuestro enfoque centrado en la excelencia y la innovación, te garantizamos 
-                            una experiencia única en el mercado.
-                          </p>
-                        </div>
+                    </div>
+
+                    <div className="col-lg-4 col-md-12 mb-4">
+                      <div className="st-propuesta-card st-animate-on-scroll">
+                        <p>
+                          Subasta Total es el lugar para hacer realidad tus sueños de inversión inmobiliaria.
+                          Con nuestro enfoque centrado en la excelencia y la innovación, te garantizamos
+                          una experiencia única en el mercado.
+                        </p>
                       </div>
                     </div>
                   </div>
