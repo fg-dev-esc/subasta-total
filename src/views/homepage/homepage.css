@@ -220,7 +220,7 @@ Basado en Carway con paleta Subasta Total
 
 /* properties section */
 .st-properties-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: #4A9B8E; 
   position: relative;
   overflow: hidden;
@@ -330,7 +330,7 @@ Basado en Carway con paleta Subasta Total
 
 /* Circular CTA Buttons Section - Based on Screenshot 03 */
 .st-cta-section {
-  padding: 100px 0;
+  padding: 80px 0;
   background: #fff;
   position: relative;
 }
@@ -499,7 +499,7 @@ Basado en Carway con paleta Subasta Total
 
 /* benefits section */
 .st-benefits-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   position: relative;
 }
@@ -841,7 +841,7 @@ Basado en Carway con paleta Subasta Total
 
 /* Categories Section */
 .st-categories-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: var(--st-gray-50);
 }
 
