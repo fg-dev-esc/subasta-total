@@ -143,19 +143,32 @@ const Auth = () => {
 
   return (
     <div className="auth-page page-container">
-      {/* Hero Section */}
+      {/* Hero Section - Based on Homepage */}
       <section className="st-auth-hero-section">
-        <div className="st-auth-hero">
+        <div className="st-auth-hero-single">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="st-auth-hero-content">
+                  <div className="st-auth-hero-sub-title">
+                    Acceso seguro y confiable
+                  </div>
                   <h1 className="st-auth-hero-title">
-                    Portal de Acceso
+                    Únete a nuestro <span>portal de subastas</span> inmobiliarias
                   </h1>
-                  <p className="st-auth-hero-subtitle">
-                    Inicia sesión o regístrate para participar en nuestras subastas inmobiliarias
+                  <p className="st-auth-hero-description">
+                    Inicia sesión o regístrate para acceder a oportunidades exclusivas de inversión
+                    inmobiliaria en un entorno seguro y transparente.
                   </p>
+
+                  <div className="st-auth-hero-btn">
+                    <a href="#formularios" className="st-theme-btn">
+                      Crear Cuenta <i className="fas fa-user-plus"></i>
+                    </a>
+                    <a href="#formularios" className="st-theme-btn-outline st-theme-btn">
+                      Iniciar Sesión <i className="fas fa-sign-in-alt"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

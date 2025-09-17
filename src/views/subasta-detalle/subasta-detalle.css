@@ -5,6 +5,8 @@
 
 .st-subasta-detalle-hero-section {
   padding: 80px 0 40px;
+  margin-top: 20px;
+  min-height: 50vh;
 }
 
 .st-properties-grid-section {

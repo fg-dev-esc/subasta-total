@@ -11,6 +11,7 @@ Basado en Carway con paleta Subasta Total
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .st-hero-single {
@@ -567,20 +568,25 @@ Basado en Carway con paleta Subasta Total
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(33, 80, 76, 0.9));
-  padding: 30px 25px 25px;
+  background: linear-gradient(transparent, rgba(33, 80, 76, 0.95));
+  padding: 35px 25px 25px;
   color: white;
+  text-align: center;
 }
 
 .st-benefit-image-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .st-benefit-image-desc {
-  font-size: 14px;
-  opacity: 0.9;
+  font-size: 15px;
+  line-height: 1.4;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 /* Right Side - Benefits List */

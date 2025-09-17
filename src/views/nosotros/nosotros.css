@@ -5,19 +5,17 @@ Basado en Screenshots 08-10 con estilos Carway modernos
 
 /* Eliminar espacio superior */
 .nosotros-page {
-  padding-top: 0;
-  margin-top: 0;
+
 }
 
 /* Hero Section Nosotros - Based on Screenshot 08 */
 .st-nosotros-hero-section {
   position: relative;
-  min-height: 40vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0;
-  padding-top: 0;
+  margin-top: 20px;
 }
 
 .st-nosotros-hero {
@@ -65,16 +63,34 @@ Basado en Screenshots 08-10 con estilos Carway modernos
 .st-nosotros-hero-content {
   text-align: center;
   animation: fadeInUp 1.2s ease-out;
+  max-width: 900px;
 }
 
 .st-nosotros-hero-title {
   color: #fff;
-  font-size: 64px;
+  font-size: 56px;
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 25px;
   line-height: 1.2;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  max-width: 900px;
+}
+
+.st-nosotros-hero-description {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.st-nosotros-hero-subtitle {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Historia Corporativa Section */

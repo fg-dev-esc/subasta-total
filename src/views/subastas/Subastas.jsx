@@ -142,34 +142,32 @@ const Subastas = () => {
 
   return (
     <div className="subastas-page page-container">
-      {/* Hero Section */}
+      {/* Hero Section - Based on Homepage */}
       <section className="st-subastas-hero-section">
-        <div className="st-subastas-hero">
-          {/* Floating SVG Icons */}
-          <div className="st-floating-icon st-floating-icon-1">
-            <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
-              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-            </svg>
-          </div>
-          <div className="st-floating-icon st-floating-icon-2">
-            <svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
-              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-              <path d="M7 8h10"></path>
-              <path d="M7 12h6"></path>
-              <path d="M7 16h4"></path>
-            </svg>
-          </div>
-          
+        <div className="st-subastas-hero-single">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="st-subastas-hero-content">
+                  <div className="st-subastas-hero-sub-title">
+                    Oportunidades únicas de inversión
+                  </div>
                   <h1 className="st-subastas-hero-title">
-                    Subastas Disponibles
+                    Encuentra las mejores <span>subastas inmobiliarias</span> en línea
                   </h1>
-                  <p className="st-subastas-hero-subtitle">
-                    Explora nuestras subastas inmobiliarias activas y encuentra la propiedad perfecta
+                  <p className="st-subastas-hero-description">
+                    Explora nuestras subastas activas y descubre propiedades exclusivas con precios competitivos
+                    en un proceso transparente y seguro.
                   </p>
+
+                  <div className="st-subastas-hero-btn">
+                    <a href="/auth" className="st-theme-btn">
+                      Participar Ahora <i className="fas fa-gavel"></i>
+                    </a>
+                    <a href="/nosotros" className="st-theme-btn-outline st-theme-btn">
+                      Conoce Más <i className="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

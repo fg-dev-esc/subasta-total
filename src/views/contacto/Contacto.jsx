@@ -82,37 +82,32 @@ const Contacto = () => {
 
   return (
     <div className="contacto-page page-container">
-      {/* Hero Section Contacto - Based on Screenshot 24 */}
+      {/* Hero Section Contacto - Based on Homepage */}
       <section className="st-contacto-hero-section">
-        <div className="st-contacto-hero">
-          {/* Floating SVG Icons */}
-          <div className="st-floating-icon st-floating-icon-1">
-            <svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-          </div>
-          <div className="st-floating-icon st-floating-icon-2">
-            <svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </div>
-          
+        <div className="st-contacto-hero-single">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="st-contacto-hero-content">
+                  <div className="st-contacto-hero-sub-title">
+                    Comunicación directa y personalizada
+                  </div>
                   <h1 className="st-contacto-hero-title">
-                    Estamos aquí para ayudarte
+                    Estamos aquí para <span>ayudarte</span> en todo momento
                   </h1>
                   <p className="st-contacto-hero-description">
-                    Estamos comprometidos a ofrecer oportunidades únicas para la compra y venta 
-                    de propiedades a través de nuestras subastas en línea
+                    Contáctanos para resolver dudas, obtener asesoría personalizada o conocer más
+                    sobre nuestras subastas inmobiliarias.
                   </p>
-                  <p className="st-contacto-hero-subtitle">
-                    Si lo prefieres, puedes completar el siguiente formulario y uno de nuestros 
-                    especialistas se pondrá en contacto contigo lo antes posible
-                  </p>
+
+                  <div className="st-contacto-hero-btn">
+                    <a href="#formulario" className="st-theme-btn">
+                      Enviar Mensaje <i className="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+525555555555" className="st-theme-btn-outline st-theme-btn">
+                      Llamar Ahora <i className="fas fa-phone"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

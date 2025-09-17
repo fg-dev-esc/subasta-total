@@ -290,13 +290,13 @@ const Homepage = () => {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  background: 'linear-gradient(transparent, rgba(0, 0, 0, 0.8))',
+                  background: 'linear-gradient(transparent, rgba(33, 80, 76, 0.95))',
                   color: 'white',
                   padding: '40px 25px 25px',
                   textAlign: 'center'
                 }}>
-                  <h4 style={{fontSize: '20px', fontWeight: '700', marginBottom: '8px', margin: 0}}>Servicio Inmobiliario Profesional</h4>
-                  <p style={{fontSize: '14px', opacity: 0.9, margin: 0}}>Expertos en ventas y subastas de propiedades</p>
+                  <h4 style={{fontSize: '22px', fontWeight: '700', marginBottom: '12px', margin: 0, color: 'white', textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Experiencia Comprobada</h4>
+                  <p style={{fontSize: '15px', margin: 0, lineHeight: '1.4', color: 'white', textShadow: '0 1px 2px rgba(0, 0, 0, 0.7)'}}>Más de 14 años liderando el mercado mexicano de subastas inmobiliarias</p>
                 </div>
               </div>
 
@@ -306,8 +306,8 @@ const Homepage = () => {
                   alt="Subasta inmobiliaria profesional"
                 />
                 <div className="st-benefit-image-overlay">
-                  <h4 className="st-benefit-image-title">Subastas Inmobiliarias</h4>
-                  <p className="st-benefit-image-desc">Proceso transparente y profesional de ventas</p>
+                  <h4 className="st-benefit-image-title">Plataforma Digital Líder</h4>
+                  <p className="st-benefit-image-desc">Primera plataforma online especializada en subastas inmobiliarias</p>
                 </div>
               </div>
             </div>

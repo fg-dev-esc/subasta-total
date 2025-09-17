@@ -6,23 +6,27 @@ Página placeholder con diseño moderno
 /* Eliminar espacio superior */
 .subastas-page {
   padding-top: 0;
-  margin-top: 0;
 }
 
 /* Hero Section */
 .st-subastas-hero-section {
   position: relative;
-  min-height: 40vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0;
+  margin-top: 20px;
   padding-top: 0;
 }
 
-.st-subastas-hero {
-  padding: 100px 0;
-  background: linear-gradient(135deg, rgba(33, 80, 76, 0.85) 0%, rgba(26, 64, 60, 0.75) 100%);
+.st-subastas-hero-single {
+  padding: 0;
+  height: 50vh;
+  background-image: url('/auction-hammer.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +34,17 @@ Página placeholder con diseño moderno
   z-index: 1;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
-  overflow: hidden;
+}
+
+.st-subastas-hero-single::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.85) 0%, rgba(26, 64, 60, 0.75) 100%);
+  z-index: -1;
 }
 
 /* Espacio entre hero y sección de subastas */
@@ -68,26 +82,62 @@ Página placeholder con diseño moderno
 }
 
 .st-subastas-hero-content {
+  height: 100%;
   text-align: center;
-  animation: fadeInUp 1.2s ease-out;
+}
+
+.st-subastas-hero-sub-title {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  padding: 6px 24px;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 30px rgba(33, 80, 76, 0.3);
 }
 
 .st-subastas-hero-title {
   color: #fff;
-  font-size: 56px;
+  font-size: 55px;
   font-weight: 700;
-  margin-bottom: 25px;
-  line-height: 1.2;
+  margin: 20px 0;
+  line-height: 1.1;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.st-subastas-hero-subtitle {
+.st-subastas-hero-title span {
+  color: var(--st-green-light);
+  background: linear-gradient(135deg, #2a6157 0%, #5BAD9F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.st-subastas-hero-description {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.6;
-  margin: 0;
-  opacity: 0.95;
+  font-weight: 400;
+  margin-bottom: 30px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.st-subastas-hero-btn {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Estado Actual Section */

@@ -6,23 +6,23 @@ Portal de acceso con formularios de login y registro
 /* Eliminar espacio superior */
 .auth-page {
   padding-top: 0;
-  margin-top: 0;
 }
 
 /* Hero Section */
 .st-auth-hero-section {
   position: relative;
-  min-height: 40vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0;
+  margin-top: 20px;
   padding-top: 0;
 }
 
-.st-auth-hero {
-  padding: 100px 0;
-  background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+.st-auth-hero-single {
+  padding: 0;
+  height: 50vh;
+  background-image: url('/auction-hammer.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,38 +36,74 @@ Portal de acceso con formularios de login y registro
   margin-left: calc(-50vw + 50%);
 }
 
-.st-auth-hero::before {
+.st-auth-hero-single::before {
   content: "";
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background: linear-gradient(135deg, rgba(33, 80, 76, 0.8) 0%, rgba(26, 64, 60, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(33, 80, 76, 0.85) 0%, rgba(26, 64, 60, 0.75) 100%);
   z-index: -1;
 }
 
 .st-auth-hero-content {
+  height: 100%;
   text-align: center;
-  animation: fadeInUp 1.2s ease-out;
+}
+
+.st-auth-hero-sub-title {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  padding: 6px 24px;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 30px rgba(33, 80, 76, 0.3);
 }
 
 .st-auth-hero-title {
   color: #fff;
-  font-size: 56px;
+  font-size: 55px;
   font-weight: 700;
-  margin-bottom: 25px;
-  line-height: 1.2;
+  margin: 20px 0;
+  line-height: 1.1;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.st-auth-hero-subtitle {
+.st-auth-hero-title span {
+  color: var(--st-green-light);
+  background: linear-gradient(135deg, #2a6157 0%, #5BAD9F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.st-auth-hero-description {
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.6;
-  margin: 0;
-  opacity: 0.95;
+  font-weight: 400;
+  margin-bottom: 30px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.st-auth-hero-btn {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Formularios de Auth Section */
