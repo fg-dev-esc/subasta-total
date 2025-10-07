@@ -166,7 +166,7 @@ const Subastas = () => {
 
           // Initialize background carousel (controls timing)
           const bgCarousel = new window.bootstrap.Carousel(backgroundCarousel, {
-            interval: 5000,
+            interval: 3500,
             ride: 'carousel',
             pause: false
           });
