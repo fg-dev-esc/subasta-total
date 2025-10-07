@@ -178,34 +178,55 @@ const Detalle = () => {
       {/* Main Content */}
       <section className="st-detalle-content-section">
         <div className="container">
-          <div className="row">
+          <div className="row align-items-stretch">
             {/* Property Image */}
             <div className="col-lg-8 mb-4">
-              <div className="st-property-image-container">
-                {propertyData && (
-                  <>
-                    <img 
-                      src={propertyData?.foto?.url || getPlaceholderImage()}
-                      alt={propertyData?.nombre || 'Propiedad'}
-                      className="st-property-main-image"
-                      onError={(e) => {
-                        e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
-                      }}
-                    />
-                    <div className="st-property-status-badge">
-                      <span className="badge bg-success">
-                        <i className="fas fa-gavel me-1"></i>
-                        En Subasta
-                      </span>
+              <div className="st-detalle-left-column d-flex flex-column" style={{ height: '100%' }}>
+                <div className="st-property-image-container">
+                  {propertyData && (
+                    <>
+                      <img
+                        src={propertyData?.foto?.url || getPlaceholderImage()}
+                        alt={propertyData?.nombre || 'Propiedad'}
+                        className="st-property-main-image"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+                        }}
+                      />
+                      <div className="st-property-status-badge">
+                        <span className="badge bg-success">
+                          <i className="fas fa-gavel me-1"></i>
+                          En Subasta
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* CTA Badge */}
+                <div className="st-detalle-cta-badge flex-grow-1 d-flex align-items-stretch">
+                  <div className="st-cta-badge-content d-flex flex-column justify-content-center w-100">
+                    <div className="st-cta-badge-icon">
+                      <i className="fas fa-gavel"></i>
                     </div>
-                  </>
-                )}
+                    <div className="st-cta-badge-text">
+                      <h4>Únete a nuestras subastas</h4>
+                      <p>Regístrate gratis y accede a todas las subastas activas</p>
+                    </div>
+                    <button
+                      className="st-destacados-cta-btn"
+                      onClick={() => navigate('/contacto')}
+                    >
+                      Registrarme
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Property Details */}
             <div className="col-lg-4">
-              <div className="st-property-details-card">
+              <div className="st-property-details-card" style={{ height: '100%' }}>
                 <div className="st-property-header">
                   <h1 className="st-property-title">{propertyData?.nombre || ''}</h1>
                   <p className="st-property-location">

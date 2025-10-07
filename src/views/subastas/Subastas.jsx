@@ -25,6 +25,9 @@ const Subastas = () => {
   auctionEndDate.setDate(auctionEndDate.getDate() + 7);
   auctionEndDate.setHours(15, 30, 0, 0);
 
+  // State para guardar todas las fotos
+  const [todasLasFotos, setTodasLasFotos] = useState([]);
+
   // Fetch auctions data
   useEffect(() => {
     const fetchSubastas = async () => {
@@ -32,7 +35,49 @@ const Subastas = () => {
         setLoading(true);
         const response = await fetch('https://demo-subasta.backend.secure9000.net/api/subasta/getSubastas');
         const data = await response.json();
-        setSubastas(data);
+
+        // Fetch torres (and their photos) for each subasta
+        const todasLasFotosTemp = [];
+
+        const subastasConFotos = await Promise.all(
+          data.map(async (subasta) => {
+            try {
+              const torresResponse = await fetch(`https://demo-subasta.backend.secure9000.net/api/subasta/getTorres/${subasta.subastaID}`);
+              const torresData = await torresResponse.json();
+
+              // Extraer TODAS las fotos de todas las torres
+              if (torresData.torres && torresData.torres.length > 0) {
+                torresData.torres.forEach(torre => {
+                  if (torre.foto?.url) {
+                    todasLasFotosTemp.push(torre.foto.url);
+                  }
+                });
+              }
+
+              // También guardar la primera foto para la subasta individual
+              let foto = null;
+              if (torresData.torres && torresData.torres.length > 0) {
+                const torreConFoto = torresData.torres.find(torre => torre.foto?.url);
+                if (torreConFoto) {
+                  foto = torreConFoto.foto;
+                }
+              }
+
+              return {
+                ...subasta,
+                foto: foto
+              };
+            } catch (err) {
+              console.error(`Error fetching torres for subasta ${subasta.subastaID}:`, err);
+              return subasta;
+            }
+          })
+        );
+
+        // Mezclar aleatoriamente las fotos
+        const fotosAleatorias = todasLasFotosTemp.sort(() => Math.random() - 0.5);
+        setTodasLasFotos(fotosAleatorias);
+        setSubastas(subastasConFotos);
       } catch (err) {
         setError('Error cargando las subastas');
         console.error('Error fetching auctions:', err);
@@ -104,20 +149,34 @@ const Subastas = () => {
       if (typeof window !== 'undefined' && window.bootstrap) {
         const backgroundCarousel = document.getElementById('backgroundCarousel');
         const auctionsCarousel = document.getElementById('auctionsCarousel');
-        
-        if (backgroundCarousel) {
-          new window.bootstrap.Carousel(backgroundCarousel, {
-            interval: 2000,
+
+        if (backgroundCarousel && auctionsCarousel) {
+          // Dispose previous instances
+          const bgInstance = window.bootstrap.Carousel.getInstance(backgroundCarousel);
+          const auctionInstance = window.bootstrap.Carousel.getInstance(auctionsCarousel);
+          if (bgInstance) bgInstance.dispose();
+          if (auctionInstance) auctionInstance.dispose();
+
+          // Initialize auctions carousel WITHOUT auto-cycling
+          const auctionCarousel = new window.bootstrap.Carousel(auctionsCarousel, {
+            interval: false,
+            ride: false,
+            pause: false
+          });
+
+          // Initialize background carousel (controls timing)
+          const bgCarousel = new window.bootstrap.Carousel(backgroundCarousel, {
+            interval: 5000,
             ride: 'carousel',
             pause: false
           });
-        }
-        
-        if (auctionsCarousel) {
-          new window.bootstrap.Carousel(auctionsCarousel, {
-            interval: 4000,
-            ride: 'carousel',
-            pause: false
+
+          // Sync: when background changes, change auctions too
+          backgroundCarousel.addEventListener('slid.bs.carousel', () => {
+            const activeIndex = Array.from(backgroundCarousel.querySelectorAll('.carousel-item')).indexOf(
+              backgroundCarousel.querySelector('.carousel-item.active')
+            );
+            auctionCarousel.to(activeIndex);
           });
         }
       }
@@ -139,6 +198,21 @@ const Subastas = () => {
     });
   };
 
+  const getSubastasPhotos = () => {
+    // Retornar una foto por cada subasta
+    if (subastas.length > 0) {
+      return subastas.map((subasta) => {
+        // Usar la primera foto de la subasta, o null para mostrar skeleton
+        if (subasta.foto?.url) {
+          return subasta.foto.url;
+        }
+        return null;
+      });
+    }
+
+    // Si no hay subastas, retornar array vacío
+    return [];
+  };
 
   return (
     <div className="subastas-page page-container">
@@ -182,31 +256,42 @@ const Subastas = () => {
             <div className="col-lg-10">
               <div className="position-relative" style={{borderRadius: '20px', overflow: 'hidden'}}>
                 {/* Carrousel de imágenes de fondo */}
-                <div id="backgroundCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                  <div className="carousel-inner">
-                    {[
-                      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-                      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80'
-                    ].map((imageUrl, index) => (
-                      <div key={`bg-${index}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                        <img 
-                          src={imageUrl}
-                          className="d-block w-100"
-                          alt={`Casa ${index + 1}`}
-                          style={{ height: '600px', objectFit: 'cover' }}
-                        />
-                      </div>
-                    ))}
+                {!loading && !error && subastas.length > 0 && (
+                  <div id="backgroundCarousel" className="carousel slide">
+                    <div className="carousel-inner">
+                      {getSubastasPhotos().map((imageUrl, index) => (
+                        <div key={`bg-${index}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                          {imageUrl ? (
+                            <img
+                              src={imageUrl}
+                              className="d-block w-100"
+                              alt={`Subasta ${index + 1}`}
+                              style={{ height: '600px', objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <div className="d-block w-100" style={{ height: '600px' }}>
+                              <div className="placeholder-glow h-100">
+                                <span className="placeholder col-12 h-100" style={{ display: 'block' }}></span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+                
+                {/* Fondo para cuando está cargando o hay error */}
+                {(loading || error) && (
+                  <div className="d-block w-100" style={{ height: '600px', backgroundColor: '#f8f9fa' }}>
+                    <div className="placeholder-glow h-100">
+                      <span className="placeholder col-12 h-100" style={{ display: 'block' }}></span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Carrousel de contenido de subastas */}
-                <div id="auctionsCarousel" className="carousel slide position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel" data-bs-interval="4000">
+                <div id="auctionsCarousel" className="carousel slide position-absolute top-0 start-0 w-100 h-100">
                   <div className="carousel-inner h-100">
                     {loading ? (
                       <div className="carousel-item h-100 active">
