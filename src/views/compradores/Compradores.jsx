@@ -285,7 +285,7 @@ const Compradores = () => {
                   <div className="col-lg-12">
                     <div className="st-proceso-grid">
                       
-                      {/* Primera fila: 3 pasos */}
+                      {/* Fila 1: 3 pasos */}
                       <div className="st-proceso-row">
                         <div className="st-proceso-step st-animate-on-scroll">
                           <div className="st-proceso-step-icon">
@@ -325,30 +325,18 @@ const Compradores = () => {
                         <i className="fas fa-arrow-down"></i>
                       </div>
                       
-                      {/* Segunda fila: 4 pasos */}
-                      <div className="st-proceso-row st-proceso-row-reverse">
+                      {/* Fila 2: 3 pasos */}
+                      <div className="st-proceso-row">
                         <div className="st-proceso-step st-animate-on-scroll">
                           <div className="st-proceso-step-icon">
-                            <i className="fas fa-handshake"></i>
+                            <i className="fas fa-credit-card"></i>
                           </div>
-                          <h4 className="st-proceso-step-title">7. ¡Felicidades!</h4>
-                          <p className="st-proceso-step-text">Ya eres dueño de tu nueva inversión</p>
+                          <h4 className="st-proceso-step-title">4. Pagar</h4>
+                          <p className="st-proceso-step-text">Completa tu pago de manera segura</p>
                         </div>
-                        
-                        <div className="st-proceso-arrow-horizontal st-arrow-reverse">
-                          <i className="fas fa-arrow-left"></i>
-                        </div>
-                        
-                        <div className="st-proceso-step st-animate-on-scroll">
-                          <div className="st-proceso-step-icon">
-                            <i className="fas fa-desktop"></i>
-                          </div>
-                          <h4 className="st-proceso-step-title">6. Conclusión</h4>
-                          <p className="st-proceso-step-text">Finaliza el proceso legal</p>
-                        </div>
-                        
-                        <div className="st-proceso-arrow-horizontal st-arrow-reverse">
-                          <i className="fas fa-arrow-left"></i>
+
+                        <div className="st-proceso-arrow-horizontal">
+                          <i className="fas fa-arrow-right"></i>
                         </div>
                         
                         <div className="st-proceso-step st-animate-on-scroll">
@@ -359,16 +347,16 @@ const Compradores = () => {
                           <p className="st-proceso-step-text">¡Felicidades! Has ganado la subasta</p>
                         </div>
                         
-                        <div className="st-proceso-arrow-horizontal st-arrow-reverse">
-                          <i className="fas fa-arrow-left"></i>
+                        <div className="st-proceso-arrow-horizontal">
+                          <i className="fas fa-arrow-right"></i>
                         </div>
                         
                         <div className="st-proceso-step st-animate-on-scroll">
                           <div className="st-proceso-step-icon">
-                            <i className="fas fa-credit-card"></i>
+                            <i className="fas fa-desktop"></i>
                           </div>
-                          <h4 className="st-proceso-step-title">4. Pagar</h4>
-                          <p className="st-proceso-step-text">Completa tu pago de manera segura</p>
+                          <h4 className="st-proceso-step-title">6. Conclusión</h4>
+                          <p className="st-proceso-step-text">Finaliza el proceso legal</p>
                         </div>
                       </div>
                       

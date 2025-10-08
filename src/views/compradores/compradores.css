@@ -444,7 +444,7 @@ Basado en Screenshots 11-15 con estilos Carway modernos
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 20px; /* Reduced gap for a tighter look */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -455,17 +455,17 @@ Basado en Screenshots 11-15 con estilos Carway modernos
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
+  width: 100%; /* Ensure rows take full width */
 }
 
-.st-proceso-row-reverse {
-  flex-direction: row-reverse;
-}
+/* No longer need .st-proceso-row-reverse */
 
 .st-proceso-step {
   text-align: center;
   position: relative;
   min-width: 180px;
   max-width: 200px;
+  flex-shrink: 0; /* Prevent steps from shrinking */
 }
 
 .st-proceso-step-icon {
@@ -522,21 +522,14 @@ Basado en Screenshots 11-15 con estilos Carway modernos
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  margin: 10px 0; /* Adjusted margin */
 }
 
-.st-arrow-reverse {
-  animation: bounceHorizontalReverse 2s infinite;
-}
+/* No longer need .st-arrow-reverse or bounceHorizontalReverse */
 
 @keyframes bounceHorizontal {
   0%, 100% { transform: translateX(0); opacity: 0.8; }
   50% { transform: translateX(5px); opacity: 1; }
-}
-
-@keyframes bounceHorizontalReverse {
-  0%, 100% { transform: translateX(0); opacity: 0.8; }
-  50% { transform: translateX(-5px); opacity: 1; }
 }
 
 @keyframes bounceVertical {
@@ -1059,4 +1052,29 @@ Basado en Screenshots 11-15 con estilos Carway modernos
 
 .st-accordion-body p {
   margin: 0;
+}
+
+/* Responsive fix for Proceso de Participación on mobile */
+@media all and (max-width: 767px) {
+  .st-proceso-grid {
+    gap: 0; /* Remove the gap between the rows */
+  }
+
+  .st-proceso-row {
+    flex-direction: column; /* Stack steps vertically */
+    gap: 30px; /* Adjust gap between steps */
+    margin-bottom: 30px; /* Add space after the first row of steps */
+  }
+
+  .st-proceso-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .st-proceso-arrow-horizontal {
+    display: none; /* Hide horizontal arrows */
+  }
+
+  .st-proceso-arrow-down {
+    display: none; /* Hide the vertical arrow between rows */
+  }
 }
