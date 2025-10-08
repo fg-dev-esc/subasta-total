@@ -24,7 +24,7 @@ const SubastaDetalle = () => {
           setTorres(data.torres);
         }
       } catch (err) {
-        setError('Error cargando las propiedades de la subasta');
+        setError('Error cargando los artículos de la subasta');
         console.error('Error fetching torres:', err);
       } finally {
         setLoading(false);
@@ -80,7 +80,7 @@ const SubastaDetalle = () => {
           <div className="spinner-border text-primary" role="status">
             <span className="visually-hidden">Cargando...</span>
           </div>
-          <p className="mt-3">Cargando propiedades...</p>
+          <p className="mt-3">Cargando artículos...</p>
         </div>
       </div>
     );
@@ -124,7 +124,7 @@ const SubastaDetalle = () => {
                   Volver a Subastas
                 </button>
                 <div>
-                  <h1 className="mb-0">Propiedades en Subasta</h1>
+                  <h1 className="mb-0">Artículos en Subasta</h1>
                   <p className="text-muted mb-0">ID de Subasta: {id}</p>
                 </div>
               </div>
@@ -139,8 +139,8 @@ const SubastaDetalle = () => {
           {torres.length === 0 ? (
             <div className="text-center py-5">
               <i className="fas fa-exclamation-circle text-muted mb-3" style={{fontSize: '4rem'}}></i>
-              <h3 className="text-muted">No hay propiedades disponibles</h3>
-              <p className="text-muted">Esta subasta no tiene propiedades registradas.</p>
+              <h3 className="text-muted">No hay artículos disponibles</h3>
+              <p className="text-muted">Esta subasta no tiene artículos registrados.</p>
             </div>
           ) : (
             <div className="row">

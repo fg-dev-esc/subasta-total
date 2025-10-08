@@ -36,14 +36,14 @@ const Nosotros = () => {
               <div className="col-lg-10">
                 <div className="st-nosotros-hero-content">
                   <div className="st-nosotros-hero-sub-title">
-                    Líderes en subastas inmobiliarias
+                    Líderes en subastas
                   </div>
                   <h1 className="st-nosotros-hero-title">
-                    Transformando el <span>mundo de las subastas</span> de inmuebles
+                    Transformando el <span>mundo de las subastas</span>
                   </h1>
                   <p className="st-nosotros-hero-description">
                     Más de 14 años de experiencia liderando la primera plataforma online
-                    especializada en subastas inmobiliarias de México.
+                    de subastas en México.
                   </p>
 
                   <div className="st-nosotros-hero-btn">
@@ -61,41 +61,79 @@ const Nosotros = () => {
         </div>
       </section>
 
-      {/* Historia Corporativa Section */}
-      <section className="st-historia-section st-animate-on-scroll">
+      {/* Historia Corporativa Section - Rediseñada */}
+      <section className="st-historia-section">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">
-              <div className="st-historia-content">
-                <div className="st-historia-paragraph st-animate-on-scroll">
-                  <p>
-                    Somos un grupo de mexicanos apasionados y expertos en el fascinante mundo de las subastas. 
-                    Con más de 14 años de dedicación, nos enorgullece liderar la primera plataforma online 
-                    especializada en subastas de inmuebles en México.
-                  </p>
+              {/* Título de Sección */}
+              <div className="st-historia-header st-animate-on-scroll">
+                <span className="st-historia-badge">Nuestra Historia</span>
+                <h2 className="st-historia-main-title">Más de 14 años transformando el mercado de las subastas</h2>
+              </div>
+
+              {/* Timeline Vertical */}
+              <div className="st-timeline-container">
+                {/* Item 1 - Quiénes Somos */}
+                <div className="st-timeline-item st-animate-on-scroll">
+                  <div className="st-timeline-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <div className="st-timeline-content">
+                    <div className="st-timeline-badge">Quiénes Somos</div>
+                    <h3 className="st-timeline-title">Expertos Mexicanos en Subastas</h3>
+                    <p className="st-timeline-text">
+                      Somos un grupo de mexicanos apasionados y expertos en el fascinante mundo de las subastas. 
+                      Con más de 14 años de dedicación, nos enorgullece liderar la primera plataforma online 
+                      de subastas en México.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="st-historia-paragraph st-animate-on-scroll">
-                  <p>
-                    Subasta Total fue creada con la visión de democratizar y simplificar el mundo de las subastas, 
-                    brindando oportunidades únicas tanto a corporativos que desean vender propiedades como a los compradores.
-                  </p>
+                {/* Item 2 - Nuestra Visión */}
+                <div className="st-timeline-item st-timeline-item-right st-animate-on-scroll">
+                  <div className="st-timeline-icon">
+                    <i className="fas fa-lightbulb"></i>
+                  </div>
+                  <div className="st-timeline-content">
+                    <div className="st-timeline-badge">Nuestra Visión</div>
+                    <h3 className="st-timeline-title">Democratizar las Subastas</h3>
+                    <p className="st-timeline-text">
+                      Subasta Total fue creada con la visión de democratizar y simplificar el mundo de las subastas, 
+                      brindando oportunidades únicas tanto a vendedores corporativos como a los compradores.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="st-historia-paragraph st-animate-on-scroll">
-                  <p>
-                    Nuestro objetivo es expandir el modelo de subastas en línea a un público más amplio de manera 
-                    totalmente fácil, transparente y segura.
-                  </p>
+                {/* Item 3 - Nuestro Objetivo */}
+                <div className="st-timeline-item st-animate-on-scroll">
+                  <div className="st-timeline-icon">
+                    <i className="fas fa-bullseye"></i>
+                  </div>
+                  <div className="st-timeline-content">
+                    <div className="st-timeline-badge">Nuestro Objetivo</div>
+                    <h3 className="st-timeline-title">Expansión y Accesibilidad</h3>
+                    <p className="st-timeline-text">
+                      Nuestro objetivo es expandir el modelo de subastas en línea a un público más amplio de manera 
+                      totalmente fácil, transparente y segura.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="st-historia-paragraph st-animate-on-scroll">
-                  <p>
-                    Hemos canalizado nuestra experiencia hacia la creación de una plataforma propia, diseñada especialmente 
-                    para las subastas inmobiliarias. Pensando en la optimización del proceso, hemos perfeccionado cada detalle 
-                    para ofrecer una experiencia única, brindando un entorno confiable, transparente y eficiente para todos 
-                    los involucrados.
-                  </p>
+                {/* Item 4 - Nuestra Plataforma */}
+                <div className="st-timeline-item st-timeline-item-right st-animate-on-scroll">
+                  <div className="st-timeline-icon">
+                    <i className="fas fa-laptop-code"></i>
+                  </div>
+                  <div className="st-timeline-content">
+                    <div className="st-timeline-badge">Nuestra Plataforma</div>
+                    <h3 className="st-timeline-title">Tecnología y Experiencia</h3>
+                    <p className="st-timeline-text">
+                      Hemos canalizado nuestra experiencia hacia la creación de una plataforma propia, diseñada para optimizar el proceso de subasta. Pensando en la optimización del proceso, hemos perfeccionado cada detalle 
+                      para ofrecer una experiencia única, brindando un entorno confiable, transparente y eficiente para todos 
+                      los involucrados.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,10 +148,10 @@ const Nosotros = () => {
             <div className="col-lg-10">
               <div className="st-cta-medio-content">
                 <h2 className="st-cta-medio-title" style={{color: 'white'}}>
-                  ¡Únete a la mejor experiencia de <span style={{color: 'white'}}>subastas de inmuebles!</span>
+                  ¡Únete a la mejor experiencia de <span style={{color: 'white'}}>subastas!</span>
                 </h2>
                 <p className="st-cta-medio-description">
-                  Ya sea que estés buscando tu próximo hogar, vendiendo propiedades o maximizando tu inversión, 
+                  Ya sea que busques comprar, vender o maximizar tu inversión, 
                   en Subasta Total te brindamos las mejores soluciones para subastas en línea de México.
                 </p>
               </div>
@@ -129,7 +167,7 @@ const Nosotros = () => {
             <div className="col-lg-8">
               <div className="st-nosotros-final-cta-content">
                 <h2 className="st-nosotros-final-cta-title">
-                  ¡Descubre el futuro de las subastas inmobiliarias hoy mismo!
+                  ¡Descubre el futuro de las subastas hoy mismo!
                 </h2>
                 <p className="st-nosotros-final-cta-description">
                   Si deseas participar en una subasta, regístrate ahora y comienza tu experiencia con nosotros.

@@ -36,14 +36,14 @@ const Compradores = () => {
               <div className="col-lg-10">
                 <div className="st-compradores-hero-content">
                   <div className="st-compradores-hero-sub-title">
-                    Inversiones inmobiliarias inteligentes
+                    Inversiones inteligentes
                   </div>
                   <h1 className="st-compradores-hero-title">
-                    Tu próxima <span>inversión inmobiliaria</span> está aquí
+                    Tu próxima <span>gran inversión</span> está aquí
                   </h1>
                   <p className="st-compradores-hero-description">
-                    Descubre oportunidades únicas en nuestras subastas inmobiliarias online.
-                    Accede a propiedades exclusivas con precios competitivos.
+                    Descubre oportunidades únicas en nuestras subastas online.
+                    Accede a artículos exclusivos con precios competitivos.
                   </p>
 
                   <div className="st-compradores-hero-btn">
@@ -68,7 +68,7 @@ const Compradores = () => {
             <div className="col-lg-10">
               <div className="st-compradores-propuesta-content">
                 <h2 className="st-compradores-propuesta-title">
-                  Revolucionamos la manera en que compras propiedades
+                  Revolucionamos la manera en que compras
                 </h2>
 
                 <div className="st-propuesta-cards">
@@ -76,8 +76,8 @@ const Compradores = () => {
                     <div className="col-lg-4 col-md-6 mb-4">
                       <div className="st-propuesta-card st-animate-on-scroll">
                         <p>
-                          En Subasta Total, estamos revolucionando la manera en que compras propiedades.
-                          Nuestra plataforma te brinda acceso exclusivo a una amplia gama de inmuebles
+                          En Subasta Total, estamos revolucionando la manera en que compras.
+                          Nuestra plataforma te brinda acceso exclusivo a una amplia gama de artículos
                           disponibles en subastas en línea.
                         </p>
                       </div>
@@ -87,7 +87,7 @@ const Compradores = () => {
                       <div className="st-propuesta-card st-animate-on-scroll">
                         <p>
                           Te ofrecemos una nueva plataforma de remates que te permite explorar y adquirir
-                          propiedades de manera segura y transparente. Olvídate de las complicaciones
+                          artículos de manera segura y transparente. Olvídate de las complicaciones
                           tradicionales y descubre oportunidades únicas.
                         </p>
                       </div>
@@ -96,7 +96,7 @@ const Compradores = () => {
                     <div className="col-lg-4 col-md-12 mb-4">
                       <div className="st-propuesta-card st-animate-on-scroll">
                         <p>
-                          Subasta Total es el lugar para hacer realidad tus sueños de inversión inmobiliaria.
+                          Subasta Total es el lugar para hacer realidad tus sueños de inversión.
                           Con nuestro enfoque centrado en la excelencia y la innovación, te garantizamos
                           una experiencia única en el mercado.
                         </p>
@@ -127,7 +127,7 @@ const Compradores = () => {
             <div className="col-lg-6">
               <div className="st-ventajas-intro">
                 <h2 className="st-ventajas-title">
-                  ¿Por qué somos la mejor alternativa de subastas en línea de inmuebles?
+                  ¿Por qué somos la mejor alternativa de subastas en línea?
                 </h2>
               </div>
             </div>
@@ -142,8 +142,8 @@ const Compradores = () => {
                   </div>
                   <h4 className="st-ventaja-title">Oportunidades Únicas</h4>
                   <p className="st-ventaja-text">
-                    Sumérgete en un mundo de oportunidades inmobiliarias exclusivas. 
-                    Nuestra plataforma te da acceso a propiedades que no encontrarás 
+                    Sumérgete en un mundo de oportunidades exclusivas. 
+                    Nuestra plataforma te da acceso a artículos que no encontrarás 
                     en el mercado tradicional.
                   </p>
                 </div>
@@ -208,8 +208,8 @@ const Compradores = () => {
                   </div>
                   <h4 className="st-ventaja-title">Precio Competitivo</h4>
                   <p className="st-ventaja-text">
-                    Descubre propiedades a precios competitivos. Las subastas permiten 
-                    que el mercado determine el valor real de cada inmueble.
+                    Descubre artículos a precios competitivos. Las subastas permiten 
+                    que el mercado determine el valor real de cada artículo.
                   </p>
                 </div>
               </div>
@@ -221,7 +221,7 @@ const Compradores = () => {
                   </div>
                   <h4 className="st-ventaja-title">Proceso Eficiente</h4>
                   <p className="st-ventaja-text">
-                    Accede a información relevante en línea sobre cada propiedad, 
+                    Accede a información relevante en línea sobre cada artículo, 
                     incluyendo fotografías, especificaciones y documentos legales.
                   </p>
                 </div>
@@ -251,7 +251,7 @@ const Compradores = () => {
             <div className="col-lg-10">
               <div className="st-compradores-final-cta-content">
                 <h2 className="st-compradores-final-cta-title" style={{color: 'white'}}>
-                  ¡Encuentra la casa de tus sueños o tu mejor inversión en nuestras subastas inmobiliarias!
+                  ¡Encuentra lo que buscas o tu mejor inversión en nuestras subastas!
                 </h2>
                 <p className="st-compradores-final-cta-description">
                   Estás a solo un clic de distancia. ¡No dejes pasar esta oportunidad!
@@ -273,10 +273,10 @@ const Compradores = () => {
             <div className="col-lg-10">
               <div className="st-proceso-intro">
                 <h2 className="st-proceso-title">
-                  ¿Cómo participar en nuestras subastas en línea de inmuebles?
+                  ¿Cómo participar en nuestras subastas en línea?
                 </h2>
                 <p className="st-proceso-subtitle">
-                  ¡Participar en nuestras subastas de inmuebles es fácil y rápido!
+                  ¡Participar en nuestras subastas es fácil y rápido!
                 </p>
               </div>
               
@@ -304,7 +304,7 @@ const Compradores = () => {
                             <i className="fas fa-search-plus"></i>
                           </div>
                           <h4 className="st-proceso-step-title">2. Explorar</h4>
-                          <p className="st-proceso-step-text">Busca y analiza las propiedades disponibles</p>
+                          <p className="st-proceso-step-text">Busca y analiza los artículos disponibles</p>
                         </div>
                         
                         <div className="st-proceso-arrow-horizontal">
@@ -332,7 +332,7 @@ const Compradores = () => {
                             <i className="fas fa-handshake"></i>
                           </div>
                           <h4 className="st-proceso-step-title">7. ¡Felicidades!</h4>
-                          <p className="st-proceso-step-text">Ya eres propietario de tu nueva inversión</p>
+                          <p className="st-proceso-step-text">Ya eres dueño de tu nueva inversión</p>
                         </div>
                         
                         <div className="st-proceso-arrow-horizontal st-arrow-reverse">
@@ -527,8 +527,8 @@ const Compradores = () => {
               <div className="st-documentacion-final-message st-animate-on-scroll">
                 <div className="st-documentacion-final-card">
                   <i className="fas fa-check-circle"></i>
-                  <h3 style={{color: 'white'}}>¡Listo, ahora puedes comenzar a ofertar inmuebles!</h3>
-                  <p>Una vez que tengas toda tu documentación completa y validada, podrás participar en todas nuestras subastas inmobiliarias.</p>
+                  <h3 style={{color: 'white'}}>¡Listo, ahora puedes comenzar a ofertar!</h3>
+                  <p>Una vez que tengas toda tu documentación completa y validada, podrás participar en todas nuestras subastas.</p>
                   <a href="/auth" className="st-documentacion-final-btn">
                     Comenzar Registro <i className="fas fa-arrow-right"></i>
                   </a>
@@ -550,7 +550,7 @@ const Compradores = () => {
                 </h2>
                 <p className="st-legal-description">
                   Es importante y te recomendamos que consideres la siguiente información legal 
-                  antes de participar en nuestras subastas inmobiliarias.
+                  antes de participar en nuestras subastas.
                 </p>
               </div>
               

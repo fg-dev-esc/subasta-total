@@ -97,7 +97,7 @@ const Contacto = () => {
                   </h1>
                   <p className="st-contacto-hero-description">
                     Contáctanos para resolver dudas, obtener asesoría personalizada o conocer más
-                    sobre nuestras subastas inmobiliarias.
+                    sobre nuestras subastas.
                   </p>
 
                   <div className="st-contacto-hero-btn">

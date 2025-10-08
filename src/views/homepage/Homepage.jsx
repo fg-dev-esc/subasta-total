@@ -102,11 +102,11 @@ const Homepage = () => {
                     Primera plataforma online en México
                   </div>
                   <h1 className="st-hero-title">
-                    Somos expertos en <span>subastas y remates</span> inmobiliarios
+                    Somos expertos en <span>subastas</span>
                   </h1>
                   <p className="st-hero-description">
                     Con más de 14 años de dedicación, nos enorgullece liderar la primera plataforma online 
-                    especializada en subastas de inmuebles en México.
+                    especializada en subastas en México.
                   </p>
                   
                   {/* Status Badge */}
@@ -135,13 +135,13 @@ const Homepage = () => {
           <div className="row">
             <div className="col-lg-6 mx-auto">
               <div className="st-section-heading text-center">
-                <span className="st-section-tagline">Propiedades Destacadas</span>
+                <span className="st-section-tagline">Árticulos Destacados</span>
                 <h2 className="st-section-title">
                   Encuentra <span>el artículo que necesitas</span>
                 </h2>
                 <div className="st-heading-divider"></div>
                 <p className="st-section-description">
-                  Descubre las mejores propiedades disponibles en nuestras subastas inmobiliarias
+                  Descubre los mejores articulos disponibles en nuestras subastas
                 </p>
               </div>
             </div>
@@ -198,10 +198,10 @@ const Homepage = () => {
               <div className="st-properties-hero">
                 <div className="st-properties-content">
                   <h2 className="st-properties-title" style={{color: 'white'}}>
-                    Explora las propiedades que tenemos en subasta
+                    Explora los increíbles artículos que tenemos en subasta
                   </h2>
                   <p className="st-properties-subtitle">
-                    Casa residencial moderna con iluminación nocturna - Encuentra tu próximo hogar
+                    Artículos destacados y oportunidades únicas te esperan.
                   </p>
                   
                   <a href="/subastas" className="st-properties-btn">
@@ -231,17 +231,15 @@ const Homepage = () => {
 
           {/* Main CTA Text */}
           <div className="st-main-cta st-animate-on-scroll">
-            <h2 className="st-main-cta-title" style={{color: 'white'}}>
-              ¿Quieres comprar un inmueble al mejor precio posible?
-            </h2>
-            <p className="st-main-cta-subtitle">
+                          <h2 className="st-main-cta-title" style={{color: 'white'}}>
+                          ¿Quieres comprar artículos únicos al mejor precio?
+                        </h2>            <p className="st-main-cta-subtitle">
               ¡Llegaste al lugar perfecto!
             </p>
-            <p className="st-main-cta-description">
-              En Subasta Total, te ofrecemos una plataforma amigable para adquirir bienes raíces. 
-              Participa en subastas públicas en línea y encuentra la propiedad que estás buscando.
-            </p>
-            <a href="/nosotros" className="st-main-cta-btn">
+                                        <p className="st-main-cta-description">
+                                        En Subasta Total, te ofrecemos una plataforma amigable para participar en subastas en línea. 
+                                        Participa y encuentra eso que tanto estás buscando.
+                                      </p>            <a href="/nosotros" className="st-main-cta-btn">
               Comenzar ahora <i className="fas fa-arrow-right ms-2"></i>
             </a>
           </div>
@@ -256,7 +254,7 @@ const Homepage = () => {
               ¿Por qué elegir Subasta Total?
             </h2>
             <p className="st-benefits-subtitle">
-              Descubre las ventajas que nos convierten en la mejor opción para tus inversiones inmobiliarias
+              Descubre las ventajas que nos convierten en tu mejor opción para comprar e invertir
             </p>
           </div>
 
@@ -273,7 +271,7 @@ const Homepage = () => {
               }}>
                 <img 
                   src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" 
-                  alt="Equipo profesional inmobiliario en reunión corporativa"
+                  alt="Equipo profesional en reunión corporativa"
                   style={{
                     width: '100%',
                     height: '100%',
@@ -296,18 +294,18 @@ const Homepage = () => {
                   textAlign: 'center'
                 }}>
                   <h4 style={{fontSize: '22px', fontWeight: '700', marginBottom: '12px', margin: 0, color: 'white', textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Experiencia Comprobada</h4>
-                  <p style={{fontSize: '15px', margin: 0, lineHeight: '1.4', color: 'white', textShadow: '0 1px 2px rgba(0, 0, 0, 0.7)'}}>Más de 14 años liderando el mercado mexicano de subastas inmobiliarias</p>
+                  <p style={{fontSize: '15px', margin: 0, lineHeight: '1.4', color: 'white', textShadow: '0 1px 2px rgba(0, 0, 0, 0.7)'}}>Más de 14 años liderando el mercado mexicano de subastas.</p>
                 </div>
               </div>
 
               <div className="st-benefit-image-card">
                 <img 
                   src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" 
-                  alt="Subasta inmobiliaria profesional"
+                  alt="Subasta profesional"
                 />
                 <div className="st-benefit-image-overlay">
                   <h4 className="st-benefit-image-title">Plataforma Digital Líder</h4>
-                  <p className="st-benefit-image-desc">Primera plataforma online especializada en subastas inmobiliarias</p>
+                  <p className="st-benefit-image-desc">La primera plataforma de subastas en línea de México.</p>
                 </div>
               </div>
             </div>
@@ -332,7 +330,7 @@ const Homepage = () => {
                 </div>
                 <div className="st-benefit-item-content">
                   <h4>Precios Competitivos</h4>
-                  <p>Obtén las mejores propiedades a precios justos, maximizando tu inversión inmobiliaria.</p>
+                  <p>Obtén los mejores artículos a precios justos, maximizando tu inversión.</p>
                 </div>
               </div>
 
@@ -342,7 +340,7 @@ const Homepage = () => {
                 </div>
                 <div className="st-benefit-item-content">
                   <h4>Seguridad Garantizada</h4>
-                  <p>Proceso transparente y seguro, con propiedades verificadas y documentación completa.</p>
+                  <p>Proceso transparente y seguro, con artículos verificados y legalmente sólidos.</p>
                 </div>
               </div>
 
@@ -364,7 +362,7 @@ const Homepage = () => {
       {/* <section className="st-property-types-section st-animate-on-scroll">
         <div className="container">
           <h2 className="st-property-types-title">
-            ¿Qué tipo de propiedades puedes encontrar en nuestras subastas inmobiliarias?
+            ¿Qué tipo de artículos puedes encontrar en nuestras subastas?
           </h2>
 
           <div className="st-property-types-layout"> */}
@@ -398,7 +396,7 @@ const Homepage = () => {
                   alt="Hospital moderno"
                 />
                 <div className="st-property-image-overlay">
-                  <h4 className="st-property-image-title">Propiedades Institucionales</h4>
+                  <h4 className="st-property-image-title">Artículos Institucionales</h4>
                   <p className="st-property-image-desc">Hospital La Fe - Arquitectura institucional moderna</p>
                 </div>
               </div>
@@ -406,7 +404,7 @@ const Homepage = () => {
 
             {/* Right Side - Property Types List */}
             {/* <div className="st-property-list">
-              <h3 className="st-property-list-title">Tipos de Propiedades</h3>
+              <h3 className="st-property-list-title">Tipos de Artículos</h3>
               
               <div className="st-property-columns">
                 <div className="st-property-column">

@@ -49,7 +49,7 @@ const Vendedores = () => {
               <div className="col-lg-10">
                 <div className="st-vendedores-hero-content">
                   <h1 className="st-vendedores-hero-title">
-                    Maximiza el valor de tus propiedades con nuestras subastas inmobiliarias
+                    Maximiza el valor de tus activos con nuestras subastas
                   </h1>
                   <p className="st-vendedores-hero-subtitle">
                     ¡Vende de manera rápida, eficiente y lucrativa!
@@ -68,9 +68,9 @@ const Vendedores = () => {
             <div className="col-lg-10">
               <div className="st-propuesta-inicial-content">
                 <p className="st-propuesta-inicial-intro">
-                  En Subasta Total, estamos revolucionando la forma en que vendes tus propiedades. 
+                  En Subasta Total, estamos revolucionando la forma en que vendes tus activos. 
                   Nuestra plataforma especializada te ofrece una alternativa innovadora y eficiente 
-                  para maximizar el valor de tus activos inmobiliarios.
+                  para maximizar el valor de tus activos.
                 </p>
                 
                 <div className="row">
@@ -83,7 +83,7 @@ const Vendedores = () => {
                       <p className="st-propuesta-card-text">
                         Te ofrecemos un nuevo canal de comercialización que te permitirá llegar a 
                         múltiples compradores potenciales de manera simultánea, generando competencia 
-                        y obteniendo el mejor precio por tu propiedad.
+                        y obteniendo el mejor precio por tu activo.
                       </p>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ const Vendedores = () => {
                       <h4 className="st-propuesta-card-title">Plataforma Especializada</h4>
                       <p className="st-propuesta-card-text">
                         Subasta Total no es un sitio de compra-venta tradicional. Somos una plataforma 
-                        especializada en subastas inmobiliarias que garantiza transparencia, seguridad 
+                        especializada en subastas que garantiza transparencia, seguridad 
                         y el mejor resultado para tu inversión.
                       </p>
                     </div>
@@ -118,7 +118,7 @@ const Vendedores = () => {
                   Ventajas exclusivas para vendedores
                 </h2>
                 <p className="st-ventajas-vendedores-subtitle">
-                  Descubre por qué elegir nuestras subastas inmobiliarias es la mejor decisión para maximizar tus ganancias
+                  Descubre por qué elegir nuestras subastas es la mejor decisión para maximizar tus ganancias
                 </p>
               </div>
               
@@ -131,7 +131,7 @@ const Vendedores = () => {
                       </div>
                       <h4 className="st-ventaja-vendedor-title">Rápido y Efectivo</h4>
                       <p className="st-ventaja-vendedor-text">
-                        Vende tus propiedades de manera rápida y efectiva. Nuestro proceso de subastas 
+                        Vende tus activos de manera rápida y efectiva. Nuestro proceso de subastas 
                         acelera la venta, eliminando largas esperas del mercado tradicional y conectándote 
                         directamente con compradores listos para adquirir.
                       </p>
@@ -174,7 +174,7 @@ const Vendedores = () => {
                       <h4 className="st-ventaja-vendedor-title">Mayor Exposición</h4>
                       <p className="st-ventaja-vendedor-text">
                         Atrae múltiples compradores potenciales a través de nuestra amplia red de marketing 
-                        digital. Tu propiedad tendrá máxima visibilidad, llegando a inversores y compradores 
+                        digital. Tu activo tendrá máxima visibilidad, llegando a inversores y compradores 
                         que buscan oportunidades únicas.
                       </p>
                     </div>
@@ -187,9 +187,9 @@ const Vendedores = () => {
                       </div>
                       <h4 className="st-ventaja-vendedor-title">Competencia y Precio Justo</h4>
                       <p className="st-ventaja-vendedor-text">
-                        Permite que el mercado determine el verdadero valor de tu propiedad. La competencia 
+                        Permite que el mercado determine el verdadero valor de tu activo. La competencia 
                         entre compradores genera ofertas más altas, asegurando que obtengas el mejor precio 
-                        posible por tu inmueble.
+                        posible por tu activo.
                       </p>
                     </div>
                   </div>
@@ -202,7 +202,7 @@ const Vendedores = () => {
                       <h4 className="st-ventaja-vendedor-title">Asesoría y Promoción</h4>
                       <p className="st-ventaja-vendedor-text">
                         Cuenta con nuestro equipo de expertos que te acompañará durante todo el proceso. 
-                        Desde la preparación de tu propiedad hasta el cierre de la venta, recibirás 
+                        Desde la preparación de tu activo hasta el cierre de la venta, recibirás 
                         asesoría profesional personalizada.
                       </p>
                     </div>
@@ -221,15 +221,15 @@ const Vendedores = () => {
             <div className="col-lg-10">
               <div className="st-vendedores-final-cta-content">
                 <h2 className="st-vendedores-final-cta-title" style={{color: 'white'}}>
-                  ¡Descubre el poder de nuestras subastas inmobiliarias!
+                  ¡Descubre el poder de nuestras subastas!
                 </h2>
                 <p className="st-vendedores-final-cta-subtitle">
-                  Maximiza el valor de tus activos inmobiliarios
+                  Maximiza el valor de tus activos
                 </p>
                 <p className="st-vendedores-final-cta-description">
-                  No esperes más para convertir tus propiedades en oportunidades de negocio excepcionales. 
+                  No esperes más para convertir tus activos en oportunidades de negocio excepcionales. 
                   Nuestro equipo de especialistas está listo para ayudarte a obtener el máximo valor 
-                  por tus activos inmobiliarios.
+                  por tus activos.
                 </p>
                 
                 <a href="/contacto" className="st-vendedores-final-cta-btn">

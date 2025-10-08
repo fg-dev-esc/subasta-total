@@ -154,11 +154,11 @@ const Auth = () => {
                     Acceso seguro y confiable
                   </div>
                   <h1 className="st-auth-hero-title">
-                    Únete a nuestro <span>portal de subastas</span> inmobiliarias
+                    Únete a nuestro <span>portal de subastas</span>
                   </h1>
                   <p className="st-auth-hero-description">
                     Inicia sesión o regístrate para acceder a oportunidades exclusivas de inversión
-                    inmobiliaria en un entorno seguro y transparente.
+                    en un entorno seguro y transparente.
                   </p>
 
                   <div className="st-auth-hero-btn">

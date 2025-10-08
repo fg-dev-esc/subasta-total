@@ -89,7 +89,7 @@ const Footer = () => {
                 <ul className="footer-list">
                   <li>
                     <Link to="/subastas">
-                      <i className="fas fa-caret-right"></i> Subastas Inmobiliarias
+                      <i className="fas fa-caret-right"></i> Nuestras Subastas
                     </Link>
                   </li>
                   <li>
@@ -99,7 +99,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link to="/vendedores">
-                      <i className="fas fa-caret-right"></i> Venta de Propiedades
+                      <i className="fas fa-caret-right"></i> Cómo Vender
                     </Link>
                   </li>
                   <li>
@@ -119,8 +119,7 @@ const Footer = () => {
               <div className="footer-widget-box list">
                 <h4 className="footer-widget-title">Mantente Informado</h4>
                 <div className="footer-newsletter">
-                  <p>Suscríbete para recibir notificaciones sobre nuevas subastas y oportunidades de inversión inmobiliaria</p>
-                  <div className="subscribe-form">
+                                      <p>Suscríbete para recibir notificaciones sobre nuevas subastas y oportunidades de inversión</p>                  <div className="subscribe-form">
                     <form onSubmit={handleNewsletterSubmit}>
                       <input 
                         type="email" 

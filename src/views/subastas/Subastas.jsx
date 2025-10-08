@@ -227,10 +227,10 @@ const Subastas = () => {
                     Oportunidades únicas de inversión
                   </div>
                   <h1 className="st-subastas-hero-title">
-                    Encuentra las mejores <span>subastas inmobiliarias</span> en línea
+                    Encuentra las mejores <span>subastas</span> en línea
                   </h1>
                   <p className="st-subastas-hero-description">
-                    Explora nuestras subastas activas y descubre propiedades exclusivas con precios competitivos
+                    Explora nuestras subastas activas y descubre artículos exclusivos con precios competitivos
                     en un proceso transparente y seguro.
                   </p>
 
@@ -328,7 +328,7 @@ const Subastas = () => {
                               <div className="col-6">
                                 <small className="text-muted">
                                   <i className="fas fa-building me-1"></i>
-                                  Propiedades
+                                  Artículos
                                 </small>
                                 <div className="placeholder-glow">
                                   <span className="placeholder col-8"></span>
@@ -419,7 +419,7 @@ const Subastas = () => {
                                     <i className="fas fa-building me-1"></i>
                                     Propiedades
                                   </small>
-                                  <div className="text-dark fw-semibold">{subasta.torres} inmuebles</div>
+                                  <div className="text-dark fw-semibold">{subasta.torres} artículos</div>
                                 </div>
                               </div>
                               
@@ -435,7 +435,7 @@ const Subastas = () => {
                                 <div className="col-12">
                                   <div className="bg-success bg-opacity-10 p-3 rounded-2">
                                     <small className="text-success fw-semibold">Estado de Subasta:</small>
-                                    <div className="text-success fw-bold">Activa - {subasta.torres} propiedades disponibles</div>
+                                    <div className="text-success fw-bold">Activa - {subasta.torres} artículos disponibles</div>
                                   </div>
                                 </div>
                               </div>
@@ -446,7 +446,7 @@ const Subastas = () => {
                                   onClick={() => handleViewAuctionDetails(subasta.subastaID)}
                                 >
                                   <i className="fas fa-eye me-1"></i>
-                                  Ver Propiedades
+                                  Ver Artículos
                                 </button>
                                 <a href="/contacto" className="btn btn-outline-success">
                                   <i className="fas fa-info-circle"></i>
@@ -479,7 +479,7 @@ const Subastas = () => {
                                 Estado
                               </small>
                               <p className="text-dark mb-0 small">
-                                Estamos preparando nuevas subastas inmobiliarias. 
+                                Estamos preparando nuevas subastas. 
                                 Regresa pronto para encontrar excelentes oportunidades.
                               </p>
                             </div>

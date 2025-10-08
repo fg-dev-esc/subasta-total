@@ -46,10 +46,10 @@ const Detalle = () => {
         if (foundProperty) {
           setPropertyData(foundProperty);
         } else {
-          setError('Propiedad no encontrada');
+          setError('Artículo no encontrado');
         }
       } catch (err) {
-        setError('Error cargando los detalles de la propiedad');
+        setError('Error cargando los detalles del artículo');
         console.error('Error fetching property data:', err);
       } finally {
         setLoading(false);
@@ -127,7 +127,7 @@ const Detalle = () => {
       <div className="detalle-page page-container">
         <div className="container text-center py-5">
           <div className="alert alert-danger" role="alert">
-            {error || 'Propiedad no encontrada'}
+            {error || 'Artículo no encontrado'}
           </div>
           <button 
             className="st-destacados-cta-btn"
@@ -187,7 +187,7 @@ const Detalle = () => {
                     <>
                       <img
                         src={propertyData?.foto?.url || getPlaceholderImage()}
-                        alt={propertyData?.nombre || 'Propiedad'}
+                        alt={propertyData?.nombre || 'Artículo'}
                         className="st-property-main-image"
                         onError={(e) => {
                           e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
@@ -291,7 +291,7 @@ const Detalle = () => {
               <div className="row mt-5">
                 <div className="col-12">
                   <div className="st-property-description-card">
-                    <h3>Descripción de la Propiedad</h3>
+                    <h3>Descripción del Artículo</h3>
                     <p>{propertyData.descripcion || ''}</p>
                   </div>
                 </div>
