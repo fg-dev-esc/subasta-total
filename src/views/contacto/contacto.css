@@ -439,7 +439,7 @@ Basado en Screenshot 24 con estilos Carway modernos
   color: white;
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(228, 64, 95, 0.3);
-  border-color: #E4405F;
+  border: none;
 }
 
 .st-social-link.linkedin {

@@ -118,9 +118,6 @@ const Homepage = () => {
                     <a href="/compradores" className="st-theme-btn">
                       Para Compradores <i className="fas fa-arrow-right"></i>
                     </a>
-                    <a href="/vendedores" className="st-theme-btn-outline st-theme-btn">
-                      Para Vendedores <i className="fas fa-handshake"></i>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -137,12 +134,9 @@ const Homepage = () => {
               <div className="st-section-heading text-center">
                 <span className="st-section-tagline">Árticulos Destacados</span>
                 <h2 className="st-section-title">
-                  Encuentra <span>el artículo que necesitas</span>
+                  Descubre los mejores <span>articulos disponibles en nuestras subastas</span>
                 </h2>
                 <div className="st-heading-divider"></div>
-                <p className="st-section-description">
-                  Descubre los mejores articulos disponibles en nuestras subastas
-                </p>
               </div>
             </div>
           </div>

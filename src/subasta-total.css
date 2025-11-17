@@ -48,7 +48,7 @@
 
 .btn-st {
   padding: 12px 24px;
-  border-radius: 6px;
+  border-radius: 12px;
   font-weight: 600;
   text-decoration: none;
   display: inline-block;
@@ -228,7 +228,7 @@ button,
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 12px;
   display: inline-block;
 }
 

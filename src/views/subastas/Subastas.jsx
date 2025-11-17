@@ -520,59 +520,6 @@ const Subastas = () => {
         </div>
       </section>
 
-      {/* Countdown Timer Section */}
-      <section className="st-countdown-section st-animate-on-scroll">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-10">
-              <div className="st-countdown-card">
-                <div className="st-countdown-header">
-                  <h2 className="st-countdown-title">
-                    <i className="fas fa-clock me-3"></i>
-                    Tiempo restante para participar
-                  </h2>
-                  <p className="st-countdown-subtitle">
-                    La subasta finaliza el {auctionEndDate.toLocaleDateString('es-MX', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })} a las 3:30 PM
-                  </p>
-                </div>
-                
-                <div className="st-countdown-display">
-                  <div className="st-time-block">
-                    <div className="st-time-number">{timeLeft.days.toString().padStart(2, '0')}</div>
-                    <div className="st-time-label">Días</div>
-                  </div>
-                  <div className="st-time-separator">:</div>
-                  <div className="st-time-block">
-                    <div className="st-time-number">{timeLeft.hours.toString().padStart(2, '0')}</div>
-                    <div className="st-time-label">Horas</div>
-                  </div>
-                  <div className="st-time-separator">:</div>
-                  <div className="st-time-block">
-                    <div className="st-time-number">{timeLeft.minutes.toString().padStart(2, '0')}</div>
-                    <div className="st-time-label">Minutos</div>
-                  </div>
-                  <div className="st-time-separator">:</div>
-                  <div className="st-time-block">
-                    <div className="st-time-number">{timeLeft.seconds.toString().padStart(2, '0')}</div>
-                    <div className="st-time-label">Segundos</div>
-                  </div>
-                </div>
-
-                <div className="st-countdown-cta">
-                  <a href="/auth" className="st-countdown-btn">
-                    Participar Ahora <i className="fas fa-gavel"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Featured Property Section */}
       {/* <section className="st-featured-property-section">

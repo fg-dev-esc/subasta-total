@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import './auth.css';
 
 const Auth = () => {
   useScrollTrigger();
-  
-  const [activeTab, setActiveTab] = useState('login');
+  const location = useLocation();
+
+  // Obtener tab del query parameter, por defecto 'login'
+  const getInitialTab = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get('tab') === 'register' ? 'register' : 'login';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab());
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -22,6 +30,11 @@ const Auth = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+
+  // Actualizar tab cuando cambia la URL
+  useEffect(() => {
+    setActiveTab(getInitialTab());
+  }, [location.search]);
 
   useEffect(() => {
     // Animate elements on scroll
@@ -161,14 +174,14 @@ const Auth = () => {
                     en un entorno seguro y transparente.
                   </p>
 
-                  <div className="st-auth-hero-btn">
+                  {/* <div className="st-auth-hero-btn">
                     <a href="#formularios" className="st-theme-btn">
                       Crear Cuenta <i className="fas fa-user-plus"></i>
                     </a>
                     <a href="#formularios" className="st-theme-btn-outline st-theme-btn">
                       Iniciar Sesión <i className="fas fa-sign-in-alt"></i>
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

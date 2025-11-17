@@ -12,31 +12,30 @@ const Footer = () => {
   };
 
   const getCurrentYear = () => new Date().getFullYear();
-  const getAppVersion = () => '0.0.2';
+
+  // Obtener versión del package.json (definida en vite.config.js)
+  const getAppVersion = () => {
+    return typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
+  };
 
   return (
     <footer className="footer-area">
       <div className="footer-widget">
         <div className="container">
           <div className="row footer-widget-wrapper pt-100 pb-70">
-            <div className="col-md-6 col-lg-4">
+            <div className="col-md-6 col-lg-2">
               <div className="footer-widget-box about-us">
                 <Link to="/" className="footer-logo">
                   <img src="/assets/img/logo/subasta-total.png" alt="Subasta Total" />
                 </Link>
                 <p className="mb-3">
-                  Somos un grupo de mexicanos apasionados y expertos en el fascinante mundo de las subastas. 
-                  Con más de 14 años de dedicación, nos enorgullece liderar la primera plataforma online 
-                  especializada en subastas de inmuebles en México.
+                  Somos expertos en subastas
                 </p>
                 <ul className="footer-contact">
                   <li>
                     <a href="tel:+52(56)1015-1625">
                       <i className="far fa-phone"></i>+52 (56)1015-1625
                     </a>
-                  </li>
-                  <li>
-                    <i className="far fa-map-marker-alt"></i>México
                   </li>
                   <li>
                     <a href="mailto:atencion.compradores@subastatotal.com.mx">
@@ -46,7 +45,8 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-2">
+            <div className="col-md-6 col-lg-4"></div>
+            <div className="col-md-6 col-lg-3">
               <div className="footer-widget-box list">
                 <h4 className="footer-widget-title">Navegación</h4>
                 <ul className="footer-list">
@@ -66,11 +66,6 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/vendedores">
-                      <i className="fas fa-caret-right"></i> Vendedores
-                    </Link>
-                  </li>
-                  <li>
                     <Link to="/subastas">
                       <i className="fas fa-caret-right"></i> Subastas
                     </Link>
@@ -78,38 +73,6 @@ const Footer = () => {
                   <li>
                     <Link to="/contacto">
                       <i className="fas fa-caret-right"></i> Contacto
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-3">
-              <div className="footer-widget-box list">
-                <h4 className="footer-widget-title">Servicios</h4>
-                <ul className="footer-list">
-                  <li>
-                    <Link to="/subastas">
-                      <i className="fas fa-caret-right"></i> Nuestras Subastas
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/compradores">
-                      <i className="fas fa-caret-right"></i> Registro de Compradores
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/vendedores">
-                      <i className="fas fa-caret-right"></i> Cómo Vender
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/auth">
-                      <i className="fas fa-caret-right"></i> Portal de Usuario
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/contacto">
-                      <i className="fas fa-caret-right"></i> Soporte Técnico
                     </Link>
                   </li>
                 </ul>

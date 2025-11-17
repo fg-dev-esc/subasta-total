@@ -66,21 +66,18 @@ const Header = () => {
             
             <div className="mobile-menu-right">
               <div className="header-account header-mobile-account">
-                <div className="dropdown">
-                  <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i className="far fa-user-circle"></i>
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-end">
-                    <li><Link className="dropdown-item" to="/auth"><i className="far fa-user-cog"></i> Mi Portal</Link></li>
-                    <li><Link className="dropdown-item" to="/auth"><i className="far fa-sign-in"></i> Acceso</Link></li>
-                  </ul>
-                </div>
+                <Link to="/auth?tab=register" className="theme-btn theme-btn-outline header-btn-sm">
+                  <i className="far fa-user-plus"></i> REGISTRARSE
+                </Link>
+                <Link to="/auth?tab=login" className="theme-btn header-btn-sm">
+                  <i className="far fa-sign-in"></i> INICIAR SESIÓN
+                </Link>
               </div>
-              <button 
-                className="navbar-toggler" 
-                type="button" 
+              <button
+                className="navbar-toggler"
+                type="button"
                 onClick={handleNavCollapse}
-                aria-expanded={!isNavCollapsed} 
+                aria-expanded={!isNavCollapsed}
                 aria-label="Toggle navigation"
               >
                 <span className="navbar-toggler-mobile-icon">
@@ -90,16 +87,6 @@ const Header = () => {
             </div>
 
             <div className={`collapse navbar-collapse ${isNavCollapsed ? '' : 'show'}`} id="main_nav">
-              <div className="header-nav-left">
-                <div className="header-btn">
-                  <Link to="/auth" className="theme-btn theme-btn-outline header-btn-sm me-2" style={{visibility: 'hidden'}}>
-                    MI PORTAL
-                  </Link>
-                  <Link to="/auth" className="theme-btn header-btn-sm" style={{visibility: 'hidden'}}>
-                    ACCESO
-                  </Link>
-                </div>
-              </div>
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item me-5">
                   <Link className={`nav-link ${isActive('/')}`} to="/" onClick={handleNavItemClick}>
@@ -116,11 +103,11 @@ const Header = () => {
                     COMPRADORES
                   </Link>
                 </li>
-                <li className="nav-item me-5">
+                {/* <li className="nav-item me-5">
                   <Link className={`nav-link ${isActive('/vendedores')}`} to="/vendedores" onClick={handleNavItemClick}>
                     VENDEDORES
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item me-5">
                   <Link className={`nav-link ${isActive('/subastas')}`} to="/subastas" onClick={handleNavItemClick}>
                     SUBASTAS
@@ -135,15 +122,12 @@ const Header = () => {
               
               <div className="header-nav-right">
                 <div className="header-account">
-                  <div className="dropdown">
-                    <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i className="far fa-user-circle"></i>
-                    </button>
-                    <ul className="dropdown-menu dropdown-menu-end">
-                      <li><Link className="dropdown-item" to="/auth"><i className="far fa-user-cog"></i> Mi Portal</Link></li>
-                      <li><Link className="dropdown-item" to="/auth"><i className="far fa-sign-in"></i> Acceso</Link></li>
-                    </ul>
-                  </div>
+                  <Link to="/auth?tab=register" className="theme-btn theme-btn-outline header-btn-sm">
+                    <i className="far fa-user-plus"></i> REGISTRARSE
+                  </Link>
+                  <Link to="/auth?tab=login" className="theme-btn header-btn-sm">
+                    <i className="far fa-sign-in"></i> INICIAR SESIÓN
+                  </Link>
                 </div>
               </div>
             </div>

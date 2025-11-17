@@ -50,6 +50,7 @@ Página placeholder con diseño moderno
 /* Espacio entre hero y sección de subastas */
 .st-auctions-carousel-section {
   margin-top: 80px;
+  padding-bottom: 80px;
 }
 
 .st-floating-icon {

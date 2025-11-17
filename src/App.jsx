@@ -6,7 +6,6 @@ import Homepage from './views/homepage/Homepage';
 import Nosotros from './views/nosotros/Nosotros';
 import Contacto from './views/contacto/Contacto';
 import Compradores from './views/compradores/Compradores';
-import Vendedores from './views/vendedores/Vendedores';
 import Subastas from './views/subastas/Subastas';
 import SubastaDetalle from './views/subasta-detalle/SubastaDetalle';
 import Detalle from './views/detalle/Detalle';
@@ -20,7 +19,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/compradores" element={<Compradores />} />
-          <Route path="/vendedores" element={<Vendedores />} />
           <Route path="/subastas" element={<Subastas />} />
           <Route path="/subasta-detalle/:id" element={<SubastaDetalle />} />
           <Route path="/detalle/:id" element={<Detalle />} />

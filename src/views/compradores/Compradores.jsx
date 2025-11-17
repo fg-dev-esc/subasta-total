@@ -435,6 +435,12 @@ const Compradores = () => {
                     </div>
                   </div>
                 </div>
+
+                <div className="text-center mt-5">
+                  <a href="/subastas" className="st-theme-btn">
+                    EMPIEZA A SUBASTAR <i className="fas fa-gavel"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

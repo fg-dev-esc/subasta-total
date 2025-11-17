@@ -100,14 +100,11 @@ const Contacto = () => {
                     sobre nuestras subastas.
                   </p>
 
-                  <div className="st-contacto-hero-btn">
+                  {/* <div className="st-contacto-hero-btn">
                     <a href="#formulario" className="st-theme-btn">
                       Enviar Mensaje <i className="fas fa-envelope"></i>
                     </a>
-                    <a href="tel:+525555555555" className="st-theme-btn-outline st-theme-btn">
-                      Llamar Ahora <i className="fas fa-phone"></i>
-                    </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

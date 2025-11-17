@@ -212,7 +212,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
   grid-template-columns: 1fr 100px 1fr;
   gap: 40px;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 35px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -567,7 +567,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
   .st-timeline-item {
     grid-template-columns: 1fr 70px 1fr;
     gap: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   .st-timeline-icon {
@@ -632,7 +632,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
   .st-timeline-item-right {
     grid-template-columns: 70px 1fr;
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
   }
 
   .st-timeline-icon {
