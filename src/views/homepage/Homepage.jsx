@@ -132,7 +132,7 @@ const Homepage = () => {
           <div className="row">
             <div className="col-lg-6 mx-auto">
               <div className="st-section-heading text-center">
-                <span className="st-section-tagline">Árticulos Destacados</span>
+                <span className="st-section-tagline">Artículos Destacados</span>
                 <h2 className="st-section-title">
                   Descubre los mejores <span>articulos disponibles en nuestras subastas</span>
                 </h2>
