@@ -1,11 +1,12 @@
 :root {
+  /* Colores */
   --st-green: #21504c;
   --st-green-light: #2a6157;
   --st-green-dark: #1a403c;
-  
+
   --st-black: #000000;
   --st-white: #FFFFFF;
-  
+
   --st-gray-50: #FAFAFA;
   --st-gray-100: #F5F5F5;
   --st-gray-200: #EEEEEE;
@@ -16,19 +17,37 @@
   --st-gray-700: #616161;
   --st-gray-800: #424242;
   --st-gray-900: #212121;
-  
+
+  /* Espaciado */
   --st-space-xs: 0.5rem;
   --st-space-sm: 1rem;
   --st-space-md: 2rem;
   --st-space-lg: 3rem;
   --st-space-xl: 4rem;
-  
+
+  /* Tipografía */
   --st-font-sm: 14px;
   --st-font-base: 16px;
   --st-font-lg: 18px;
   --st-font-xl: 24px;
   --st-font-2xl: 32px;
   --st-font-3xl: 48px;
+
+  /* Border Radius - Sistema unificado */
+  --st-radius-sm: 6px;
+  --st-radius-md: 8px;
+  --st-radius-lg: 12px;
+  --st-radius-xl: 16px;
+  --st-radius-full: 50px;
+
+  /* Sombras */
+  --st-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --st-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --st-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Bordes */
+  --st-border-color: var(--st-gray-300);
+  --st-border: 1px solid var(--st-border-color);
 }
 
 .bg-st-green { background-color: var(--st-green); }
@@ -48,7 +67,7 @@
 
 .btn-st {
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: var(--st-radius-lg);
   font-weight: 600;
   text-decoration: none;
   display: inline-block;
@@ -109,9 +128,9 @@
 
 .st-card {
   background-color: var(--st-white);
-  border-radius: 8px;
+  border-radius: var(--st-radius-lg);
   padding: var(--st-space-md);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: var(--st-shadow-md);
 }
 
 .header-top {
@@ -228,8 +247,54 @@ button,
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: var(--st-radius-lg);
   display: inline-block;
+}
+
+/* Botones unificados globales */
+.st-property-btn {
+  background: var(--st-green);
+  color: var(--st-white);
+  border: none;
+  padding: 14px 24px;
+  border-radius: var(--st-radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.st-property-btn:hover {
+  background: var(--st-green-dark);
+  color: var(--st-white);
+  transform: translateY(-1px);
+}
+
+.st-property-btn-outline {
+  background: transparent;
+  color: var(--st-green);
+  border: 2px solid var(--st-green);
+  padding: 12px 24px;
+  border-radius: var(--st-radius-md);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.st-property-btn-outline:hover {
+  background: var(--st-green);
+  color: var(--st-white);
 }
 
 .theme-btn:hover {

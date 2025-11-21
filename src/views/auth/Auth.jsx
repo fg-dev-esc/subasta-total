@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './auth.css';
 
 const Auth = () => {
   useScrollTrigger();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Obtener tab del query parameter, por defecto 'login'
   const getInitialTab = () => {
@@ -23,9 +25,6 @@ const Auth = () => {
     apellidos: '',
     email: '',
     telefono: '',
-    password: '',
-    confirmPassword: '',
-    tipoPersona: 'fisica',
     aceptaTerminos: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,9 +74,9 @@ const Auth = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!loginData.email || !loginData.password) {
-      setSubmitMessage('Por favor, completa todos los campos.');
+
+    if (!loginData.email) {
+      setSubmitMessage('Por favor, ingresa tu email.');
       return;
     }
 
@@ -91,9 +90,28 @@ const Auth = () => {
     setSubmitMessage('');
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch(buildUrl(API_CONFIG.AUTH.LOGIN), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: loginData.email,
+          password: loginData.password || '',
+          app: 'web'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Credenciales inválidas');
+      }
+
+      const token = await response.text();
+      localStorage.setItem('token', token);
+
       setSubmitMessage('¡Bienvenido! Inicio de sesión exitoso.');
       setLoginData({ email: '', password: '' });
+
+      // Redirigir al usuario después de login exitoso
+      setTimeout(() => navigate('/'), 1500);
     } catch (error) {
       setSubmitMessage('Error al iniciar sesión. Verifica tus credenciales.');
     } finally {
@@ -103,9 +121,8 @@ const Auth = () => {
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!registerData.nombre || !registerData.apellidos || !registerData.email || 
-        !registerData.telefono || !registerData.password || !registerData.confirmPassword) {
+
+    if (!registerData.nombre || !registerData.apellidos || !registerData.email || !registerData.telefono) {
       setSubmitMessage('Por favor, completa todos los campos obligatorios.');
       return;
     }
@@ -113,16 +130,6 @@ const Auth = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registerData.email)) {
       setSubmitMessage('Por favor, ingresa un email válido.');
-      return;
-    }
-
-    if (registerData.password !== registerData.confirmPassword) {
-      setSubmitMessage('Las contraseñas no coinciden.');
-      return;
-    }
-
-    if (registerData.password.length < 8) {
-      setSubmitMessage('La contraseña debe tener al menos 8 caracteres.');
       return;
     }
 
@@ -135,20 +142,40 @@ const Auth = () => {
     setSubmitMessage('');
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitMessage('¡Registro exitoso! Revisa tu email para verificar tu cuenta.');
+      const response = await fetch(buildUrl(API_CONFIG.AUTH.REGISTRO), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: registerData.email,
+          comoSeEntero: 'web',
+          nombre: registerData.nombre,
+          apellidoPaterno: registerData.apellidos,
+          telefono: registerData.telefono,
+          app: 'AppComprador'
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || 'Error en el registro');
+      }
+
+      const token = await response.text();
+      localStorage.setItem('token', token);
+
+      setSubmitMessage('¡Registro exitoso! Bienvenido a Subasta Total.');
       setRegisterData({
         nombre: '',
         apellidos: '',
         email: '',
         telefono: '',
-        password: '',
-        confirmPassword: '',
-        tipoPersona: 'fisica',
         aceptaTerminos: false
       });
+
+      // Redirigir al usuario después de registro exitoso
+      setTimeout(() => navigate('/'), 1500);
     } catch (error) {
-      setSubmitMessage('Error en el registro. Inténtalo nuevamente.');
+      setSubmitMessage(error.message || 'Error en el registro. Inténtalo nuevamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -156,41 +183,8 @@ const Auth = () => {
 
   return (
     <div className="auth-page page-container">
-      {/* Hero Section - Based on Homepage */}
-      <section className="st-auth-hero-section">
-        <div className="st-auth-hero-single">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-10">
-                <div className="st-auth-hero-content">
-                  <div className="st-auth-hero-sub-title">
-                    Acceso seguro y confiable
-                  </div>
-                  <h1 className="st-auth-hero-title">
-                    Únete a nuestro <span>portal de subastas</span>
-                  </h1>
-                  <p className="st-auth-hero-description">
-                    Inicia sesión o regístrate para acceder a oportunidades exclusivas de inversión
-                    en un entorno seguro y transparente.
-                  </p>
-
-                  {/* <div className="st-auth-hero-btn">
-                    <a href="#formularios" className="st-theme-btn">
-                      Crear Cuenta <i className="fas fa-user-plus"></i>
-                    </a>
-                    <a href="#formularios" className="st-theme-btn-outline st-theme-btn">
-                      Iniciar Sesión <i className="fas fa-sign-in-alt"></i>
-                    </a>
-                  </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Formularios de Auth */}
-      <section className="st-auth-forms-section st-animate-on-scroll">
+      <section className="st-auth-forms-section">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6">
@@ -236,30 +230,6 @@ const Auth = () => {
                           placeholder="tu@email.com"
                           required
                         />
-                      </div>
-
-                      <div className="st-form-group">
-                        <label htmlFor="login-password" className="st-form-label">
-                          Contraseña <span className="required">*</span>
-                        </label>
-                        <input
-                          type="password"
-                          id="login-password"
-                          name="password"
-                          className="st-form-control"
-                          value={loginData.password}
-                          onChange={handleLoginChange}
-                          placeholder="Tu contraseña"
-                          required
-                        />
-                      </div>
-
-                      <div className="st-form-extras">
-                        <label className="st-checkbox-label">
-                          <input type="checkbox" className="st-checkbox" />
-                          <span className="st-checkbox-text">Recordarme</span>
-                        </label>
-                        <a href="#" className="st-forgot-password">¿Olvidaste tu contraseña?</a>
                       </div>
 
                       <button
@@ -358,60 +328,6 @@ const Auth = () => {
                           placeholder="+52 55 1234 5678"
                           required
                         />
-                      </div>
-
-                      <div className="st-form-group">
-                        <label htmlFor="register-tipo" className="st-form-label">
-                          Tipo de Persona <span className="required">*</span>
-                        </label>
-                        <select
-                          id="register-tipo"
-                          name="tipoPersona"
-                          className="st-form-control"
-                          value={registerData.tipoPersona}
-                          onChange={handleRegisterChange}
-                          required
-                        >
-                          <option value="fisica">Persona Física</option>
-                          <option value="moral">Persona Moral</option>
-                        </select>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="st-form-group">
-                            <label htmlFor="register-password" className="st-form-label">
-                              Contraseña <span className="required">*</span>
-                            </label>
-                            <input
-                              type="password"
-                              id="register-password"
-                              name="password"
-                              className="st-form-control"
-                              value={registerData.password}
-                              onChange={handleRegisterChange}
-                              placeholder="Mínimo 8 caracteres"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="st-form-group">
-                            <label htmlFor="register-confirm" className="st-form-label">
-                              Confirmar Contraseña <span className="required">*</span>
-                            </label>
-                            <input
-                              type="password"
-                              id="register-confirm"
-                              name="confirmPassword"
-                              className="st-form-control"
-                              value={registerData.confirmPassword}
-                              onChange={handleRegisterChange}
-                              placeholder="Repite tu contraseña"
-                              required
-                            />
-                          </div>
-                        </div>
                       </div>
 
                       <div className="st-form-group">

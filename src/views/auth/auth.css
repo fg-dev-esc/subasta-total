@@ -108,18 +108,21 @@ Portal de acceso con formularios de login y registro
 
 /* Formularios de Auth Section */
 .st-auth-forms-section {
-  padding: 120px 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 60px 0;
+  background: var(--st-gray-100);
   position: relative;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
 }
 
 .st-auth-forms-card {
   background: white;
-  border-radius: 30px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  border-radius: var(--st-radius-xl);
+  box-shadow: var(--st-shadow-lg);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(33, 80, 76, 0.1);
+  border: var(--st-border);
 }
 
 .st-auth-forms-card::before {
@@ -226,7 +229,7 @@ Portal de acceso con formularios de login y registro
   width: 100%;
   padding: 15px 20px;
   border: 2px solid rgba(33, 80, 76, 0.2);
-  border-radius: 15px;
+  border-radius: var(--st-radius-lg);
   font-size: 16px;
   color: var(--st-gray-700);
   background: white;
@@ -303,19 +306,19 @@ Portal de acceso con formularios de login y registro
 
 /* Submit Button */
 .st-auth-submit-btn {
-  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  background: var(--st-green);
   color: white;
-  padding: 18px 40px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 18px;
+  padding: 16px 40px;
+  border-radius: var(--st-radius-lg);
+  font-weight: 600;
+  font-size: 16px;
   border: none;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  box-shadow: 0 15px 35px rgba(33, 80, 76, 0.3);
+  box-shadow: var(--st-shadow-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -378,23 +381,30 @@ Portal de acceso con formularios de login y registro
 
 /* Submit Message */
 .st-submit-message {
-  margin-top: 20px;
-  padding: 15px 20px;
-  border-radius: 10px;
+  margin: 0 40px 30px 40px;
+  padding: 16px 20px;
+  border-radius: var(--st-radius-md);
   font-weight: 500;
+  font-size: 14px;
   text-align: center;
 }
 
 .st-submit-message.success {
-  background: rgba(46, 204, 113, 0.1);
-  color: #27ae60;
-  border: 1px solid rgba(46, 204, 113, 0.3);
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
 .st-submit-message.error {
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 767px) {
+  .st-submit-message {
+    margin: 0 20px 20px 20px;
+  }
 }
 
 /* Contenido Principal Section */

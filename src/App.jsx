@@ -10,6 +10,7 @@ import Subastas from './views/subastas/Subastas';
 import SubastaDetalle from './views/subasta-detalle/SubastaDetalle';
 import Detalle from './views/detalle/Detalle';
 import Auth from './views/auth/Auth';
+import Perfil from './views/perfil/Perfil';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/detalle/:id" element={<Detalle />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/perfil" element={<Perfil />} />
         </Routes>
       </Layout>
     </Router>

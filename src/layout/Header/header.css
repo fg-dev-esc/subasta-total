@@ -145,3 +145,91 @@
 .header-mobile-account {
   gap: 12px;
 }
+
+/* User Avatar Button - Override Bootstrap dropdown button styles */
+.header-account .dropdown button,
+.header-account .dropdown button.dropdown-toggle,
+.header-account .dropdown .st-user-avatar-btn,
+.st-user-avatar-btn {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.header-account .dropdown button:hover,
+.header-account .dropdown button:focus,
+.header-account .dropdown button:active,
+.header-account .dropdown button.show,
+.header-account .dropdown .btn:first-child:active,
+.header-account .dropdown .btn-check:checked + .btn,
+.st-user-avatar-btn:hover,
+.st-user-avatar-btn:focus,
+.st-user-avatar-btn:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Remove Bootstrap btn default styles */
+.header-account .dropdown .btn {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-focus-shadow-rgb: transparent;
+}
+
+.header-account .dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.st-user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--st-green), var(--st-green-dark));
+  color: var(--st-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.st-user-avatar-btn:hover .st-user-avatar {
+  border-color: var(--st-green-light);
+  transform: scale(1.05);
+}
+
+.st-dropdown-email {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .header-mobile-account .st-user-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
+  }
+}

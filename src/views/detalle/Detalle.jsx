@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './detalle.css';
 
 const Detalle = () => {
@@ -19,37 +20,32 @@ const Detalle = () => {
     const fetchPropertyData = async () => {
       try {
         setLoading(true);
-        // Buscar la propiedad en todas las subastas disponibles
-        const subastasResponse = await fetch('https://demo-subasta.backend.secure9000.net/api/subasta/getSubastas');
+        // Obtener directamente el detalle de la torre
+        const torreResponse = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_TORRE(id)));
+
+        if (!torreResponse.ok) {
+          throw new Error('Torre no encontrada');
+        }
+
+        const torreData = await torreResponse.json();
+        setPropertyData(torreData);
+
+        // Buscar la subasta a la que pertenece para el boton de volver
+        const subastasResponse = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_ALL));
         const subastasData = await subastasResponse.json();
-        
-        let foundProperty = null;
-        
-        // Buscar en cada subasta hasta encontrar la propiedad
+
         for (const subasta of subastasData) {
-          try {
-            const torresResponse = await fetch(`https://demo-subasta.backend.secure9000.net/api/subasta/getTorres/${subasta.subastaID}`);
-            const torresData = await torresResponse.json();
-            
-            if (torresData.torres) {
-              foundProperty = torresData.torres.find(torre => torre.torreID === id);
-              if (foundProperty) {
-                setSubastaId(subasta.subastaID);
-                break;
-              }
-            }
-          } catch (error) {
-            console.error(`Error fetching torres for subasta ${subasta.subastaID}:`, error);
+          const torresResponse = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_TORRES(subasta.subastaID)));
+          const torresData = await torresResponse.json();
+          const torres = Array.isArray(torresData) ? torresData : [];
+
+          if (torres.find(t => t.torreID === id)) {
+            setSubastaId(subasta.subastaID);
+            break;
           }
         }
-        
-        if (foundProperty) {
-          setPropertyData(foundProperty);
-        } else {
-          setError('Artículo no encontrado');
-        }
       } catch (err) {
-        setError('Error cargando los detalles del artículo');
+        setError('Error cargando los detalles del articulo');
         console.error('Error fetching property data:', err);
       } finally {
         setLoading(false);
@@ -92,25 +88,60 @@ const Detalle = () => {
     });
   };
 
-  const getPlaceholderImage = () => {
-    // Si hay foto real, usarla; si no, usar placeholder
-    if (propertyData?.foto?.url) {
-      return propertyData.foto.url;
+  const getPropertyImage = () => {
+    if (propertyData?.imagenes && propertyData.imagenes.length > 0) {
+      return propertyData.imagenes[0].url;
     }
-    return 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+    return propertyData?.urlImgPrincipal || '';
   };
 
-  const handleBidSubmit = (e) => {
+  const [bidLoading, setBidLoading] = useState(false);
+  const [bidError, setBidError] = useState('');
+
+  const handleBidSubmit = async (e) => {
     e.preventDefault();
     if (!bidAmount || parseFloat(bidAmount) <= propertyData.montoSalida) {
-      alert('La puja debe ser mayor al precio inicial');
+      setBidError('La puja debe ser mayor al precio inicial');
       return;
     }
-    
-    // Aquí iría la lógica para enviar la puja al backend
-    alert(`¡Puja enviada por ${formatPrice(parseFloat(bidAmount))}!`);
-    setShowBidModal(false);
-    setBidAmount('');
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setBidError('Debes iniciar sesion para hacer una puja');
+      setTimeout(() => navigate('/auth'), 2000);
+      return;
+    }
+
+    setBidLoading(true);
+    setBidError('');
+
+    try {
+      const response = await fetch(buildUrl(API_CONFIG.PUJAS.PUJAR), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          torreID: id,
+          monto: parseFloat(bidAmount)
+        })
+      });
+
+      const result = await response.text();
+
+      if (!response.ok) {
+        throw new Error(result || 'Error al realizar la puja');
+      }
+
+      alert(`Puja exitosa por ${formatPrice(parseFloat(bidAmount))}`);
+      setShowBidModal(false);
+      setBidAmount('');
+    } catch (err) {
+      setBidError(err.message);
+    } finally {
+      setBidLoading(false);
+    }
   };
 
   const handleGoBack = () => {
@@ -129,8 +160,9 @@ const Detalle = () => {
           <div className="alert alert-danger" role="alert">
             {error || 'Artículo no encontrado'}
           </div>
-          <button 
-            className="st-destacados-cta-btn"
+          <button
+            className="st-property-btn"
+            style={{ width: 'auto' }}
             onClick={handleGoBack}
           >
             {subastaId ? 'Volver a Subasta' : 'Volver a Subastas'}
@@ -148,15 +180,12 @@ const Detalle = () => {
           <div className="row">
             <div className="col-12">
               <div className="d-flex align-items-center mb-3">
-                <button 
-                  className="st-destacados-cta-btn me-3"
-                  style={{
-                    padding: '10px 20px',
-                    fontSize: '14px'
-                  }}
+                <button
+                  className="st-property-btn-outline me-3"
+                  style={{ width: 'auto', padding: '10px 20px', fontSize: '14px' }}
                   onClick={handleGoBack}
                 >
-                  <i className="fas fa-arrow-left me-2"></i>
+                  <i className="fas fa-arrow-left"></i>
                   {subastaId ? 'Volver a Subasta' : 'Volver a Subastas'}
                 </button>
                 <nav aria-label="breadcrumb">
@@ -186,12 +215,9 @@ const Detalle = () => {
                   {propertyData && (
                     <>
                       <img
-                        src={propertyData?.foto?.url || getPlaceholderImage()}
-                        alt={propertyData?.nombre || 'Artículo'}
+                        src={getPropertyImage()}
+                        alt={propertyData?.nombre || 'Articulo'}
                         className="st-property-main-image"
-                        onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
-                        }}
                       />
                       <div className="st-property-status-badge">
                         <span className="badge bg-success">
@@ -214,8 +240,9 @@ const Detalle = () => {
                       <p>Regístrate gratis y accede a todas las subastas activas</p>
                     </div>
                     <button
-                      className="st-destacados-cta-btn"
-                      onClick={() => navigate('/contacto')}
+                      className="st-property-btn"
+                      style={{ width: 'auto' }}
+                      onClick={() => navigate('/auth?tab=register')}
                     >
                       Registrarme
                     </button>
@@ -261,23 +288,18 @@ const Detalle = () => {
                   </div>
 
                   <div className="st-property-actions">
-                    <button 
-                      className="st-property-btn mb-3"
+                    <button
+                      className="st-property-btn"
                       onClick={() => setShowBidModal(true)}
                     >
-                      <i className="fas fa-hand-paper me-2"></i>
+                      <i className="fas fa-gavel"></i>
                       Hacer Puja
                     </button>
-                    <button 
-                      className="st-destacados-cta-btn w-100"
-                      style={{
-                        background: 'transparent',
-                        border: '2px solid var(--st-green)',
-                        color: 'var(--st-green)'
-                      }}
+                    <button
+                      className="st-property-btn-outline"
                       onClick={() => navigate('/contacto')}
                     >
-                      <i className="fas fa-info-circle me-2"></i>
+                      <i className="fas fa-info-circle"></i>
                       Más Información
                     </button>
                   </div>
@@ -316,6 +338,11 @@ const Detalle = () => {
               </div>
               <form onSubmit={handleBidSubmit}>
                 <div className="modal-body">
+                  {bidError && (
+                    <div className="alert alert-danger" role="alert">
+                      {bidError}
+                    </div>
+                  )}
                   <div className="mb-3">
                     <label htmlFor="bidAmount" className="form-label">
                       Monto de la Puja
@@ -330,28 +357,31 @@ const Detalle = () => {
                         onChange={(e) => setBidAmount(e.target.value)}
                         placeholder="Ingresa tu puja"
                         min={propertyData.montoSalida + 1}
-                        step="1000"
+                        step="1"
                         required
+                        disabled={bidLoading}
                       />
                     </div>
                     <div className="form-text">
-                      Precio mínimo: {formatPrice(propertyData.montoSalida)}
+                      Precio minimo: {formatPrice(propertyData.montoSalida)}
                     </div>
                   </div>
                 </div>
                 <div className="modal-footer">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="btn btn-secondary"
-                    onClick={() => setShowBidModal(false)}
+                    onClick={() => { setShowBidModal(false); setBidError(''); }}
+                    disabled={bidLoading}
                   >
                     Cancelar
                   </button>
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="st-property-btn"
+                    disabled={bidLoading}
                   >
-                    Confirmar Puja
+                    {bidLoading ? 'Enviando...' : 'Confirmar Puja'}
                   </button>
                 </div>
               </form>

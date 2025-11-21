@@ -1,0 +1,401 @@
+/* Perfil Page Styles */
+
+.perfil-page {
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.st-perfil-hero-section {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
+  padding: 50px 0;
+  color: var(--st-white);
+}
+
+.st-perfil-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.st-perfil-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--st-white);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.st-perfil-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.st-perfil-greeting {
+  font-size: 13px;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.st-perfil-info h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--st-white);
+}
+
+.st-perfil-email {
+  margin: 4px 0 0;
+  opacity: 0.9;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.st-perfil-email i {
+  opacity: 0.7;
+}
+
+/* Tabs Section */
+.st-perfil-tabs-section {
+  background: var(--st-white);
+  border-bottom: 1px solid var(--st-gray-300);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.st-perfil-tabs {
+  display: flex;
+  gap: 0;
+}
+
+.st-perfil-tab {
+  padding: 16px 32px;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: var(--st-gray-600);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.st-perfil-tab:hover {
+  color: var(--st-green);
+}
+
+.st-perfil-tab.active {
+  color: var(--st-green);
+  border-bottom-color: var(--st-green);
+}
+
+.st-perfil-tab i {
+  font-size: 16px;
+}
+
+/* Content Section */
+.st-perfil-content-section {
+  padding: 40px 0;
+  background: var(--st-gray-100);
+  min-height: 400px;
+}
+
+/* Perfil Card */
+.st-perfil-card {
+  background: var(--st-white);
+  border-radius: var(--st-radius-lg);
+  padding: 24px;
+  box-shadow: var(--st-shadow-sm);
+  height: 100%;
+}
+
+.st-perfil-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--st-gray-800);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.st-perfil-card h3 i {
+  color: var(--st-green);
+}
+
+.st-perfil-field {
+  margin-bottom: 16px;
+}
+
+.st-perfil-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--st-gray-500);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.st-perfil-field p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--st-gray-800);
+}
+
+.st-perfil-id {
+  font-family: monospace;
+  background: var(--st-gray-100);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px !important;
+}
+
+/* Garantia */
+.st-garantia-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.st-garantia-badge {
+  text-align: left;
+}
+
+.st-garantia-nivel {
+  display: inline-block;
+  background: linear-gradient(135deg, #CD7F32, #8B4513);
+  color: white;
+  padding: 8px 20px;
+  border-radius: var(--st-radius-md);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.st-garantia-monto {
+  font-size: 24px !important;
+  font-weight: 700;
+  color: var(--st-green) !important;
+}
+
+.st-garantias-list h5 {
+  font-size: 14px;
+  color: var(--st-gray-600);
+  margin-bottom: 12px;
+}
+
+.st-garantia-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--st-gray-200);
+}
+
+.st-garantia-descripcion {
+  font-size: 14px;
+  color: var(--st-gray-700);
+}
+
+.st-garantia-monto-sm {
+  font-weight: 600;
+  color: var(--st-green);
+}
+
+/* Loading State */
+.st-loading-ofertas {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: var(--st-radius-lg);
+}
+
+.st-loading-ofertas p {
+  margin-top: 16px;
+  color: #666666;
+  font-size: 15px;
+}
+
+.st-loading-spinner {
+  width: 45px;
+  height: 45px;
+  border: 4px solid #e0e0e0;
+  border-top-color: var(--st-green);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: st-spin 1s linear infinite;
+}
+
+@keyframes st-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.st-perfil-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: var(--st-radius-lg);
+}
+
+.st-perfil-empty i {
+  font-size: 64px;
+  color: var(--st-gray-300);
+  margin-bottom: 20px;
+}
+
+.st-perfil-empty h3 {
+  font-size: 20px;
+  color: var(--st-gray-700);
+  margin-bottom: 8px;
+}
+
+.st-perfil-empty p {
+  color: var(--st-gray-500);
+  margin-bottom: 24px;
+}
+
+/* Oferta Card */
+.st-oferta-card {
+  background: var(--st-white);
+  border-radius: var(--st-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--st-shadow-sm);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.st-oferta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.st-oferta-image {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.st-oferta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.st-oferta-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.st-oferta-badge .badge {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.st-oferta-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.st-oferta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--st-gray-800);
+  margin-bottom: 8px;
+}
+
+.st-oferta-location {
+  font-size: 13px;
+  color: var(--st-gray-500);
+  margin-bottom: 16px;
+}
+
+.st-oferta-location i {
+  color: var(--st-green);
+}
+
+.st-oferta-details {
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.st-oferta-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--st-gray-100);
+}
+
+.st-oferta-detail:last-child {
+  border-bottom: none;
+}
+
+.st-oferta-detail .label {
+  font-size: 13px;
+  color: var(--st-gray-500);
+}
+
+.st-oferta-detail .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--st-gray-800);
+}
+
+.st-oferta-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--st-green);
+  color: var(--st-white);
+  border: none;
+  border-radius: var(--st-radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.st-oferta-btn:hover {
+  background: var(--st-green-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .st-perfil-hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .st-perfil-tabs {
+    justify-content: center;
+  }
+
+  .st-perfil-tab {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}

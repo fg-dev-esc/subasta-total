@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './subasta-detalle.css';
 
 const SubastaDetalle = () => {
@@ -17,14 +18,14 @@ const SubastaDetalle = () => {
     const fetchTorres = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://demo-subasta.backend.secure9000.net/api/subasta/getTorres/${id}`);
+        const response = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_TORRES(id)));
         const data = await response.json();
-        
-        if (data.torres) {
-          setTorres(data.torres);
-        }
+
+        // La respuesta es un array directo de torres
+        const torresData = Array.isArray(data) ? data : (data.torres || []);
+        setTorres(torresData);
       } catch (err) {
-        setError('Error cargando los artículos de la subasta');
+        setError('Error cargando los articulos de la subasta');
         console.error('Error fetching torres:', err);
       } finally {
         setLoading(false);
@@ -93,8 +94,9 @@ const SubastaDetalle = () => {
           <div className="alert alert-danger" role="alert">
             {error}
           </div>
-          <button 
-            className="st-destacados-cta-btn"
+          <button
+            className="st-property-btn"
+            style={{ width: 'auto' }}
             onClick={() => navigate('/subastas')}
           >
             Volver a Subastas
@@ -112,15 +114,12 @@ const SubastaDetalle = () => {
           <div className="row">
             <div className="col-12">
               <div className="d-flex align-items-center mb-4">
-                <button 
-                  className="st-destacados-cta-btn me-3"
-                  style={{
-                    padding: '10px 20px',
-                    fontSize: '14px'
-                  }}
+                <button
+                  className="st-property-btn-outline me-3"
+                  style={{ width: 'auto', padding: '10px 20px', fontSize: '14px' }}
                   onClick={() => navigate('/subastas')}
                 >
-                  <i className="fas fa-arrow-left me-2"></i>
+                  <i className="fas fa-arrow-left"></i>
                   Volver a Subastas
                 </button>
                 <div>
@@ -148,13 +147,10 @@ const SubastaDetalle = () => {
                 <div key={torre.torreID} className="col-lg-4 col-md-6 mb-4">
                   <div className="st-property-card">
                     <div className="st-property-image">
-                      <img 
-                        src={torre.foto?.url || getPlaceholderImage(index)}
+                      <img
+                        src={torre.urlImgPrincipal || ''}
                         alt={torre.nombre}
                         className="img-fluid"
-                        onError={(e) => {
-                          e.target.src = getPlaceholderImage(index);
-                        }}
                       />
                       <div className="st-property-status">
                         <span className="badge bg-success">

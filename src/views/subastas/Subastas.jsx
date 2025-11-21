@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './subastas.css';
 
 const Subastas = () => {
@@ -11,6 +12,20 @@ const Subastas = () => {
   const [subastas, setSubastas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedDesc, setExpandedDesc] = useState({});
+
+  const truncateText = (text, maxLength = 100) => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
+  const toggleDescription = (subastaID) => {
+    setExpandedDesc(prev => ({
+      ...prev,
+      [subastaID]: !prev[subastaID]
+    }));
+  };
   
   // Countdown timer state
   const [timeLeft, setTimeLeft] = useState({
@@ -33,7 +48,7 @@ const Subastas = () => {
     const fetchSubastas = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://demo-subasta.backend.secure9000.net/api/subasta/getSubastas');
+        const response = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_ALL));
         const data = await response.json();
 
         // Fetch torres (and their photos) for each subasta
@@ -42,29 +57,28 @@ const Subastas = () => {
         const subastasConFotos = await Promise.all(
           data.map(async (subasta) => {
             try {
-              const torresResponse = await fetch(`https://demo-subasta.backend.secure9000.net/api/subasta/getTorres/${subasta.subastaID}`);
+              const torresResponse = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_TORRES(subasta.subastaID)));
               const torresData = await torresResponse.json();
 
+              // La respuesta es un array directo de torres
+              const torres = Array.isArray(torresData) ? torresData : (torresData.torres || []);
+
               // Extraer TODAS las fotos de todas las torres
-              if (torresData.torres && torresData.torres.length > 0) {
-                torresData.torres.forEach(torre => {
-                  if (torre.foto?.url) {
-                    todasLasFotosTemp.push(torre.foto.url);
-                  }
-                });
-              }
+              torres.forEach(torre => {
+                if (torre.urlImgPrincipal) {
+                  todasLasFotosTemp.push(torre.urlImgPrincipal);
+                }
+              });
 
               // También guardar la primera foto para la subasta individual
               let foto = null;
-              if (torresData.torres && torresData.torres.length > 0) {
-                const torreConFoto = torresData.torres.find(torre => torre.foto?.url);
-                if (torreConFoto) {
-                  foto = torreConFoto.foto;
-                }
+              if (torres.length > 0 && torres[0].urlImgPrincipal) {
+                foto = { url: torres[0].urlImgPrincipal };
               }
 
               return {
                 ...subasta,
+                torres: torres.length,
                 foto: foto
               };
             } catch (err) {
@@ -426,9 +440,21 @@ const Subastas = () => {
                               <div className="mb-3">
                                 <small className="text-muted">
                                   <i className="fas fa-info-circle me-1"></i>
-                                  Descripción
+                                  Descripcion
                                 </small>
-                                <p className="text-dark mb-0 small">{subasta.descripcion}</p>
+                                <p className="text-dark mb-0 small">
+                                  {expandedDesc[subasta.subastaID]
+                                    ? subasta.descripcion
+                                    : truncateText(subasta.descripcion, 100)}
+                                  {subasta.descripcion && subasta.descripcion.length > 100 && (
+                                    <button
+                                      className="btn btn-link btn-sm p-0 ms-1 text-success"
+                                      onClick={() => toggleDescription(subasta.subastaID)}
+                                    >
+                                      {expandedDesc[subasta.subastaID] ? 'Ver menos' : 'Ver mas'}
+                                    </button>
+                                  )}
+                                </p>
                               </div>
                               
                               <div className="row mb-3">
