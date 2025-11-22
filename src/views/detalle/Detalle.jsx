@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { useAuth } from '../../hooks/useAuth';
 import { API_CONFIG, buildUrl } from '../../config/apiConfig';
+import { fetchOfertasTorre, realizarOferta, clearOfertaExitosa, clearError } from '../../redux/features/auction/auctionSlice';
 import './detalle.css';
 
 const Detalle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useAuth();
   useScrollTrigger();
+
+  // Redux state
+  const { ofertas, ofertaActual, totalOfertas, loadingOferta, error: ofertaError, ofertaExitosa } = useSelector(state => state.auction);
 
   const [propertyData, setPropertyData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +37,9 @@ const Detalle = () => {
 
         const torreData = await torreResponse.json();
         setPropertyData(torreData);
+
+        // Cargar ofertas con Redux
+        dispatch(fetchOfertasTorre(id));
 
         // Buscar la subasta a la que pertenece para el boton de volver
         const subastasResponse = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_ALL));
@@ -55,7 +66,7 @@ const Detalle = () => {
     if (id) {
       fetchPropertyData();
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   useEffect(() => {
     // Add loading class initially, remove after animations start
@@ -88,6 +99,89 @@ const Detalle = () => {
     });
   };
 
+  // Calcular estado del usuario en la subasta
+  const userBidStatus = useMemo(() => {
+    if (!isLoggedIn) {
+      return {
+        type: 'not_logged',
+        title: 'Únete a nuestras subastas',
+        subtitle: 'Regístrate gratis y accede a todas las subastas activas',
+        icon: 'fas fa-user-plus',
+        btnText: 'Registrarme',
+        btnAction: () => navigate('/auth?tab=register'),
+        alertClass: 'st-cta-primary'
+      };
+    }
+
+    // Verificar si la subasta terminó
+    const subastaTerminada = propertyData?.fechaFin && new Date(propertyData.fechaFin) < new Date();
+
+    // Buscar ofertas del usuario actual
+    const misOfertas = ofertas.filter(o => o.usuarioID === user?.usuarioID || o.usuario === user?.nombre);
+    const miMejorOferta = misOfertas.length > 0 ? Math.max(...misOfertas.map(o => o.monto)) : 0;
+
+    // Verificar si soy el mejor postor
+    const soyMejorPostor = ofertaActual && (ofertaActual.usuarioID === user?.usuarioID || ofertaActual.usuario === user?.nombre);
+
+    if (subastaTerminada) {
+      if (soyMejorPostor) {
+        return {
+          type: 'winner',
+          title: '¡Felicidades! Ganaste la Subasta',
+          subtitle: 'Revisa tu email para los siguientes pasos',
+          icon: 'fas fa-trophy',
+          alertClass: 'st-cta-success'
+        };
+      } else if (misOfertas.length > 0) {
+        return {
+          type: 'lost',
+          title: 'No ganaste esta subasta',
+          subtitle: 'Sigue participando en otras subastas',
+          icon: 'fas fa-heart',
+          btnText: 'Ver otras subastas',
+          btnAction: () => navigate('/subastas'),
+          extraInfo: miMejorOferta,
+          alertClass: 'st-cta-warning'
+        };
+      }
+    } else {
+      // Subasta activa
+      if (soyMejorPostor) {
+        return {
+          type: 'winning',
+          title: '¡Vas ganando!',
+          subtitle: 'Eres la mejor oferta actual',
+          icon: 'fas fa-crown',
+          extraInfo: ofertaActual.monto,
+          alertClass: 'st-cta-success'
+        };
+      } else if (misOfertas.length > 0) {
+        const diferencia = ofertaActual ? ofertaActual.monto - miMejorOferta : 0;
+        return {
+          type: 'outbid',
+          title: 'Te han superado',
+          subtitle: `Te faltan ${formatPrice(diferencia + 1000)} para ser la mejor oferta`,
+          icon: 'fas fa-arrow-up',
+          btnText: 'Mejorar oferta',
+          btnAction: () => setShowBidModal(true),
+          extraInfo: miMejorOferta,
+          alertClass: 'st-cta-warning'
+        };
+      }
+    }
+
+    // No ha participado
+    return {
+      type: 'no_bids',
+      title: '¡Descubre Más Oportunidades!',
+      subtitle: 'Haz clic aquí para ver todas las subastas activas',
+      icon: 'fas fa-search',
+      btnText: 'Ver subastas',
+      btnAction: () => navigate('/subastas'),
+      alertClass: 'st-cta-primary'
+    };
+  }, [isLoggedIn, user, ofertas, ofertaActual, propertyData, navigate]);
+
   const getPropertyImage = () => {
     if (propertyData?.imagenes && propertyData.imagenes.length > 0) {
       return propertyData.imagenes[0].url;
@@ -95,53 +189,44 @@ const Detalle = () => {
     return propertyData?.urlImgPrincipal || '';
   };
 
-  const [bidLoading, setBidLoading] = useState(false);
   const [bidError, setBidError] = useState('');
+
+  // Manejar oferta exitosa desde Redux
+  useEffect(() => {
+    if (ofertaExitosa) {
+      setBidAmount('');
+      // Cerrar modal después de 2 segundos
+      setTimeout(() => {
+        setShowBidModal(false);
+        dispatch(clearOfertaExitosa());
+      }, 2000);
+    }
+  }, [ofertaExitosa, dispatch]);
+
+  // Manejar errores de oferta desde Redux
+  useEffect(() => {
+    if (ofertaError) {
+      setBidError(ofertaError);
+      // Redirigir a login si no está autenticado
+      if (ofertaError.includes('iniciar sesión')) {
+        setTimeout(() => navigate('/auth'), 2000);
+      }
+    }
+  }, [ofertaError, navigate]);
 
   const handleBidSubmit = async (e) => {
     e.preventDefault();
-    if (!bidAmount || parseFloat(bidAmount) <= propertyData.montoSalida) {
-      setBidError('La puja debe ser mayor al precio inicial');
+    const baseOferta = ofertaActual ? ofertaActual.monto : propertyData.montoSalida;
+    const minOferta = baseOferta + 1000;
+
+    if (!bidAmount || parseFloat(bidAmount) < minOferta) {
+      setBidError(`La oferta mínima es ${formatPrice(minOferta)}`);
       return;
     }
 
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setBidError('Debes iniciar sesion para hacer una puja');
-      setTimeout(() => navigate('/auth'), 2000);
-      return;
-    }
-
-    setBidLoading(true);
     setBidError('');
-
-    try {
-      const response = await fetch(buildUrl(API_CONFIG.PUJAS.PUJAR), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          torreID: id,
-          monto: parseFloat(bidAmount)
-        })
-      });
-
-      const result = await response.text();
-
-      if (!response.ok) {
-        throw new Error(result || 'Error al realizar la puja');
-      }
-
-      alert(`Puja exitosa por ${formatPrice(parseFloat(bidAmount))}`);
-      setShowBidModal(false);
-      setBidAmount('');
-    } catch (err) {
-      setBidError(err.message);
-    } finally {
-      setBidLoading(false);
-    }
+    dispatch(clearError());
+    dispatch(realizarOferta({ torreID: id, monto: parseFloat(bidAmount) }));
   };
 
   const handleGoBack = () => {
@@ -209,8 +294,8 @@ const Detalle = () => {
         <div className="container">
           <div className="row align-items-stretch">
             {/* Property Image */}
-            <div className="col-lg-8 mb-4">
-              <div className="st-detalle-left-column d-flex flex-column" style={{ height: '100%' }}>
+            <div className="col-lg-8">
+              <div className="st-detalle-left-column">
                 <div className="st-property-image-container">
                   {propertyData && (
                     <>
@@ -229,23 +314,33 @@ const Detalle = () => {
                   )}
                 </div>
 
-                {/* CTA Badge */}
-                <div className="st-detalle-cta-badge flex-grow-1 d-flex align-items-stretch">
+                {/* CTA Badge Dinámico */}
+                <div className={`st-detalle-cta-badge flex-grow-1 d-flex align-items-stretch ${userBidStatus.alertClass}`}>
                   <div className="st-cta-badge-content d-flex flex-column justify-content-center w-100">
                     <div className="st-cta-badge-icon">
-                      <i className="fas fa-gavel"></i>
+                      <i className={userBidStatus.icon}></i>
                     </div>
                     <div className="st-cta-badge-text">
-                      <h4>Únete a nuestras subastas</h4>
-                      <p>Regístrate gratis y accede a todas las subastas activas</p>
+                      <h4>{userBidStatus.title}</h4>
+                      <p>{userBidStatus.subtitle}</p>
                     </div>
-                    <button
-                      className="st-property-btn"
-                      style={{ width: 'auto' }}
-                      onClick={() => navigate('/auth?tab=register')}
-                    >
-                      Registrarme
-                    </button>
+                    {userBidStatus.extraInfo && (
+                      <div className="st-cta-extra-info">
+                        <span className="st-cta-extra-label">
+                          {userBidStatus.type === 'winning' ? 'Tu oferta' : 'Tu mejor oferta'}
+                        </span>
+                        <span className="st-cta-extra-monto">{formatPrice(userBidStatus.extraInfo)}</span>
+                      </div>
+                    )}
+                    {userBidStatus.btnText && (
+                      <button
+                        className="st-property-btn"
+                        style={{ width: 'auto' }}
+                        onClick={userBidStatus.btnAction}
+                      >
+                        {userBidStatus.btnText}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -253,20 +348,48 @@ const Detalle = () => {
 
             {/* Property Details */}
             <div className="col-lg-4">
-              <div className="st-property-details-card" style={{ height: '100%' }}>
+              <div className="st-property-details-card">
                 <div className="st-property-header">
                   <h1 className="st-property-title">{propertyData?.nombre || ''}</h1>
-                  <p className="st-property-location">
-                    <i className="fas fa-map-marker-alt me-2"></i>
-                    {propertyData?.municipio && propertyData?.estado ? `${propertyData.municipio}, ${propertyData.estado}` : ''}
-                  </p>
                 </div>
 
                 {propertyData && (
                   <>
+                  {/* Oferta Actual */}
+                  {ofertaActual && (
+                    <div className="st-oferta-actual">
+                      <span className="st-oferta-label">Oferta Actual</span>
+                      <span className="st-oferta-monto">{formatPrice(ofertaActual.monto)}</span>
+                      <span className="st-oferta-user">por {ofertaActual.usuario}</span>
+                    </div>
+                  )}
+
                   <div className="st-property-pricing st-starting-price">
                     <span className="st-price-label">Precio Inicial</span>
                     <span className="st-price-amount">{formatPrice(propertyData.montoSalida || 0)}</span>
+                  </div>
+
+                  {/* Botones Rápidos de Oferta */}
+                  <div className="st-quick-bids">
+                    <span className="st-quick-bids-label">Oferta Rápida</span>
+                    <div className="st-quick-bids-buttons">
+                      {[1000, 5000, 10000].map((increment) => {
+                        const basePrice = ofertaActual ? ofertaActual.monto : propertyData.montoSalida;
+                        const newBid = basePrice + increment;
+                        return (
+                          <button
+                            key={increment}
+                            className="st-quick-bid-btn"
+                            onClick={() => {
+                              setBidAmount(newBid.toString());
+                              setShowBidModal(true);
+                            }}
+                          >
+                            +${increment.toLocaleString()}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   <div className="st-property-info">
@@ -277,13 +400,10 @@ const Detalle = () => {
                       <strong>Subcategoría:</strong> {propertyData.subCategoria}
                     </div>
                     <div className="st-info-item">
-                      <strong>Status Jurídico:</strong> {propertyData.estatusJuridico}
-                    </div>
-                    <div className="st-info-item">
-                      <strong>Tipo de Venta:</strong> {propertyData.tipoVenta}
-                    </div>
-                    <div className="st-info-item">
                       <strong>Fecha Fin:</strong> {formatDate(propertyData.fechaFin)}
+                    </div>
+                    <div className="st-info-item">
+                      <strong>Total Ofertas:</strong> {ofertas.length}
                     </div>
                   </div>
 
@@ -293,7 +413,7 @@ const Detalle = () => {
                       onClick={() => setShowBidModal(true)}
                     >
                       <i className="fas fa-gavel"></i>
-                      Hacer Puja
+                      Hacer Oferta Personalizada
                     </button>
                     <button
                       className="st-property-btn-outline"
@@ -329,7 +449,7 @@ const Detalle = () => {
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Realizar Puja</h5>
+                <h5 className="modal-title">Realizar Oferta</h5>
                 <button 
                   type="button" 
                   className="btn-close" 
@@ -340,50 +460,58 @@ const Detalle = () => {
                 <div className="modal-body">
                   {bidError && (
                     <div className="alert alert-danger" role="alert">
+                      <i className="fas fa-exclamation-circle me-2"></i>
                       {bidError}
                     </div>
                   )}
-                  <div className="mb-3">
-                    <label htmlFor="bidAmount" className="form-label">
-                      Monto de la Puja
-                    </label>
-                    <div className="input-group">
-                      <span className="input-group-text">$</span>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="bidAmount"
-                        value={bidAmount}
-                        onChange={(e) => setBidAmount(e.target.value)}
-                        placeholder="Ingresa tu puja"
-                        min={propertyData.montoSalida + 1}
-                        step="1"
-                        required
-                        disabled={bidLoading}
-                      />
+                  {ofertaExitosa ? (
+                    <div className="alert alert-success" role="alert">
+                      <i className="fas fa-check-circle me-2"></i>
+                      Oferta exitosa por {formatPrice(ofertaExitosa)}
                     </div>
-                    <div className="form-text">
-                      Precio minimo: {formatPrice(propertyData.montoSalida)}
+                  ) : (
+                    <div className="mb-3">
+                      <label htmlFor="bidAmount" className="form-label">
+                        Monto de la Oferta
+                      </label>
+                      <div className="input-group">
+                        <span className="input-group-text">$</span>
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="bidAmount"
+                          value={bidAmount}
+                          onChange={(e) => setBidAmount(e.target.value)}
+                          placeholder="Ingresa tu oferta"
+                          step="1000"
+                          disabled={loadingOferta}
+                        />
+                      </div>
+                      <div className="form-text">
+                        Oferta mínima: {formatPrice((ofertaActual ? ofertaActual.monto : propertyData.montoSalida) + 1000)}
+                      </div>
                     </div>
+                  )}
+                </div>
+                {!ofertaExitosa && (
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => { setShowBidModal(false); setBidError(''); dispatch(clearError()); }}
+                      disabled={loadingOferta}
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      type="submit"
+                      className="st-property-btn"
+                      disabled={loadingOferta}
+                    >
+                      {loadingOferta ? 'Enviando...' : 'Confirmar Oferta'}
+                    </button>
                   </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => { setShowBidModal(false); setBidError(''); }}
-                    disabled={bidLoading}
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="st-property-btn"
-                    disabled={bidLoading}
-                  >
-                    {bidLoading ? 'Enviando...' : 'Confirmar Puja'}
-                  </button>
-                </div>
+                )}
               </form>
             </div>
           </div>

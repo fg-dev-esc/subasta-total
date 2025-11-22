@@ -18,7 +18,8 @@ export const API_CONFIG = {
 
   PUJAS: {
     PUJAR: '/api/Pujas/Pujar',
-    GET_PUJAS_USUARIO: (usuarioID, torreID) => `/api/Pujas/GetPujasUsuario/${usuarioID}/${torreID}`
+    GET_PUJAS_USUARIO: (usuarioID, torreID) => `/api/Pujas/GetPujasUsuario/${usuarioID}/${torreID}`,
+    GET_PUJAS_TORRE: (torreID) => `/api/AdminPujas/GetPujasTorre/${torreID}`
   },
 
   COMPRADOR: {

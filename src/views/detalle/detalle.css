@@ -69,6 +69,7 @@
   margin-bottom: 25px;
   border-bottom: var(--st-border);
   padding-bottom: 20px;
+  text-align: center;
 }
 
 .st-property-title {
@@ -172,6 +173,77 @@
 .st-property-btn-outline:hover {
   background: var(--st-green);
   color: var(--st-white);
+}
+
+/* Oferta Actual */
+.st-oferta-actual {
+  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
+  color: var(--st-white);
+  padding: 16px;
+  border-radius: var(--st-radius-md);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.st-oferta-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.st-oferta-monto {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.st-oferta-user {
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Botones Rápidos de Puja */
+.st-quick-bids {
+  margin-bottom: 20px;
+}
+
+.st-quick-bids-label {
+  display: block;
+  font-size: 13px;
+  color: var(--st-gray-600);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.st-quick-bids-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.st-quick-bid-btn {
+  flex: 1;
+  padding: 12px 8px;
+  background: var(--st-gray-100);
+  border: 2px solid var(--st-gray-300);
+  border-radius: var(--st-radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--st-gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.st-quick-bid-btn:hover {
+  background: var(--st-green);
+  border-color: var(--st-green);
+  color: var(--st-white);
+  transform: translateY(-2px);
 }
 
 .st-property-actions {
@@ -316,12 +388,39 @@
   margin: 0;
 }
 
+/* Quitar shadow de alerts en modal */
+.detalle-page .modal .alert {
+  box-shadow: none !important;
+}
+
+.detalle-page .modal .alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.detalle-page .modal .alert-danger {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
 /* Left Column Container */
 .st-detalle-left-column {
   display: flex !important;
   flex-direction: column !important;
   gap: 20px;
   height: 100% !important;
+  flex: 1;
+}
+
+.st-detalle-left-column .st-property-image-container {
+  flex-shrink: 0;
+}
+
+.st-detalle-left-column .st-detalle-cta-badge {
+  flex: 1;
+  min-height: 0;
 }
 
 /* CTA Badge */
@@ -341,6 +440,76 @@
 .st-detalle-cta-badge:hover {
   transform: translateY(-2px);
   box-shadow: var(--st-shadow-lg);
+}
+
+/* CTA Badge Estados */
+.st-detalle-cta-badge.st-cta-primary {
+  background: linear-gradient(135deg, #e8f4f3 0%, #d1e9e7 100%);
+  border: 2px solid var(--st-green);
+}
+
+.st-detalle-cta-badge.st-cta-primary .st-cta-badge-icon {
+  background: var(--st-green);
+}
+
+.st-detalle-cta-badge.st-cta-primary .st-cta-badge-text h4 {
+  color: var(--st-green);
+}
+
+.st-detalle-cta-badge.st-cta-success {
+  background: linear-gradient(135deg, #d1e7dd 0%, #badbcc 100%);
+  border: 2px solid #198754;
+}
+
+.st-detalle-cta-badge.st-cta-success .st-cta-badge-icon {
+  background: #198754;
+}
+
+.st-detalle-cta-badge.st-cta-success .st-cta-badge-text h4 {
+  color: #0f5132;
+}
+
+.st-detalle-cta-badge.st-cta-warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  border: 2px solid #fd7e14;
+}
+
+.st-detalle-cta-badge.st-cta-warning .st-cta-badge-icon {
+  background: #fd7e14;
+}
+
+.st-detalle-cta-badge.st-cta-warning .st-cta-badge-text h4 {
+  color: #664d03;
+}
+
+/* Extra info en CTA */
+.st-cta-extra-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.st-cta-extra-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.st-cta-extra-monto {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--st-green-dark);
+}
+
+.st-cta-success .st-cta-extra-monto {
+  color: #0f5132;
+}
+
+.st-cta-warning .st-cta-extra-monto {
+  color: #664d03;
 }
 
 .st-cta-badge-content {
