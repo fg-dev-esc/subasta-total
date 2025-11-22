@@ -524,6 +524,11 @@
   max-width: 500px;
 }
 
+.st-cta-badge-content .st-property-btn {
+  width: auto !important;
+  padding: 12px 30px;
+}
+
 .st-cta-badge-icon {
   flex-shrink: 0;
   width: 70px;

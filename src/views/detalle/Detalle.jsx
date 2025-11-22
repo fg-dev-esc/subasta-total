@@ -156,14 +156,16 @@ const Detalle = () => {
           alertClass: 'st-cta-success'
         };
       } else if (misOfertas.length > 0) {
-        const diferencia = ofertaActual ? ofertaActual.monto - miMejorOferta : 0;
+        const nuevaOferta = ofertaActual ? ofertaActual.monto + 1000 : propertyData.montoSalida + 1000;
         return {
           type: 'outbid',
           title: 'Te han superado',
-          subtitle: `Te faltan ${formatPrice(diferencia + 1000)} para ser la mejor oferta`,
+          subtitle: `Haz clic para ofertar ${formatPrice(nuevaOferta)}`,
           icon: 'fas fa-arrow-up',
-          btnText: 'Mejorar oferta',
-          btnAction: () => setShowBidModal(true),
+          btnAction: () => {
+            setBidAmount(nuevaOferta.toString());
+            setShowBidModal(true);
+          },
           extraInfo: miMejorOferta,
           alertClass: 'st-cta-warning'
         };
@@ -315,7 +317,11 @@ const Detalle = () => {
                 </div>
 
                 {/* CTA Badge Dinámico */}
-                <div className={`st-detalle-cta-badge flex-grow-1 d-flex align-items-stretch ${userBidStatus.alertClass}`}>
+                <div
+                  className={`st-detalle-cta-badge flex-grow-1 d-flex align-items-stretch ${userBidStatus.alertClass}`}
+                  onClick={userBidStatus.btnAction}
+                  style={{ cursor: userBidStatus.btnAction ? 'pointer' : 'default' }}
+                >
                   <div className="st-cta-badge-content d-flex flex-column justify-content-center w-100">
                     <div className="st-cta-badge-icon">
                       <i className={userBidStatus.icon}></i>
@@ -331,15 +337,6 @@ const Detalle = () => {
                         </span>
                         <span className="st-cta-extra-monto">{formatPrice(userBidStatus.extraInfo)}</span>
                       </div>
-                    )}
-                    {userBidStatus.btnText && (
-                      <button
-                        className="st-property-btn"
-                        style={{ width: 'auto' }}
-                        onClick={userBidStatus.btnAction}
-                      >
-                        {userBidStatus.btnText}
-                      </button>
                     )}
                   </div>
                 </div>

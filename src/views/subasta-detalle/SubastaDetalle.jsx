@@ -161,11 +161,7 @@ const SubastaDetalle = () => {
                     </div>
                     
                     <div className="st-property-content">
-                      <h5 className="st-property-title">{torre.nombre}</h5>
-                      <p className="st-property-location">
-                        <i className="fas fa-map-marker-alt me-2"></i>
-                        {torre.municipio}, {torre.estado}
-                      </p>
+                      <h5 className="st-property-title text-center">{torre.nombre}</h5>
                       
                       <div className="st-property-details">
                         <div className="row">
@@ -192,7 +188,7 @@ const SubastaDetalle = () => {
                             <span className="text-muted">Precio Inicial</span>
                           </div>
                           <div className="st-spec-value fw-bold text-success">
-                            $ {formatPrice(torre.montoSalida)}
+                            $ {formatPrice(torre.montoSalida || 0)}
                           </div>
                         </div>
                         <div className="st-spec-simple">
