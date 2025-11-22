@@ -290,14 +290,16 @@
 
 .st-oferta-image {
   position: relative;
-  height: 180px;
+  aspect-ratio: 16/10;
   overflow: hidden;
+  background: var(--st-gray-100);
 }
 
 .st-oferta-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .st-oferta-badge {
