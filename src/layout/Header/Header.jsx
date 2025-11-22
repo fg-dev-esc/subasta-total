@@ -84,7 +84,7 @@ const Header = () => {
             </Link>
 
             <div className="mobile-menu-right">
-              {/* Mobile User Menu */}
+              {/* Mobile User Avatar / Login Icon */}
               <div className="header-account header-mobile-account">
                 {isLoggedIn ? (
                   <div className="dropdown">
@@ -118,14 +118,9 @@ const Header = () => {
                     </ul>
                   </div>
                 ) : (
-                  <>
-                    <Link to="/auth?tab=register" className="theme-btn theme-btn-outline header-btn-sm">
-                      <i className="far fa-user-plus"></i> REGISTRARSE
-                    </Link>
-                    <Link to="/auth?tab=login" className="theme-btn header-btn-sm">
-                      <i className="far fa-sign-in"></i> INICIAR SESIÓN
-                    </Link>
-                  </>
+                  <Link to="/auth?tab=login" className="st-login-avatar">
+                    <i className="far fa-user"></i>
+                  </Link>
                 )}
               </div>
               <button
