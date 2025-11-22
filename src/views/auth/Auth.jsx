@@ -107,6 +107,9 @@ const Auth = () => {
       const token = await response.text();
       localStorage.setItem('token', token);
 
+      // Disparar evento para actualizar el header
+      window.dispatchEvent(new Event('auth-change'));
+
       setSubmitMessage('¡Bienvenido! Inicio de sesión exitoso.');
       setLoginData({ email: '', password: '' });
 
@@ -162,6 +165,9 @@ const Auth = () => {
 
       const token = await response.text();
       localStorage.setItem('token', token);
+
+      // Disparar evento para actualizar el header
+      window.dispatchEvent(new Event('auth-change'));
 
       setSubmitMessage('¡Registro exitoso! Bienvenido a Subasta Total.');
       setRegisterData({
