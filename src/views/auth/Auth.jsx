@@ -110,14 +110,11 @@ const Auth = () => {
       // Disparar evento para actualizar el header
       window.dispatchEvent(new Event('auth-change'));
 
-      setSubmitMessage('¡Bienvenido! Inicio de sesión exitoso.');
       setLoginData({ email: '', password: '' });
-
-      // Redirigir al usuario después de login exitoso
-      setTimeout(() => navigate('/'), 1500);
+      setIsSubmitting(false);
+      navigate('/perfil');
     } catch (error) {
       setSubmitMessage('Error al iniciar sesión. Verifica tus credenciales.');
-    } finally {
       setIsSubmitting(false);
     }
   };
