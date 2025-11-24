@@ -509,10 +509,10 @@ const Compradores = () => {
                         <i className="fas fa-certificate"></i>
                         Cédula fiscal de la empresa
                       </li>
-                      <li>
-                        <i className="fas fa-chart-line"></i>
-                        Estados financieros recientes
-                      </li>
+                        {/* <li>
+                          <i className="fas fa-chart-line"></i>
+                          Estados financieros recientes
+                        </li> */}
                     </ul>
                   </div>
                 </div>
