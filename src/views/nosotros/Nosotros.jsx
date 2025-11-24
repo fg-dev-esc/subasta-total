@@ -42,8 +42,8 @@ const Nosotros = () => {
                     Transformando el <span>mundo de las subastas</span>
                   </h1>
                   <p className="st-nosotros-hero-description">
-                    Más de 14 años de experiencia liderando la primera plataforma online
-                    de subastas en México.
+                    Más de 14 años de experiencia liderando las
+                    subastas en México.
                   </p>
 
                   <div className="st-nosotros-hero-btn">
@@ -151,9 +151,11 @@ const Nosotros = () => {
                   ¡Únete a la mejor experiencia de <span style={{color: 'white'}}>subastas!</span>
                 </h2>
                 <p className="st-cta-medio-description">
-                  Ya sea que busques comprar, vender o maximizar tu inversión, 
-                  en Subasta Total te brindamos las mejores soluciones para subastas en línea de México.
+                  Regístrate ahora y comienza tu experiencia con nosotros.
                 </p>
+                <a href="/auth" className="st-cta-medio-btn">
+                  Acceder <i className="fas fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -161,7 +163,7 @@ const Nosotros = () => {
       </section>
 
       {/* CTA Final Section - Based on Screenshot 10 */}
-      <section className="st-nosotros-final-cta-section st-animate-on-scroll">
+      {/* <section className="st-nosotros-final-cta-section st-animate-on-scroll">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -170,7 +172,7 @@ const Nosotros = () => {
                   ¡Descubre el futuro de las subastas hoy mismo!
                 </h2>
                 <p className="st-nosotros-final-cta-description">
-                  Si deseas participar en una subasta, regístrate ahora y comienza tu experiencia con nosotros.
+                  Regístrate ahora y comienza tu experiencia con nosotros.
                 </p>
                 
                 <a href="/auth" className="st-nosotros-final-cta-btn">
@@ -180,7 +182,7 @@ const Nosotros = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
