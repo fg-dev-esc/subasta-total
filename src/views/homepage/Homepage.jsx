@@ -1,12 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './homepage.css';
 
 const Homepage = () => {
   const navigate = useNavigate();
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
   // useScrollTrigger(); // Disabled to check if this causes hero animation
-  
+
+  // Fetch productos del API
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch(buildUrl(API_CONFIG.SUBASTAS.GET_TORRES('1-251121')));
+        const data = await response.json();
+        const torres = Array.isArray(data) ? data : (data.torres || []);
+
+        // Repetir los productos 6 veces si hay menos de 6
+        const productosRepetidos = [];
+        for (let i = 0; i < 6; i++) {
+          if (torres.length > 0) {
+            productosRepetidos.push({
+              ...torres[i % torres.length],
+              displayId: `${torres[i % torres.length].torreID}-${i}`
+            });
+          }
+        }
+
+        setProductos(productosRepetidos);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching productos:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchProductos();
+  }, []);
+
   // Categories data
   const categories = [
     {
@@ -141,21 +174,64 @@ const Homepage = () => {
             </div>
           </div>
 
-          <div className="row mt-4">
-            {categories.map((category, index) => (
-              <div key={index} className="col-md-6 col-lg-4 mb-4">
-                <a href={category.link} className="st-category-card">
-                  <div className="st-category-icon">
-                    <i className={category.icon}></i>
-                  </div>
-                  <div className="st-category-content">
-                    <h4 className="st-category-title">{category.name}</h4>
-                    <p className="st-category-description">{category.description}</p>
-                  </div>
-                </a>
+          {loading ? (
+            <div className="text-center" style={{padding: '40px'}}>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Cargando...</span>
               </div>
-            ))}
-          </div>
+            </div>
+          ) : productos.length > 0 ? (
+            <div className="row mt-4">
+              {productos.map((producto) => (
+                <div key={producto.displayId} className="col-md-6 col-lg-4 mb-4">
+                  <div className="st-property-card">
+                    <div className="st-property-image">
+                      <img
+                        src={producto.urlImgPrincipal}
+                        alt={producto.nombre}
+                      />
+                      <div className="st-property-status-badge">
+                        <span className="badge bg-success">{producto.ofertas} Ofertas</span>
+                      </div>
+                    </div>
+                    <div className="st-property-content">
+                      <h4 className="st-property-title">{producto.nombre}</h4>
+
+                      <div className="st-property-details">
+                        <div className="st-property-detail">
+                          <i className="fas fa-tag"></i>
+                          <span>{producto.categoria}</span>
+                        </div>
+                        <div className="st-property-detail">
+                          <i className="fas fa-clock"></i>
+                          <span>Finaliza: {new Date(producto.fechaFin).toLocaleDateString()}</span>
+                        </div>
+                      </div>
+
+                      <div className="st-property-description">
+                        <p>{producto.descripcion}</p>
+                      </div>
+
+                      <div className="st-property-actions">
+                        <button
+                          className="st-property-btn"
+                          onClick={() => navigate(`/detalle/${producto.torreID}`)}
+                        >
+                          Ver Detalles
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="st-no-results">
+              <i className="fas fa-inbox"></i>
+              <h4>No hay productos disponibles</h4>
+              <p>Intenta más tarde</p>
+            </div>
+          )}
 
           <div className="text-center mt-4">
             <a href="/subastas" className="st-destacados-cta-btn">
@@ -185,7 +261,7 @@ const Homepage = () => {
       </section> */}
 
       {/* Properties Section - Based on Screenshot 02 */}
-      <section className="st-properties-section st-animate-on-scroll">
+      {/* <section className="st-properties-section st-animate-on-scroll">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">
@@ -206,7 +282,7 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section with Circular Buttons - Based on Screenshot 03 */}
       <section className="st-cta-section st-animate-on-scroll">
@@ -224,7 +300,7 @@ const Homepage = () => {
           </div>
 
           {/* Main CTA Text */}
-          <div className="st-main-cta st-animate-on-scroll">
+          {/* <div className="st-main-cta st-animate-on-scroll">
                           <h2 className="st-main-cta-title" style={{color: 'white'}}>
                           ¿Quieres comprar artículos únicos al mejor precio?
                         </h2>            <p className="st-main-cta-subtitle">
@@ -236,12 +312,12 @@ const Homepage = () => {
                                       </p>            <a href="/nosotros" className="st-main-cta-btn">
               Comenzar ahora <i className="fas fa-arrow-right ms-2"></i>
             </a>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Benefits Section - Based on Screenshot 04 */}
-      <section className="st-benefits-section st-animate-on-scroll">
+      {/* <section className="st-benefits-section st-animate-on-scroll">
         <div className="container">
           <div className="st-benefits-title-section">
             <h2 className="st-benefits-main-title">
@@ -252,9 +328,9 @@ const Homepage = () => {
             </p>
           </div>
 
-          <div className="st-benefits-layout">
+          <div className="st-benefits-layout"> */}
             {/* Left Side - Lifestyle Images */}
-            <div className="st-benefits-images">
+            {/* <div className="st-benefits-images">
               <div style={{
                 position: 'relative',
                 borderRadius: '15px',
@@ -302,10 +378,10 @@ const Homepage = () => {
                   <p className="st-benefit-image-desc">La primera plataforma de subastas en línea de México.</p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Right Side - Benefits List */}
-            <div className="st-benefits-list">
+            {/* <div className="st-benefits-list">
               <h3 className="st-benefits-list-title">Nuestras Ventajas</h3>
 
               <div className="st-benefit-item st-animate-on-scroll">
@@ -350,7 +426,7 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Property Types Section - Based on Screenshots 05-06 */}
       {/* <section className="st-property-types-section st-animate-on-scroll">
