@@ -86,7 +86,7 @@ const Compradores = () => {
                     <div className="col-lg-4 col-md-6 mb-4">
                       <div className="st-propuesta-card st-animate-on-scroll">
                         <p>
-                          Te ofrecemos una nueva plataforma de remates que te permite explorar y adquirir
+                          Te ofrecemos una nueva plataforma de ofertas que te permite explorar y adquirir
                           artículos de manera segura y transparente. Olvídate de las complicaciones
                           tradicionales y descubre oportunidades únicas.
                         </p>
@@ -560,7 +560,7 @@ const Compradores = () => {
                     </div>
                     <div id="collapseOne" className="st-accordion-collapse collapse" data-bs-parent="#tiposVentaAccordion">
                       <div className="st-accordion-body">
-                        <p>Se refiere a la transferencia de los derechos sobre un inmueble que ha sido adjudicado en remate, pero donde el comprador no tiene posesión física del bien.</p>
+                        <p>Se refiere a la transferencia de los derechos sobre un inmueble que ha sido adjudicado en oferta, pero donde el comprador no tiene posesión física del bien.</p>
                       </div>
                     </div>
                   </div>
@@ -573,7 +573,7 @@ const Compradores = () => {
                     </div>
                     <div id="collapseTwo" className="st-accordion-collapse collapse" data-bs-parent="#tiposVentaAccordion">
                       <div className="st-accordion-body">
-                        <p>Transferencia de derechos sobre un inmueble adjudicado en remate donde el comprador sí tiene posesión física del bien.</p>
+                        <p>Transferencia de derechos sobre un inmueble adjudicado en oferta donde el comprador sí tiene posesión física del bien.</p>
                       </div>
                     </div>
                   </div>
