@@ -150,7 +150,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
 }
 
 .st-historia-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
   position: relative;
   overflow: hidden;
@@ -212,7 +212,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
   grid-template-columns: 1fr 100px 1fr;
   gap: 40px;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: -70px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -334,7 +334,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
 
 /* CTA Medio Section - Based on Screenshot 09 */
 .st-cta-medio-section {
-  padding: 100px 0;
+  padding: 70px 0;
   background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
   position: relative;
   overflow: hidden;
@@ -454,7 +454,7 @@ Basado en Screenshots 08-10 con estilos Carway modernos
 
 /* CTA Final Section - Based on Screenshot 10 */
 .st-nosotros-final-cta-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   position: relative;
 }

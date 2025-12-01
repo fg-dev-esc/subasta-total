@@ -14,15 +14,31 @@ const Perfil = () => {
   // Obtener tab del query parameter
   const getInitialTab = () => {
     const params = new URLSearchParams(location.search);
-    return params.get('tab') === 'ofertas' ? 'ofertas' : 'datos';
+    const tab = params.get('tab');
+    if (tab === 'ofertas') return 'ofertas';
+    if (tab === 'documentos') return 'documentos';
+    return 'datos';
   };
 
   const [activeTab, setActiveTab] = useState(getInitialTab());
   const [ofertas, setOfertas] = useState([]);
   const [garantias, setGarantias] = useState([]);
   const [tipoGarantia, setTipoGarantia] = useState(null);
+  const [tipoPersona, setTipoPersona] = useState('fisica');
   const [loadingOfertas, setLoadingOfertas] = useState(false);
   const [loadingGarantias, setLoadingGarantias] = useState(false);
+  const [uploadingDoc, setUploadingDoc] = useState(null);
+  const [archivosCargados, setArchivosCargados] = useState([]);
+  const [loadingArchivos, setLoadingArchivos] = useState(false);
+
+  // Mock data para documentos
+  const [documentos, setDocumentos] = useState([
+    { tipoDocumento: 'identificacion', nombre: 'Identificación Oficial', status: 'validado', fechaCarga: '2025-01-15', comentario: 'Documento verificado' },
+    { tipoDocumento: 'cSF', nombre: 'Constancia de Situación Fiscal', status: 'en_revision', fechaCarga: '2025-01-10', comentario: 'Datos no legibles' },
+    { tipoDocumento: 'curp', nombre: 'CURP', status: 'no_cargado', fechaCarga: null },
+    { tipoDocumento: 'comprobanteDomicilio', nombre: 'Comprobante de Domicilio', status: 'validado', fechaCarga: '2025-01-12', comentario: 'Documento verificado' },
+    { tipoDocumento: 'estadoCuenta', nombre: 'Estado de Cuenta Bancario', status: 'rechazado', fechaCarga: '2025-01-08', comentario: 'Los datos no coinciden' }
+  ]);
 
   // Redirigir si no está logueado
   useEffect(() => {
@@ -72,6 +88,7 @@ const Perfil = () => {
       fetchGarantias();
     }
   }, [isLoggedIn, getToken]);
+
 
   // Cargar ofertas del usuario
   useEffect(() => {
@@ -134,6 +151,42 @@ const Perfil = () => {
     }
   }, [isLoggedIn, user, activeTab, getToken]);
 
+  // Cargar archivos cargados del usuario
+  useEffect(() => {
+    const fetchArchivos = async () => {
+      const token = getToken();
+      if (!token) return;
+
+      setLoadingArchivos(true);
+      try {
+        const response = await fetch(buildUrl('/api/FilesComprador/GetDocumentos/'), {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const archivosArray = Array.isArray(data) ? data : [];
+
+          // Construir URL de descarga para cada archivo
+          const archivosConUrl = archivosArray.map(archivo => ({
+            ...archivo,
+            downloadUrl: buildUrl(`/api/FilesComprador/DownloadFile/${archivo.compradorDocumentoID}`)
+          }));
+
+          setArchivosCargados(archivosConUrl);
+        }
+      } catch (err) {
+        console.error('Error fetching archivos:', err);
+      } finally {
+        setLoadingArchivos(false);
+      }
+    };
+
+    if (isLoggedIn && activeTab === 'documentos') {
+      fetchArchivos();
+    }
+  }, [isLoggedIn, activeTab, getToken]);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
       style: 'currency',
@@ -155,6 +208,75 @@ const Perfil = () => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     navigate(`/perfil?tab=${tab}`, { replace: true });
+  };
+
+  const handleDocumentoUpload = async (nombre, file) => {
+    if (!file || !nombre) return;
+
+    const token = getToken();
+    if (!token) return;
+
+    setUploadingDoc(nombre);
+
+    try {
+      const formData = new FormData();
+      formData.append('nombre', nombre);
+      formData.append('file', file);
+
+      const response = await fetch(buildUrl('/api/FilesComprador/PostDocumento'), {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` },
+        body: formData
+      });
+
+      if (response.ok) {
+        const updatedRes = await fetch(buildUrl('/api/FilesComprador/GetDocumentos/'), {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (updatedRes.ok) {
+          const data = await updatedRes.json();
+          const archivosArray = Array.isArray(data) ? data : [];
+
+          const archivosConUrl = archivosArray.map(archivo => ({
+            ...archivo,
+            downloadUrl: buildUrl(`/api/FilesComprador/DownloadFile/${archivo.compradorDocumentoID}`)
+          }));
+
+          setArchivosCargados(archivosConUrl);
+        }
+      }
+    } catch (err) {
+      console.error('Error uploading:', err);
+    } finally {
+      setUploadingDoc(null);
+    }
+  };
+
+  const getDocumentosForPersona = (tipo) => {
+    if (tipo === 'fisica') {
+      return [
+        { id: 'identificacion', nombre: 'Identificación Oficial' },
+        { id: 'cSF', nombre: 'Constancia de Situación Fiscal' },
+        { id: 'curp', nombre: 'CURP' },
+        { id: 'comprobanteDomicilio', nombre: 'Comprobante de Domicilio' },
+        { id: 'estadoCuenta', nombre: 'Estado de Cuenta Bancario' }
+      ];
+    } else {
+      return [
+        { id: 'actaConstitutiva', nombre: 'Acta Constitutiva' },
+        { id: 'poderNotarial', nombre: 'Poder Notarial' },
+        { id: 'idApoderado', nombre: 'Identificación Oficial del Apoderado Legal' },
+        { id: 'cSF', nombre: 'Constancia de Situación Fiscal' },
+        { id: 'boletaRegistro', nombre: 'Boleta de Inscripción al Registro Público de Comercio' },
+        { id: 'comprobanteDomicilio', nombre: 'Comprobante de Domicilio' },
+        { id: 'estadoCuenta', nombre: 'Estado de Cuenta Bancario' }
+      ];
+    }
+  };
+
+  const getDocumentoStatus = (documentoId) => {
+    const doc = documentos.find(d => d.tipoDocumento === documentoId);
+    return doc?.status || 'no_cargado';
   };
 
   const getPropertyImage = (torre) => {
@@ -229,6 +351,13 @@ const Perfil = () => {
               <i className="fas fa-gavel"></i>
               Mis Ofertas
             </button>
+            <button
+              className={`st-perfil-tab ${activeTab === 'documentos' ? 'active' : ''}`}
+              onClick={() => handleTabChange('documentos')}
+            >
+              <i className="fas fa-file-contract"></i>
+              Mis Documentos
+            </button>
           </div>
         </div>
       </section>
@@ -257,7 +386,7 @@ const Perfil = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-6 mb-4">
+                {/* <div className="col-lg-6 mb-4">
                   <div className="st-perfil-card">
                     <h3><i className="fas fa-shield-alt"></i> Mi Garantía</h3>
                     {loadingGarantias ? (
@@ -285,7 +414,7 @@ const Perfil = () => {
                             </div>
                           </div>
                         )}
-                        {/* {garantias.length > 0 && (
+                        {garantias.length > 0 && (
                           <div className="st-garantias-list mt-3">
                             <h5>Historial de Garantías</h5>
                             {garantias.map((g, idx) => (
@@ -295,11 +424,11 @@ const Perfil = () => {
                               </div>
                             ))}
                           </div>
-                        )} */}
+                        )}
                       </>
                     )}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           )}
@@ -376,6 +505,80 @@ const Perfil = () => {
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {activeTab === 'documentos' && (
+            <div className="st-perfil-documentos">
+              {/* Formulario de carga simple */}
+              <div className="st-documentos-upload">
+                <h3 style={{color: 'var(--st-green)'}}><i className="fas fa-file-upload" style={{marginRight: '10px'}}></i> Mis Documentos</h3>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const nombre = document.getElementById('doc-nombre')?.value;
+                  const file = document.getElementById('doc-file')?.files?.[0];
+                  if (nombre && file) {
+                    handleDocumentoUpload(nombre, file);
+                    document.getElementById('doc-nombre').value = '';
+                    document.getElementById('doc-file').value = '';
+                  }
+                }} className="st-upload-form">
+                  <div className="st-form-group">
+                    <label htmlFor="doc-nombre">Nombre del Documento</label>
+                    <input type="text" id="doc-nombre" className="form-control" placeholder="Ej: Identificación oficial" required />
+                  </div>
+                  <div className="st-form-group">
+                    <label htmlFor="doc-file">Archivo</label>
+                    <input type="file" id="doc-file" className="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+                  </div>
+                  <button type="submit" className="st-property-btn" style={{width: '100%'}}><i className="fas fa-upload me-2"></i> Subir Documento</button>
+                </form>
+              </div>
+
+              {/* Lista de documentos cargados */}
+              <div className="st-documentos-list">
+                <h3 className="mt-4" style={{color: 'var(--st-green)'}}><i className="fas fa-file-contract" style={{marginRight: '10px'}}></i> Documentos Cargados</h3>
+                {loadingArchivos ? (
+                  <div className="text-center py-4">
+                    <div className="spinner-border spinner-border-sm" role="status">
+                      <span className="visually-hidden">Cargando...</span>
+                    </div>
+                  </div>
+                ) : archivosCargados.length === 0 ? (
+                  <p className="text-muted text-center py-4">No hay documentos cargados aún</p>
+                ) : (
+                  <div className="row mt-3">
+                    {archivosCargados.map((archivo, idx) => (
+                      <div key={idx} className="col-md-4 mb-3">
+                        <div className="card">
+                          <div className="card-body">
+                            <h6 className="card-title"><i className="fas fa-file"></i> {archivo.nombre || 'Sin nombre'}</h6>
+                            <button
+                              onClick={() => {
+                                const token = getToken();
+                                fetch(archivo.downloadUrl, {
+                                  headers: { 'Authorization': `Bearer ${token}` }
+                                })
+                                .then(res => res.blob())
+                                .then(blob => {
+                                  const url = window.URL.createObjectURL(blob);
+                                  const a = document.createElement('a');
+                                  a.href = url;
+                                  a.download = archivo.nombre + archivo.ext;
+                                  a.click();
+                                });
+                              }}
+                              className="btn btn-sm btn-primary"
+                            >
+                              <i className="fas fa-download"></i> Descargar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>

@@ -24,6 +24,7 @@ const Auth = () => {
     nombre: '',
     apellidos: '',
     email: '',
+    password: '',
     telefono: '',
     aceptaTerminos: false
   });
@@ -147,7 +148,7 @@ const Auth = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: registerData.email,
-          comoSeEntero: 'web',
+          password: registerData.password,
           nombre: registerData.nombre,
           apellidoPaterno: registerData.apellidos,
           telefono: registerData.telefono,
@@ -171,6 +172,7 @@ const Auth = () => {
         nombre: '',
         apellidos: '',
         email: '',
+        password: '',
         telefono: '',
         aceptaTerminos: false
       });
@@ -231,6 +233,22 @@ const Auth = () => {
                           value={loginData.email}
                           onChange={handleLoginChange}
                           placeholder="tu@email.com"
+                          required
+                        />
+                      </div>
+
+                      <div className="st-form-group">
+                        <label htmlFor="login-password" className="st-form-label">
+                          Contraseña <span className="required">*</span>
+                        </label>
+                        <input
+                          type="password"
+                          id="login-password"
+                          name="password"
+                          className="st-form-control"
+                          value={loginData.password}
+                          onChange={handleLoginChange}
+                          placeholder="Tu contraseña"
                           required
                         />
                       </div>
@@ -313,6 +331,22 @@ const Auth = () => {
                           value={registerData.email}
                           onChange={handleRegisterChange}
                           placeholder="tu@email.com"
+                          required
+                        />
+                      </div>
+
+                      <div className="st-form-group">
+                        <label htmlFor="register-email" className="st-form-label">
+                          Contraseña <span className="required">*</span>
+                        </label>
+                        <input
+                          type="password"
+                          id="register-password"
+                          name="password"
+                          className="st-form-control"
+                          value={registerData.password}
+                          onChange={handleRegisterChange}
+                          placeholder="Tu contraseña (mínimo 8 caracteres)"
                           required
                         />
                       </div>
@@ -407,7 +441,7 @@ const Auth = () => {
                       <li><i className="fas fa-file-contract"></i>Acta constitutiva de la empresa</li>
                       <li><i className="fas fa-stamp"></i>Poder notarial del representante</li>
                       <li><i className="fas fa-receipt"></i>Cédula fiscal de la empresa</li>
-                      <li><i className="fas fa-chart-line"></i>Estados financieros recientes</li>
+                      {/* <li><i className="fas fa-chart-line"></i>Estados financieros recientes</li> */}
                     </ul>
                   </div>
                 </div>

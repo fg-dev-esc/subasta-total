@@ -49,10 +49,14 @@
 }
 
 
+.navbar-brand {
+  overflow: visible;
+  z-index: 10;
+}
+
 .navbar-brand .logo-img {
-  max-height: 50px;
+  max-height: 80px;
   max-width: fit-content;
-  margin-top: 6px;
 }
 
 .header-btn .theme-btn {
