@@ -30,6 +30,8 @@ const Perfil = () => {
   const [uploadingDoc, setUploadingDoc] = useState(null);
   const [archivosCargados, setArchivosCargados] = useState([]);
   const [loadingArchivos, setLoadingArchivos] = useState(false);
+  const [puedeOfertar, setPuedeOfertar] = useState(null);
+  const [loadingPuedeOfertar, setLoadingPuedeOfertar] = useState(false);
 
   // Mock data para documentos
   const [documentos, setDocumentos] = useState([
@@ -150,6 +152,36 @@ const Perfil = () => {
       fetchOfertas();
     }
   }, [isLoggedIn, user, activeTab, getToken]);
+
+  // Cargar datos de puedo ofertar
+  useEffect(() => {
+    const fetchPuedeOfertar = async () => {
+      const token = getToken();
+      if (!token) return;
+
+      setLoadingPuedeOfertar(true);
+      try {
+        const response = await fetch(buildUrl('/api/Perfil/PuedeOfertar'), {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setPuedeOfertar(data);
+        } else {
+          setPuedeOfertar({ documentos: true, garantia: true, estaActivo: true });
+        }
+      } catch (err) {
+        setPuedeOfertar({ documentos: true, garantia: true, estaActivo: true });
+      } finally {
+        setLoadingPuedeOfertar(false);
+      }
+    };
+
+    if (isLoggedIn && activeTab === 'datos') {
+      fetchPuedeOfertar();
+    }
+  }, [isLoggedIn, activeTab, getToken]);
 
   // Cargar archivos cargados del usuario
   useEffect(() => {
@@ -386,49 +418,51 @@ const Perfil = () => {
                   </div>
                 </div>
 
-                {/* <div className="col-lg-6 mb-4">
+                <div className="col-lg-6 mb-4">
                   <div className="st-perfil-card">
-                    <h3><i className="fas fa-shield-alt"></i> Mi Garantía</h3>
-                    {loadingGarantias ? (
+                    <h3><i className="fas fa-check-double"></i> Puedo Ofertar</h3>
+                    {loadingPuedeOfertar ? (
                       <div className="text-center py-3">
                         <div className="spinner-border spinner-border-sm" role="status">
                           <span className="visually-hidden">Cargando...</span>
                         </div>
                       </div>
-                    ) : (
-                      <>
-                        {tipoGarantia && (
-                          <div className="st-garantia-info">
-                            <div className="st-garantia-badge">
-                              <span className="st-garantia-nivel">{tipoGarantia.tipoGarantia?.nombre || 'Sin garantía'}</span>
-                            </div>
-                            <div className="st-garantia-details">
-                              <div className="st-perfil-field">
-                                <label>Monto de Garantía</label>
-                                <p className="st-garantia-monto">{formatPrice(tipoGarantia.garantia || 0)}</p>
-                              </div>
-                              <div className="st-perfil-field">
-                                <label>Puedes ofertar hasta</label>
-                                <p>{formatPrice(tipoGarantia.tipoGarantia?.ofertarHasta || 0)}</p>
-                              </div>
-                            </div>
+                    ) : puedeOfertar ? (
+                      <div className="st-puedo-ofertar">
+                        <div className="st-estado-item" style={{marginBottom: '15px', padding: '10px', borderRadius: '4px'}}>
+                          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <span><i className="fas fa-shield-alt"></i> Garantía</span>
+                            {puedeOfertar.garantia ? (
+                              <span style={{color: '#28a745'}}><i className="fas fa-check-circle"></i> Validado</span>
+                            ) : (
+                              <span style={{color: '#ffc107'}}><i className="fas fa-exclamation-circle"></i> Pendiente</span>
+                            )}
                           </div>
-                        )}
-                        {garantias.length > 0 && (
-                          <div className="st-garantias-list mt-3">
-                            <h5>Historial de Garantías</h5>
-                            {garantias.map((g, idx) => (
-                              <div key={idx} className="st-garantia-item">
-                                <span className="st-garantia-descripcion">{g.descipcion}</span>
-                                <span className="st-garantia-monto-sm">{formatPrice(g.monto)}</span>
-                              </div>
-                            ))}
+                        </div>
+                        <div className="st-estado-item" style={{marginBottom: '15px', padding: '10px', borderRadius: '4px'}}>
+                          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <span><i className="fas fa-file-contract"></i> Documentos</span>
+                            {puedeOfertar.documentos ? (
+                              <span style={{color: '#28a745'}}><i className="fas fa-check-circle"></i> Validado</span>
+                            ) : (
+                              <span style={{color: '#ffc107'}}><i className="fas fa-exclamation-circle"></i> Pendiente</span>
+                            )}
                           </div>
-                        )}
-                      </>
-                    )}
+                        </div>
+                        <div className="st-estado-item" style={{padding: '10px', borderRadius: '4px'}}>
+                          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <span><i className="fas fa-check"></i> Activo</span>
+                            {puedeOfertar.estaActivo ? (
+                              <span style={{color: '#28a745'}}><i className="fas fa-check-circle"></i> Validado</span>
+                            ) : (
+                              <span style={{color: '#ffc107'}}><i className="fas fa-exclamation-circle"></i> Pendiente</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           )}
