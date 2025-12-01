@@ -80,6 +80,7 @@
   position: relative;
   left: 0;
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .footer-newsletter .form-control {
