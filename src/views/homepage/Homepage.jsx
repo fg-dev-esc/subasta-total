@@ -131,9 +131,9 @@ const Homepage = () => {
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="st-hero-content">
-                  <div className="st-hero-sub-title">
+                  {/* <div className="st-hero-sub-title">
                     Primera plataforma online en México
-                  </div>
+                  </div> */}
                   <h1 className="st-hero-title">
                     Somos expertos en <span>subastas</span>
                   </h1>

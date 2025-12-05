@@ -192,23 +192,23 @@ const Auth = () => {
       <section className="st-auth-forms-section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-6">
+            <div className={`${activeTab === 'register' ? 'col-lg-10' : 'col-lg-6'}`}>
               <div className="st-auth-forms-card">
                 {/* Tabs */}
                 <div className="st-auth-tabs">
-                  <button 
-                    className={`st-auth-tab ${activeTab === 'login' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('login')}
-                  >
-                    <i className="fas fa-sign-in-alt"></i>
-                    Iniciar Sesión
-                  </button>
-                  <button 
+                  <button
                     className={`st-auth-tab ${activeTab === 'register' ? 'active' : ''}`}
                     onClick={() => setActiveTab('register')}
                   >
                     <i className="fas fa-user-plus"></i>
                     Registrarse
+                  </button>
+                  <button
+                    className={`st-auth-tab ${activeTab === 'login' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('login')}
+                  >
+                    <i className="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
                   </button>
                 </div>
 
@@ -280,8 +280,10 @@ const Auth = () => {
                       <i className="fas fa-user-plus"></i>
                       Crear nueva cuenta
                     </h3>
-                    
-                    <form onSubmit={handleRegisterSubmit} className="st-auth-form">
+
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <form onSubmit={handleRegisterSubmit} className="st-auth-form">
                       <div className="row">
                         <div className="col-md-6">
                           <div className="st-form-group">
@@ -401,6 +403,49 @@ const Auth = () => {
                       </button>
                     </form>
                   </div>
+
+                  <div className="col-lg-6">
+                    <div className="st-register-info-panel">
+                      <div className="st-register-next-steps">
+                        <h4 className="st-info-panel-title">
+                          <i className="fas fa-list-check"></i>
+                          Próximos Pasos
+                        </h4>
+                        <p className="st-next-steps-intro">Para completar su perfil y poder participar en las subastas, deberá:</p>
+                        <ul className="st-next-steps-list">
+                          <li>Completar sus datos personales</li>
+                          <li>Cargar la documentación requerida</li>
+                          <li>Efectuar pago de garantía</li>
+                          <li>Esperar la validación de nuestro equipo</li>
+                        </ul>
+                      </div>
+
+                      <div className="st-register-docs-info">
+                        <h4 className="st-info-panel-title">
+                          <i className="fas fa-file-alt"></i>
+                          Documentación Requerida
+                        </h4>
+
+                        <h5 className="st-docs-subtitle">Personas Físicas</h5>
+                        <ul className="st-docs-list">
+                          <li><i className="fas fa-id-card"></i>Identificación oficial</li>
+                          <li><i className="fas fa-file-invoice-dollar"></i>Constancia de Situación Fiscal</li>
+                          <li><i className="fas fa-home"></i>Comprobante de domicilio</li>
+                          <li><i className="fas fa-university"></i>Estado de cuenta bancario</li>
+                        </ul>
+
+                        <h5 className="st-docs-subtitle">Personas Morales</h5>
+                        <ul className="st-docs-list">
+                          <li><i className="fas fa-user-tie"></i>Identificación del apoderado</li>
+                          <li><i className="fas fa-file-contract"></i>Acta constitutiva</li>
+                          <li><i className="fas fa-stamp"></i>Poder notarial</li>
+                          <li><i className="fas fa-receipt"></i>Cédula fiscal</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  </div>
                 )}
 
                 {/* Submit Message */}
@@ -409,42 +454,6 @@ const Auth = () => {
                     {submitMessage}
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Información de Registro */}
-      <section className="st-auth-info-section">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-10">
-              <div className="st-auth-info-content">
-                <h3 className="st-auth-info-title">
-                  ¿Qué necesitarás para registrarte?
-                </h3>
-                <div className="row">
-                  <div className="col-lg-6">
-                    <h4 className="st-auth-info-subtitle">Personas Físicas</h4>
-                    <ul className="st-auth-requirements">
-                      <li><i className="fas fa-id-card"></i>Identificación oficial (INE, pasaporte o cédula)</li>
-                      <li><i className="fas fa-file-invoice-dollar"></i>Constancia de Situación Fiscal actualizada</li>
-                      <li><i className="fas fa-home"></i>Comprobante de domicilio (no mayor a 3 meses)</li>
-                      <li><i className="fas fa-university"></i>Estado de cuenta bancario (no mayor a 3 meses)</li>
-                    </ul>
-                  </div>
-                  <div className="col-lg-6">
-                    <h4 className="st-auth-info-subtitle">Personas Morales</h4>
-                    <ul className="st-auth-requirements">
-                      <li><i className="fas fa-user-tie"></i>Identificación del apoderado legal</li>
-                      <li><i className="fas fa-file-contract"></i>Acta constitutiva de la empresa</li>
-                      <li><i className="fas fa-stamp"></i>Poder notarial del representante</li>
-                      <li><i className="fas fa-receipt"></i>Cédula fiscal de la empresa</li>
-                      {/* <li><i className="fas fa-chart-line"></i>Estados financieros recientes</li> */}
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

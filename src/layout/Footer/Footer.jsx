@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="col-md-6 col-lg-2">
               <div className="footer-widget-box about-us">
                 <Link to="/" className="footer-logo">
-                  <img src="/assets/img/logo/subasta-total-footer.jpg" alt="Subasta Total" />
+                  <img src="/assets/img/logo/subasta-total.png" alt="Subasta Total" />
                 </Link>
                 <p className="mb-3">
                   Somos expertos en subastas

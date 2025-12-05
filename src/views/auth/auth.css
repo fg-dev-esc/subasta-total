@@ -149,7 +149,7 @@ Portal de acceso con formularios de login y registro
   background: transparent;
   font-size: 18px;
   font-weight: 600;
-  color: var(--st-gray-600);
+  color: var(--st-gray-500);
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -157,35 +157,46 @@ Portal de acceso con formularios de login y registro
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transform: scale(1);
 }
 
 .st-auth-tab:hover {
-  background: rgba(33, 80, 76, 0.05);
-  color: var(--st-green);
+  color: var(--st-gray-700);
+}
+
+.st-auth-tab:focus {
+  outline: none;
 }
 
 .st-auth-tab.active {
   color: var(--st-green);
-  background: rgba(33, 80, 76, 0.08);
-}
-
-.st-auth-tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-light) 100%);
+  transform: scale(1.12);
 }
 
 .st-auth-tab i {
   font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.st-auth-tab.active i {
+  transform: scale(1.3);
 }
 
 /* Form Container */
 .st-auth-form-container {
   padding: 50px 40px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .st-auth-form-title {
@@ -733,4 +744,122 @@ Portal de acceso con formularios de login y registro
 .st-animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Register Info Panel */
+.st-register-info-panel {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.st-info-panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--st-green);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.st-info-panel-title i {
+  font-size: 16px;
+  color: var(--st-green-light);
+}
+
+/* Next Steps Section */
+.st-register-next-steps {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(33, 80, 76, 0.03);
+  border-radius: var(--st-radius-lg);
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  flex: 0 0 auto;
+}
+
+.st-next-steps-intro {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--st-gray-700);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.st-next-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.st-next-steps-list li {
+  padding: 5px 0 5px 20px;
+  color: var(--st-gray-600);
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.st-next-steps-list li::before {
+  content: "•";
+  position: absolute;
+  left: 6px;
+  color: var(--st-green);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Docs Info Section */
+.st-register-docs-info {
+  padding: 20px;
+  background: rgba(33, 80, 76, 0.03);
+  border-radius: var(--st-radius-lg);
+  border: 1px solid rgba(33, 80, 76, 0.1);
+  flex: 1 1 auto;
+}
+
+.st-docs-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--st-green);
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.st-docs-subtitle:first-of-type {
+  margin-top: 0;
+}
+
+.st-docs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+
+.st-docs-list li {
+  padding: 4px 0;
+  color: var(--st-gray-600);
+  font-size: 12px;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.st-docs-list li i {
+  color: var(--st-green);
+  font-size: 13px;
+  width: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .st-register-info-panel {
+    padding-left: 0;
+    margin-top: 30px;
+  }
 }

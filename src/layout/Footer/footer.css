@@ -71,16 +71,21 @@
   margin-right: auto;
   margin-bottom: 15px;
   text-align: left;
+  overflow: visible;
+  height: 100px;
+  display: flex;
+  align-items: center;
 }
 
 .footer-logo img {
-  max-height: 100px;
-  max-width: 100%;
-  width: auto;
+  max-height: 140px;
+  max-width: fit-content !important;
+  width: auto !important;
   position: relative;
   left: 0;
   object-fit: contain;
   border-radius: 8px;
+  z-index: 10;
 }
 
 .footer-newsletter .form-control {
