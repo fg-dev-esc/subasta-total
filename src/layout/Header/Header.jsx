@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <header className="header fade-in-down">
       {/* top header */}
-      <div className="header-top">
+      {/* <div className="header-top">
         <div className="container">
           <div className="header-top-wrapper">
             <div className="header-top-left">
@@ -73,7 +73,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* main navigation */}
       <div className="main-navigation">
