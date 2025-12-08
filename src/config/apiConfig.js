@@ -26,6 +26,10 @@ export const API_CONFIG = {
     GET_GARANTIAS: '/api/CompradorGarantias/GetGarantias',
     GET_TIPO_GARANTIA: '/api/Garantias/GetTipoGarantia',
     GET_ADJUDICACIONES: '/api/InfoComprador/GetAdjudicaciones'
+  },
+
+  COMENTARIOS: {
+    ENVIAR: '/api/Comentarios'
   }
 };
 

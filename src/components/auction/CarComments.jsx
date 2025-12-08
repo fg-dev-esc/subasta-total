@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
 import { subscribeToAuction } from '../../utils/firebaseHelpers';
+import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import AuctionTimer from '../ui/AuctionTimer';
 import './carComments.css';
 
 const CarComments = ({ torreID, propertyData }) => {
-  const { user, isLoggedIn } = useSelector(state => state.user || {});
+  const { user, isLoggedIn, getToken } = useAuth();
   const { ofertas = [], ofertaMayor } = useSelector(state => state.auction || {});
 
   const [comentarios, setComentarios] = useState([]);
@@ -46,15 +48,41 @@ const CarComments = ({ torreID, propertyData }) => {
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
-    if (!newComment.trim()) return;
+
+    if (!user?.email) {
+      alert('Inicia sesión antes de enviar un comentario');
+      return;
+    }
+
+    if (!newComment.trim()) {
+      alert('Escribe un comentario');
+      return;
+    }
 
     setLoading(true);
     try {
-      // Aquí iría la lógica para enviar comentario a tu API
-      console.log('Enviando comentario:', newComment);
-      setNewComment('');
+      const token = getToken();
+      const response = await fetch(buildUrl(API_CONFIG.COMENTARIOS.ENVIAR), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          comentario: newComment.trim(),
+          torreID: torreID
+        })
+      });
+
+      if (response.ok) {
+        setNewComment('');
+        // Firebase se actualizará automáticamente y el useEffect recogerá el cambio
+      } else {
+        throw new Error('Error al enviar comentario');
+      }
     } catch (error) {
       console.error('Error al enviar comentario:', error);
+      alert('Error al enviar comentario. Inténtalo de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -128,7 +156,7 @@ const CarComments = ({ torreID, propertyData }) => {
             />
             <button
               type="submit"
-              className="st-submit-btn"
+              className="st-theme-btn"
               disabled={loading}
             >
               {loading ? (
@@ -138,7 +166,7 @@ const CarComments = ({ torreID, propertyData }) => {
                 </>
               ) : (
                 <>
-                  <i className="fas fa-paper-plane me-2"></i>
+                  <i className="far fa-paper-plane me-2"></i>
                   Enviar Comentario
                 </>
               )}

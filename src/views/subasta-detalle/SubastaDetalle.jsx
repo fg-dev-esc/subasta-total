@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../../db/firebase';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './subasta-detalle.css';
@@ -23,11 +25,71 @@ const SubastaDetalle = () => {
 
         // La respuesta es un array directo de torres
         const torresData = Array.isArray(data) ? data : (data.torres || []);
-        setTorres(torresData);
+
+        // Obtener las ofertas de cada torre
+        const torresConOfertas = await Promise.all(
+          torresData.map(async (torre) => {
+            try {
+              const ofertasResponse = await fetch(buildUrl(API_CONFIG.PUJAS.GET_PUJAS_TORRE(torre.torreID)));
+              const ofertas = await ofertasResponse.json();
+
+              // Encontrar la oferta mayor
+              let precioActual = torre.montoSalida || 0;
+              if (Array.isArray(ofertas) && ofertas.length > 0) {
+                const ofertasOrdenadas = ofertas.sort((a, b) => b.monto - a.monto);
+                precioActual = ofertasOrdenadas[0].monto;
+              }
+
+              return { ...torre, precioActual };
+            } catch (error) {
+              console.error(`Error fetching ofertas for torre ${torre.torreID}:`, error);
+              return { ...torre, precioActual: torre.montoSalida || 0 };
+            }
+          })
+        );
+
+        setTorres(torresConOfertas);
+        setLoading(false);
+
+        // Suscribirse a cambios en Firebase para cada torre
+        const unsubscribers = torresConOfertas.map((torre) => {
+          return onSnapshot(
+            doc(db, 'torres', torre.torreID),
+            (documento) => {
+              if (documento.exists()) {
+                const firebaseData = documento.data();
+                const pujas = firebaseData.pujas || [];
+
+                // Actualizar precio actual si hay nuevas ofertas
+                let nuevoPrecio = torre.montoSalida || 0;
+                if (pujas.length > 0) {
+                  const pujasOrdenadas = pujas.sort((a, b) => b.Monto - a.Monto);
+                  nuevoPrecio = pujasOrdenadas[0].Monto;
+                }
+
+                // Actualizar la torre en el estado
+                setTorres(prev =>
+                  prev.map(t =>
+                    t.torreID === torre.torreID
+                      ? { ...t, precioActual: nuevoPrecio, ofertas: pujas.length }
+                      : t
+                  )
+                );
+              }
+            },
+            (error) => {
+              console.error(`Error en suscripción Firebase para torre ${torre.torreID}:`, error);
+            }
+          );
+        });
+
+        // Cleanup: desuscribirse cuando el componente se desmonte
+        return () => {
+          unsubscribers.forEach(unsub => unsub());
+        };
       } catch (err) {
         setError('Error cargando los articulos de la subasta');
         console.error('Error fetching torres:', err);
-      } finally {
         setLoading(false);
       }
     };
@@ -43,6 +105,8 @@ const SubastaDetalle = () => {
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN',
       minimumFractionDigits: 0
     }).format(price);
   };
@@ -78,9 +142,7 @@ const SubastaDetalle = () => {
     return (
       <div className="subasta-detalle-page page-container">
         <div className="container text-center py-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
+          <div className="st-loading-spinner"></div>
           <p className="mt-3">Cargando artículos...</p>
         </div>
       </div>
@@ -185,10 +247,10 @@ const SubastaDetalle = () => {
                       <div className="st-property-specs-simple mb-3">
                         <div className="st-spec-simple">
                           <div className="st-spec-label">
-                            <span className="text-muted">Precio Inicial</span>
+                            <span className="text-muted">Precio Actual</span>
                           </div>
                           <div className="st-spec-value fw-bold text-success">
-                            $ {formatPrice(torre.montoSalida || 0)}
+                            {formatPrice(torre.precioActual || 0)}
                           </div>
                         </div>
                         <div className="st-spec-simple">

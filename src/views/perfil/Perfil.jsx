@@ -153,35 +153,37 @@ const Perfil = () => {
     }
   }, [isLoggedIn, user, activeTab, getToken]);
 
+  // Función para cargar datos de puedo ofertar
+  const fetchPuedeOfertar = async () => {
+    const token = getToken();
+    if (!token) return;
+
+    setLoadingPuedeOfertar(true);
+    try {
+      const response = await fetch(buildUrl('/api/Perfil/PuedeOfertar'), {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPuedeOfertar(data);
+      } else {
+        setPuedeOfertar({ documentos: false, garantia: false, estaActivo: false, datosCompletos: false });
+      }
+    } catch (err) {
+      console.error('Error al obtener estado de ofertar:', err);
+      setPuedeOfertar({ documentos: false, garantia: false, estaActivo: false, datosCompletos: false });
+    } finally {
+      setLoadingPuedeOfertar(false);
+    }
+  };
+
   // Cargar datos de puedo ofertar
   useEffect(() => {
-    const fetchPuedeOfertar = async () => {
-      const token = getToken();
-      if (!token) return;
-
-      setLoadingPuedeOfertar(true);
-      try {
-        const response = await fetch(buildUrl('/api/Perfil/PuedeOfertar'), {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setPuedeOfertar(data);
-        } else {
-          setPuedeOfertar({ documentos: true, garantia: true, estaActivo: true });
-        }
-      } catch (err) {
-        setPuedeOfertar({ documentos: true, garantia: true, estaActivo: true });
-      } finally {
-        setLoadingPuedeOfertar(false);
-      }
-    };
-
     if (isLoggedIn && activeTab === 'datos') {
       fetchPuedeOfertar();
     }
-  }, [isLoggedIn, activeTab, getToken]);
+  }, [isLoggedIn, activeTab]);
 
   // Cargar archivos cargados del usuario
   useEffect(() => {
@@ -420,7 +422,37 @@ const Perfil = () => {
 
                 <div className="col-lg-6 mb-4">
                   <div className="st-perfil-card">
-                    <h3><i className="fas fa-check-double"></i> Puedo Ofertar</h3>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px'}}>
+                      <h3 style={{margin: 0}}><i className="fas fa-check-double"></i> Puedo Ofertar</h3>
+                      <button
+                        onClick={fetchPuedeOfertar}
+                        disabled={loadingPuedeOfertar}
+                        className="btn btn-sm"
+                        style={{
+                          background: 'var(--st-green)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          padding: '8px 15px',
+                          fontSize: '13px',
+                          cursor: loadingPuedeOfertar ? 'not-allowed' : 'pointer',
+                          opacity: loadingPuedeOfertar ? 0.6 : 1,
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {loadingPuedeOfertar ? (
+                          <>
+                            <i className="fas fa-spinner fa-spin me-1"></i>
+                            Verificando...
+                          </>
+                        ) : (
+                          <>
+                            <i className="fas fa-sync-alt me-1"></i>
+                            Verificar
+                          </>
+                        )}
+                      </button>
+                    </div>
                     {loadingPuedeOfertar ? (
                       <div className="text-center py-3">
                         <div className="spinner-border spinner-border-sm" role="status">

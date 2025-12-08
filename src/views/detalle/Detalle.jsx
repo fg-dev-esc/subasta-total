@@ -244,9 +244,8 @@ const Detalle = () => {
     return (
       <div className="detalle-page page-container">
         <div className="container text-center py-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
-          </div>
+          <div className="st-loading-spinner"></div>
+          <p className="mt-3">Cargando detalles...</p>
         </div>
       </div>
     );

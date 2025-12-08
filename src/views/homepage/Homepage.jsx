@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../../db/firebase';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import { API_CONFIG, buildUrl } from '../../config/apiConfig';
 import './homepage.css';
@@ -10,7 +12,16 @@ const Homepage = () => {
   const [loading, setLoading] = useState(true);
   // useScrollTrigger(); // Disabled to check if this causes hero animation
 
-  // Fetch productos del API
+  // Función para formatear precios
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN',
+      minimumFractionDigits: 0
+    }).format(price);
+  };
+
+  // Fetch productos del API con sus ofertas y suscripción a Firebase
   useEffect(() => {
     const fetchProductos = async () => {
       try {
@@ -18,19 +29,67 @@ const Homepage = () => {
         const data = await response.json();
         const torres = Array.isArray(data) ? data : (data.torres || []);
 
-        // Repetir los productos 6 veces si hay menos de 6
-        const productosRepetidos = [];
-        for (let i = 0; i < 6; i++) {
-          if (torres.length > 0) {
-            productosRepetidos.push({
-              ...torres[i % torres.length],
-              displayId: `${torres[i % torres.length].torreID}-${i}`
-            });
-          }
-        }
+        // Obtener las ofertas de cada torre
+        const torresConOfertas = await Promise.all(
+          torres.map(async (torre) => {
+            try {
+              const ofertasResponse = await fetch(buildUrl(API_CONFIG.PUJAS.GET_PUJAS_TORRE(torre.torreID)));
+              const ofertas = await ofertasResponse.json();
 
-        setProductos(productosRepetidos);
+              // Encontrar la oferta mayor
+              let precioActual = torre.montoSalida || 0;
+              if (Array.isArray(ofertas) && ofertas.length > 0) {
+                const ofertasOrdenadas = ofertas.sort((a, b) => b.monto - a.monto);
+                precioActual = ofertasOrdenadas[0].monto;
+              }
+
+              return { ...torre, precioActual };
+            } catch (error) {
+              console.error(`Error fetching ofertas for torre ${torre.torreID}:`, error);
+              return { ...torre, precioActual: torre.montoSalida || 0 };
+            }
+          })
+        );
+
+        setProductos(torresConOfertas);
         setLoading(false);
+
+        // Suscribirse a cambios en Firebase para cada torre
+        const unsubscribers = torresConOfertas.map((torre) => {
+          return onSnapshot(
+            doc(db, 'torres', torre.torreID),
+            (documento) => {
+              if (documento.exists()) {
+                const firebaseData = documento.data();
+                const pujas = firebaseData.pujas || [];
+
+                // Actualizar precio actual si hay nuevas ofertas
+                let nuevoPrecio = torre.montoSalida || 0;
+                if (pujas.length > 0) {
+                  const pujasOrdenadas = pujas.sort((a, b) => b.Monto - a.Monto);
+                  nuevoPrecio = pujasOrdenadas[0].Monto;
+                }
+
+                // Actualizar el producto en el estado
+                setProductos(prev =>
+                  prev.map(p =>
+                    p.torreID === torre.torreID
+                      ? { ...p, precioActual: nuevoPrecio, ofertas: pujas.length }
+                      : p
+                  )
+                );
+              }
+            },
+            (error) => {
+              console.error(`Error en suscripción Firebase para torre ${torre.torreID}:`, error);
+            }
+          );
+        });
+
+        // Cleanup: desuscribirse cuando el componente se desmonte
+        return () => {
+          unsubscribers.forEach(unsub => unsub());
+        };
       } catch (error) {
         console.error('Error fetching productos:', error);
         setLoading(false);
@@ -183,7 +242,7 @@ const Homepage = () => {
           ) : productos.length > 0 ? (
             <div className="row mt-4">
               {productos.map((producto) => (
-                <div key={producto.displayId} className="col-md-6 col-lg-4 mb-4">
+                <div key={producto.torreID} className="col-md-6 col-lg-4 mb-4">
                   <div className="st-property-card">
                     <div className="st-property-image">
                       <img
@@ -195,7 +254,12 @@ const Homepage = () => {
                       </div>
                     </div>
                     <div className="st-property-content">
-                      <h4 className="st-property-title">{producto.nombre}</h4>
+                      <h4 className="st-property-title text-center">{producto.nombre}</h4>
+                      <div className="text-center my-3">
+                        <h5 className="text-success fw-bold">
+                          {formatPrice(producto.precioActual)}
+                        </h5>
+                      </div>
 
                       <div className="st-property-details">
                         <div className="st-property-detail">
