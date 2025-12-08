@@ -32,9 +32,6 @@ const CarImages = ({ propertyData, userBidStatus }) => {
 
   if (!propertyData) return null;
 
-  // Debug: ver si llega el userBidStatus
-  console.log('🎯 CarImages - userBidStatus:', userBidStatus);
-
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('es-MX', {
       style: 'currency',
@@ -122,8 +119,24 @@ const CarImages = ({ propertyData, userBidStatus }) => {
           </div>
         )}
 
-        {/* Badge dinámico - SOLO si el usuario va ganando */}
-        {userBidStatus?.isHighestBidder && (
+        {/* Badge dinámico según estado del usuario */}
+        {!userBidStatus && (
+          /* Usuario NO logueado */
+          <div className="st-user-bid-status-badge alert alert-info">
+            <div className="st-badge-content">
+              <div className="st-badge-header">
+                <i className="fas fa-user-plus"></i>
+                <strong>¡Completa tu registro!</strong>
+              </div>
+              <div className="st-badge-subtitle">
+                Regístrate para participar en esta subasta
+              </div>
+            </div>
+          </div>
+        )}
+
+        {userBidStatus && userBidStatus.isHighestBidder && (
+          /* Usuario va GANANDO */
           <div className="st-user-bid-status-badge alert alert-success">
             <div className="st-badge-content">
               <div className="st-badge-header">
@@ -137,6 +150,50 @@ const CarImages = ({ propertyData, userBidStatus }) => {
                 <span className="st-badge-label">Tu oferta</span>
                 <span className="st-badge-monto">
                   {formatCurrency(userBidStatus.userBidAmount)}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {userBidStatus && !userBidStatus.isHighestBidder && userBidStatus.hasUserBid && (
+          /* Usuario ofertó pero NO va ganando */
+          <div className="st-user-bid-status-badge alert alert-warning">
+            <div className="st-badge-content">
+              <div className="st-badge-header">
+                <i className="fas fa-exclamation-triangle"></i>
+                <strong>No vas ganando</strong>
+              </div>
+              <div className="st-badge-subtitle">
+                Tu oferta: {formatCurrency(userBidStatus.userBidAmount)}
+              </div>
+              <div className="st-badge-amount">
+                <span className="st-badge-label">Necesitas ofertar mínimo</span>
+                <span className="st-badge-monto">
+                  {formatCurrency(userBidStatus.currentHighest + 1000)}
+                </span>
+                <small className="d-block mt-1">
+                  (Te faltan {formatCurrency((userBidStatus.currentHighest + 1000) - userBidStatus.userBidAmount)})
+                </small>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {userBidStatus && !userBidStatus.hasUserBid && (
+          /* Usuario logueado pero NO ha ofertado */
+          <div className="st-user-bid-status-badge alert alert-primary">
+            <div className="st-badge-content">
+              <div className="st-badge-header">
+                <i className="fas fa-gavel"></i>
+                <strong>¡Haz tu primera oferta!</strong>
+              </div>
+              <div className="st-badge-subtitle">
+                Para llevar la delantera, ofrece mínimo
+              </div>
+              <div className="st-badge-amount">
+                <span className="st-badge-monto">
+                  {formatCurrency(userBidStatus.currentHighest + 1000)}
                 </span>
               </div>
             </div>

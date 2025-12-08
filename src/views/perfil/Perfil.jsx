@@ -481,7 +481,7 @@ const Perfil = () => {
                             )}
                           </div>
                         </div>
-                        <div className="st-estado-item" style={{padding: '10px', borderRadius: '4px'}}>
+                        <div className="st-estado-item" style={{marginBottom: '15px', padding: '10px', borderRadius: '4px'}}>
                           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                             <span><i className="fas fa-check"></i> Activo</span>
                             {puedeOfertar.estaActivo ? (
@@ -491,6 +491,45 @@ const Perfil = () => {
                             )}
                           </div>
                         </div>
+                        <div className="st-estado-item" style={{marginBottom: '20px', padding: '10px', borderRadius: '4px'}}>
+                          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                            <span><i className="fas fa-user-check"></i> Datos Completos</span>
+                            {puedeOfertar.datosCompletos ? (
+                              <span style={{color: '#28a745'}}><i className="fas fa-check-circle"></i> Validado</span>
+                            ) : (
+                              <span style={{color: '#ffc107'}}><i className="fas fa-exclamation-circle"></i> Pendiente</span>
+                            )}
+                          </div>
+                        </div>
+                        {puedeOfertar.garantia && puedeOfertar.documentos && puedeOfertar.estaActivo && puedeOfertar.datosCompletos ? (
+                          <div style={{
+                            background: '#28a745',
+                            color: 'white',
+                            padding: '15px',
+                            borderRadius: '8px',
+                            textAlign: 'center',
+                            fontWeight: 'bold',
+                            fontSize: '16px',
+                            marginTop: '10px'
+                          }}>
+                            <i className="fas fa-gavel me-2"></i>
+                            Puede Ofertar
+                          </div>
+                        ) : (
+                          <div style={{
+                            background: '#dc3545',
+                            color: 'white',
+                            padding: '15px',
+                            borderRadius: '8px',
+                            textAlign: 'center',
+                            fontWeight: 'bold',
+                            fontSize: '16px',
+                            marginTop: '10px'
+                          }}>
+                            <i className="fas fa-times-circle me-2"></i>
+                            AÚN NO PUEDES OFERTAR
+                          </div>
+                        )}
                       </div>
                     ) : null}
                   </div>

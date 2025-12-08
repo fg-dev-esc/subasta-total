@@ -48,9 +48,43 @@ const Detalle = () => {
   const [showBidModal, setShowBidModal] = useState(false);
   const [subastaId, setSubastaId] = useState(null);
   const [bidError, setBidError] = useState('');
+  const [puedeOfertar, setPuedeOfertar] = useState(null);
+  const [loadingPuedeOfertar, setLoadingPuedeOfertar] = useState(false);
 
   // Hook para detectar si usuario va ganando
   const userBidStatus = useUserBidStatus(id);
+
+  // Verificar si el usuario puede ofertar
+  useEffect(() => {
+    const fetchPuedeOfertar = async () => {
+      if (!isLoggedIn) {
+        setPuedeOfertar(null);
+        return;
+      }
+
+      setLoadingPuedeOfertar(true);
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(buildUrl('/api/Perfil/PuedeOfertar'), {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setPuedeOfertar(data);
+        } else {
+          setPuedeOfertar({ documentos: false, garantia: false, estaActivo: false, datosCompletos: false });
+        }
+      } catch (err) {
+        console.error('Error al verificar si puede ofertar:', err);
+        setPuedeOfertar({ documentos: false, garantia: false, estaActivo: false, datosCompletos: false });
+      } finally {
+        setLoadingPuedeOfertar(false);
+      }
+    };
+
+    fetchPuedeOfertar();
+  }, [isLoggedIn]);
 
   // Cargar datos iniciales de la torre desde API
   useEffect(() => {
@@ -221,6 +255,13 @@ const Detalle = () => {
     }
   };
 
+  // Verificar si cumple todos los requisitos para ofertar
+  const cumpleRequisitos = puedeOfertar &&
+    puedeOfertar.garantia &&
+    puedeOfertar.documentos &&
+    puedeOfertar.estaActivo &&
+    puedeOfertar.datosCompletos;
+
   if (error || (!loading && !propertyData)) {
     return (
       <div className="detalle-page page-container">
@@ -327,8 +368,21 @@ const Detalle = () => {
                               key={increment}
                               className="st-quick-bid-btn"
                               onClick={() => {
+                                if (!isLoggedIn) {
+                                  navigate('/auth?tab=login');
+                                  return;
+                                }
+                                if (!cumpleRequisitos) {
+                                  navigate('/perfil?tab=datos');
+                                  return;
+                                }
                                 setBidAmount(newBid.toString());
                                 setShowBidModal(true);
+                              }}
+                              disabled={isLoggedIn && !cumpleRequisitos}
+                              style={{
+                                opacity: isLoggedIn && !cumpleRequisitos ? 0.5 : 1,
+                                cursor: isLoggedIn && !cumpleRequisitos ? 'not-allowed' : 'pointer'
                               }}
                             >
                               +${increment.toLocaleString()}
@@ -354,9 +408,52 @@ const Detalle = () => {
                     </div>
 
                     <div className="st-property-actions">
+                      {isLoggedIn && !cumpleRequisitos && (
+                        <div
+                          onClick={() => navigate('/perfil?tab=datos')}
+                          style={{
+                            background: '#fff3cd',
+                            border: '1px solid #ffc107',
+                            borderRadius: '8px',
+                            padding: '12px',
+                            marginBottom: '15px',
+                            textAlign: 'center',
+                            color: '#856404',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#ffeaa7';
+                            e.currentTarget.style.transform = 'scale(1.02)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#fff3cd';
+                            e.currentTarget.style.transform = 'scale(1)';
+                          }}
+                        >
+                          <i className="fas fa-exclamation-triangle me-2"></i>
+                          <strong>Completa tu documentación</strong>
+                          <i className="fas fa-arrow-right ms-2"></i>
+                        </div>
+                      )}
                       <button
                         className="st-property-btn"
-                        onClick={() => setShowBidModal(true)}
+                        onClick={() => {
+                          if (!isLoggedIn) {
+                            navigate('/auth?tab=login');
+                            return;
+                          }
+                          if (!cumpleRequisitos) {
+                            navigate('/perfil?tab=datos');
+                            return;
+                          }
+                          setShowBidModal(true);
+                        }}
+                        disabled={isLoggedIn && !cumpleRequisitos}
+                        style={{
+                          opacity: isLoggedIn && !cumpleRequisitos ? 0.6 : 1,
+                          cursor: isLoggedIn && !cumpleRequisitos ? 'not-allowed' : 'pointer'
+                        }}
                       >
                         <i className="fas fa-gavel"></i>
                         Hacer Oferta Personalizada
