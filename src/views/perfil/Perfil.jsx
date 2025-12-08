@@ -423,7 +423,7 @@ const Perfil = () => {
                 <div className="col-lg-6 mb-4">
                   <div className="st-perfil-card">
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px'}}>
-                      <h3 style={{margin: 0}}><i className="fas fa-check-double"></i> Puedo Ofertar</h3>
+                      <h3 style={{margin: 0}}><i className="fas fa-check-double"></i>Estatus</h3>
                       <button
                         onClick={fetchPuedeOfertar}
                         disabled={loadingPuedeOfertar}
