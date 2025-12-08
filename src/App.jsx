@@ -11,6 +11,7 @@ import SubastaDetalle from './views/subasta-detalle/SubastaDetalle';
 import Detalle from './views/detalle/Detalle';
 import Auth from './views/auth/Auth';
 import Perfil from './views/perfil/Perfil';
+import TestFirebase from './pages/TestFirebase';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/test-firebase" element={<TestFirebase />} />
         </Routes>
       </Layout>
     </Router>

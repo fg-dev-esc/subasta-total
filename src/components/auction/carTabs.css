@@ -1,0 +1,73 @@
+.st-car-tabs-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.st-tabs-header {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 40px;
+}
+
+.st-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.st-tab-btn:hover {
+  color: var(--brand-primary, #21504c);
+  background: rgba(33, 80, 76, 0.05);
+}
+
+.st-tab-btn.active {
+  color: var(--brand-primary, #21504c);
+  border-bottom-color: var(--brand-primary, #21504c);
+  font-weight: 600;
+}
+
+.st-tab-btn i {
+  font-size: 18px;
+}
+
+.st-tabs-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+  .st-tabs-header {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .st-tabs-header::-webkit-scrollbar {
+    display: none;
+  }
+
+  .st-tab-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .st-tab-btn span {
+    white-space: nowrap;
+  }
+
+  .st-tabs-content {
+    padding: 20px;
+  }
+}

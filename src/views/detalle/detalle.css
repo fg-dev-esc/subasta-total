@@ -8,6 +8,18 @@
   background: var(--st-gray-100);
 }
 
+/* Homogeneizar redondeados en la vista detalle */
+.detalle-page .st-property-details-card,
+.detalle-page .st-oferta-actual,
+.detalle-page .st-quick-bids,
+.detalle-page .st-quick-bid-btn,
+.detalle-page .st-property-btn,
+.detalle-page .st-property-btn-outline,
+.detalle-page .st-info-item,
+.detalle-page .badge {
+  border-radius: var(--st-radius-lg);
+}
+
 .st-detalle-nav-section {
   padding: 20px 0;
   background: white;
@@ -59,10 +71,11 @@
   background: white;
   border-radius: var(--st-radius-lg);
   padding: 30px;
-  box-shadow: var(--st-shadow-md);
+  margin: 12px 0;
   height: 100% !important;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .st-property-header {
@@ -177,8 +190,8 @@
 
 /* Oferta Actual */
 .st-oferta-actual {
-  background: linear-gradient(135deg, var(--st-green) 0%, var(--st-green-dark) 100%);
-  color: var(--st-white);
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
   padding: 16px;
   border-radius: var(--st-radius-md);
   margin-bottom: 16px;
@@ -190,7 +203,7 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  opacity: 0.9;
+  color: #6c757d;
   margin-bottom: 4px;
 }
 
@@ -199,12 +212,13 @@
   font-size: 28px;
   font-weight: 700;
   line-height: 1.2;
+  color: var(--st-green, #28a745);
 }
 
 .st-oferta-user {
   display: block;
   font-size: 13px;
-  opacity: 0.8;
+  color: #6c757d;
   margin-top: 4px;
 }
 

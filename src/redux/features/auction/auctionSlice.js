@@ -65,7 +65,13 @@ const initialState = {
   loading: false,
   loadingOferta: false,
   error: null,
-  ofertaExitosa: null
+  ofertaExitosa: null,
+
+  // Firebase en tiempo real
+  fechaFin: null,
+  comentarios: [],
+  ofertaMayor: null, // { monto, usuario }
+  ofertasFirebase: [] // Todas las pujas de Firebase
 };
 
 const auctionSlice = createSlice({
@@ -80,6 +86,19 @@ const auctionSlice = createSlice({
     },
     resetAuction: (state) => {
       return initialState;
+    },
+    // Acciones para Firebase
+    setFechaFin: (state, action) => {
+      state.fechaFin = action.payload;
+    },
+    setOfertaMayor: (state, action) => {
+      state.ofertaMayor = action.payload;
+    },
+    setComentarios: (state, action) => {
+      state.comentarios = action.payload;
+    },
+    setOfertasFirebase: (state, action) => {
+      state.ofertasFirebase = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -123,5 +142,14 @@ const auctionSlice = createSlice({
   }
 });
 
-export const { clearOfertaExitosa, clearError, resetAuction } = auctionSlice.actions;
+export const {
+  clearOfertaExitosa,
+  clearError,
+  resetAuction,
+  setFechaFin,
+  setOfertaMayor,
+  setComentarios,
+  setOfertasFirebase
+} = auctionSlice.actions;
+
 export default auctionSlice.reducer;

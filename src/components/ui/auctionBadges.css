@@ -1,0 +1,59 @@
+/* Badge de estado - esquina superior izquierda */
+.st-auction-status-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  border-radius: var(--st-radius-lg);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+}
+
+.st-auction-status-badge.active {
+  background: #28a745;
+  color: white;
+}
+
+.st-auction-status-badge.inactive {
+  background: #6c757d;
+  color: white;
+}
+
+/* Badge de timer - esquina superior derecha */
+.st-auction-timer-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border-radius: var(--st-radius-lg);
+  background: #dc3545;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .st-auction-status-badge,
+  .st-auction-timer-badge {
+    font-size: 12px;
+    padding: 8px 14px;
+    top: 15px;
+  }
+
+  .st-auction-status-badge {
+    left: 15px;
+  }
+
+  .st-auction-timer-badge {
+    right: 15px;
+  }
+}

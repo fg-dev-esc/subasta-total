@@ -1,0 +1,221 @@
+.st-car-comments h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #212529;
+}
+
+/* Estadísticas de subasta */
+.st-auction-stats {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.st-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.st-stats-row:last-child {
+  margin-bottom: 0;
+}
+
+.st-stats-row-border {
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.st-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.st-stat-item small {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.st-stat-item strong {
+  font-size: 16px;
+  color: #212529;
+}
+
+.st-stat-current-bid {
+  color: #0d6efd;
+}
+
+.st-stat-timer {
+  color: #dc3545;
+  font-weight: 700;
+}
+
+.st-stat-calculating {
+  color: #dc3545;
+}
+
+.st-timer-text {
+  color: #dc3545;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.st-stat-item .st-timer-text {
+  color: #dc3545 !important;
+}
+
+/* Formulario de comentarios */
+.st-comments-form {
+  margin-bottom: 40px;
+}
+
+.st-comments-form h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.st-comments-form .alert {
+  box-shadow: none;
+}
+
+.st-comment-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.st-comment-textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary, #21504c);
+}
+
+.st-submit-btn {
+  background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.st-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 202, 240, 0.3);
+}
+
+.st-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Lista de comentarios */
+.st-comments-list {
+  margin-top: 30px;
+}
+
+.st-comment-item {
+  display: flex;
+  gap: 20px;
+  padding: 25px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.st-comment-item:last-child {
+  border-bottom: none;
+}
+
+.st-comment-avatar {
+  flex-shrink: 0;
+}
+
+.st-comment-avatar i {
+  font-size: 50px;
+  color: #ffc107;
+  background: #fff3cd;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.st-comment-content {
+  flex: 1;
+}
+
+.st-comment-content h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #212529;
+}
+
+.st-comment-date {
+  color: #6c757d;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.st-comment-date i {
+  margin-right: 5px;
+}
+
+.st-comment-content p {
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.st-comment-reply {
+  color: var(--brand-primary, #21504c);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.st-comment-reply:hover {
+  color: #1a3f3b;
+  text-decoration: underline;
+}
+
+.st-comment-reply i {
+  margin-right: 5px;
+}
+
+/* Sin comentarios */
+.st-no-comments {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .st-stats-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .st-comment-item {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .st-comment-avatar i {
+    font-size: 40px;
+  }
+}

@@ -1,0 +1,58 @@
+.st-car-specifications h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #212529;
+}
+
+.st-car-specifications h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #495057;
+}
+
+.st-spec-description {
+  margin-bottom: 40px;
+}
+
+.st-spec-description p {
+  color: #6c757d;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.st-spec-list,
+.st-spec-additional {
+  margin-bottom: 40px;
+}
+
+.st-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.st-spec-item {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.st-spec-label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.st-spec-value {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .st-spec-grid {
+    grid-template-columns: 1fr;
+  }
+}

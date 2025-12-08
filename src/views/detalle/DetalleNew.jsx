@@ -185,17 +185,13 @@ const Detalle = () => {
   };
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'p.m.' : 'a.m.';
-    const hour12 = hours % 12 || 12;
-    const formattedHour = String(hour12).padStart(2, '0');
-
-    return `${day}/${month}/${year} ${formattedHour}:${minutes} ${ampm}`;
+    return new Date(dateString).toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   };
 
   const handleBidSubmit = async (e) => {
@@ -285,7 +281,7 @@ const Detalle = () => {
       </section>
 
       {/* Main Content */}
-      {/* <section className="st-detalle-content-section"> */}
+      <section className="st-detalle-content-section">
         <div className="container">
           <div className="row align-items-stretch">
             {/* Carrusel de imágenes con badges - Componente nuevo */}
@@ -310,11 +306,10 @@ const Detalle = () => {
                       </div>
                     )}
 
-                    {/* Precio Inicial - Comentado */}
-                    {/* <div className="st-property-pricing st-starting-price">
+                    <div className="st-property-pricing st-starting-price">
                       <span className="st-price-label">Precio Inicial</span>
                       <span className="st-price-amount">{formatPrice(propertyData.montoSalida || 0)}</span>
-                    </div> */}
+                    </div>
 
                     {/* Botones Rápidos de Oferta */}
                     <div className="st-quick-bids">
@@ -376,37 +371,15 @@ const Detalle = () => {
             </div>
           </div>
         </div>
-      {/* </section> */}
+      </section>
 
       {/* Tabs Section - Componente nuevo */}
       <CarTabs propertyData={propertyData} torreID={id} />
 
       {/* Bid Modal */}
       {showBidModal && (
-        <div
-          className="modal show d-block"
-          tabIndex="-1"
-          style={{
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            position: 'fixed',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: 1055,
-            overflowY: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem 1rem'
-          }}
-        >
-          <div
-            className="modal-dialog modal-dialog-centered"
-            style={{ maxWidth: '500px', margin: '0 auto', width: '90%' }}
-          >
+        <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Realizar Oferta</h5>
