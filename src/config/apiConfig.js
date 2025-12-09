@@ -1,8 +1,5 @@
-// API Configuration
-// Centraliza las URLs y endpoints probados
-
 export const API_CONFIG = {
-  BASE_URL: 'https://prod1-backend.subastatotal.com.mx',
+  BASE_URL: import.meta.env.VITE_API_URL,
 
   AUTH: {
     REGISTRO: '/api/Actions/RegistroComprador',
