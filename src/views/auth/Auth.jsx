@@ -380,7 +380,7 @@ const Auth = () => {
                             required
                           />
                           <span className="st-checkbox-text">
-                            Acepto los <a href="#" className="st-link">términos y condiciones</a> y la <a href="#" className="st-link">política de privacidad</a>
+                            Acepto los <a href="https://subastatotalprod.blob.core.windows.net/generico/Terminos%20y%20Condiciones%20Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">términos y condiciones</a> y la <a href="https://subastatotalprod.blob.core.windows.net/generico/Aviso_Privacidad_Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">política de privacidad</a>
                           </span>
                         </label>
                       </div>
