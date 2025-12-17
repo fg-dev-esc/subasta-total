@@ -615,74 +615,194 @@ const Perfil = () => {
 
           {activeTab === 'documentos' && (
             <div className="st-perfil-documentos">
-              {/* Formulario de carga simple */}
-              <div className="st-documentos-upload">
-                <h3 style={{color: 'var(--st-green)'}}><i className="fas fa-file-upload" style={{marginRight: '10px'}}></i> Mis Documentos</h3>
-                <form onSubmit={(e) => {
-                  e.preventDefault();
-                  const nombre = document.getElementById('doc-nombre')?.value;
-                  const file = document.getElementById('doc-file')?.files?.[0];
-                  if (nombre && file) {
-                    handleDocumentoUpload(nombre, file);
-                    document.getElementById('doc-nombre').value = '';
-                    document.getElementById('doc-file').value = '';
-                  }
-                }} className="st-upload-form">
-                  <div className="st-form-group">
-                    <label htmlFor="doc-nombre">Nombre del Documento</label>
-                    <input type="text" id="doc-nombre" className="form-control" placeholder="Ej: Identificación oficial" required />
-                  </div>
-                  <div className="st-form-group">
-                    <label htmlFor="doc-file">Archivo</label>
-                    <input type="file" id="doc-file" className="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-                  </div>
-                  <button type="submit" className="st-property-btn" style={{width: '100%'}}><i className="fas fa-upload me-2"></i> Subir Documento</button>
-                </form>
-              </div>
-
-              {/* Lista de documentos cargados */}
-              <div className="st-documentos-list">
-                <h3 className="mt-4" style={{color: 'var(--st-green)'}}><i className="fas fa-file-contract" style={{marginRight: '10px'}}></i> Documentos Cargados</h3>
-                {loadingArchivos ? (
-                  <div className="text-center py-4">
-                    <div className="spinner-border spinner-border-sm" role="status">
-                      <span className="visually-hidden">Cargando...</span>
+              {/* Fila superior: Documentos Requeridos y Formulario de Carga */}
+              <div className="row mb-4">
+                {/* Columna Izquierda: Documentos Requeridos */}
+                <div className="col-lg-6 mb-4 mb-lg-0">
+                  <div className="st-perfil-card">
+                    <h3 style={{color: 'var(--st-green)', marginBottom: '20px'}}>
+                      <i className="fas fa-file-check" style={{marginRight: '10px'}}></i>
+                      Documentos Requeridos
+                    </h3>
+                    <div className="st-docs-required-list">
+                      {tipoPersona === 'fisica' ? (
+                        <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-id-card" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Identificación Oficial</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-file-invoice-dollar" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Constancia de Situación Fiscal</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-home" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Comprobante de Domicilio</span>
+                          </li>
+                          <li style={{padding: '12px 0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-university" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Estado de Cuenta Bancario</span>
+                          </li>
+                        </ul>
+                      ) : (
+                        <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-user-tie" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Identificación del Apoderado Legal</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-file-contract" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Acta Constitutiva</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-stamp" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Poder Notarial</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-receipt" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Cédula Fiscal</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-file-invoice-dollar" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Constancia de Situación Fiscal</span>
+                          </li>
+                          <li style={{padding: '12px 0', borderBottom: '1px solid #e0e0e0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-home" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Comprobante de Domicilio</span>
+                          </li>
+                          <li style={{padding: '12px 0', display: 'flex', alignItems: 'center'}}>
+                            <i className="fas fa-university" style={{color: 'var(--st-green)', marginRight: '12px', minWidth: '20px', fontSize: '18px'}}></i>
+                            <span style={{fontSize: '15px'}}>Estado de Cuenta Bancario</span>
+                          </li>
+                        </ul>
+                      )}
                     </div>
                   </div>
-                ) : archivosCargados.length === 0 ? (
-                  <p className="text-muted text-center py-4">No hay documentos cargados aún</p>
-                ) : (
-                  <div className="row mt-3">
-                    {archivosCargados.map((archivo, idx) => (
-                      <div key={idx} className="col-md-4 mb-3">
-                        <div className="card">
-                          <div className="card-body">
-                            <h6 className="card-title"><i className="fas fa-file"></i> {archivo.nombre || 'Sin nombre'}</h6>
-                            <button
-                              onClick={() => {
-                                const token = getToken();
-                                fetch(archivo.downloadUrl, {
-                                  headers: { 'Authorization': `Bearer ${token}` }
-                                })
-                                .then(res => res.blob())
-                                .then(blob => {
-                                  const url = window.URL.createObjectURL(blob);
-                                  const a = document.createElement('a');
-                                  a.href = url;
-                                  a.download = archivo.nombre + archivo.ext;
-                                  a.click();
-                                });
-                              }}
-                              className="btn btn-sm btn-primary"
-                            >
-                              <i className="fas fa-download"></i> Descargar
-                            </button>
-                          </div>
+                </div>
+
+                {/* Columna Derecha: Formulario de Carga */}
+                <div className="col-lg-6">
+                  <div className="st-perfil-card">
+                    <h3 style={{color: 'var(--st-green)', marginBottom: '20px'}}>
+                      <i className="fas fa-file-upload" style={{marginRight: '10px'}}></i>
+                      Subir Documentos
+                    </h3>
+                    <form onSubmit={(e) => {
+                      e.preventDefault();
+                      const nombre = document.getElementById('doc-nombre')?.value;
+                      const file = document.getElementById('doc-file')?.files?.[0];
+                      if (nombre && file) {
+                        handleDocumentoUpload(nombre, file);
+                        document.getElementById('doc-nombre').value = '';
+                        document.getElementById('doc-file').value = '';
+                      }
+                    }} className="st-upload-form">
+                      <div className="st-form-group" style={{marginBottom: '20px'}}>
+                        <label htmlFor="doc-nombre" style={{display: 'block', marginBottom: '8px', fontWeight: '500'}}>Nombre del Documento</label>
+                        <input
+                          type="text"
+                          id="doc-nombre"
+                          className="form-control"
+                          placeholder="Ej: Identificación oficial"
+                          required
+                          style={{padding: '10px', fontSize: '14px'}}
+                        />
+                      </div>
+                      <div className="st-form-group" style={{marginBottom: '20px'}}>
+                        <label htmlFor="doc-file" style={{display: 'block', marginBottom: '8px', fontWeight: '500'}}>Archivo</label>
+                        <input
+                          type="file"
+                          id="doc-file"
+                          className="form-control"
+                          accept=".pdf,.jpg,.jpeg,.png"
+                          required
+                          style={{padding: '10px', fontSize: '14px'}}
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="st-property-btn"
+                        style={{width: '100%', padding: '12px', fontSize: '16px'}}
+                        disabled={uploadingDoc}
+                      >
+                        {uploadingDoc ? (
+                          <>
+                            <i className="fas fa-spinner fa-spin me-2"></i>
+                            Subiendo...
+                          </>
+                        ) : (
+                          <>
+                            <i className="fas fa-upload me-2"></i>
+                            Guardar documento
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fila inferior: Documentos Cargados - Ancho completo */}
+              <div className="row">
+                <div className="col-12">
+                  <div className="st-perfil-card">
+                    <h3 style={{color: 'var(--st-green)', marginBottom: '20px'}}>
+                      <i className="fas fa-file-contract" style={{marginRight: '10px'}}></i>
+                      Documentos Cargados
+                    </h3>
+                    {loadingArchivos ? (
+                      <div className="text-center py-4">
+                        <div className="spinner-border spinner-border-sm" role="status">
+                          <span className="visually-hidden">Cargando...</span>
                         </div>
                       </div>
-                    ))}
+                    ) : archivosCargados.length === 0 ? (
+                      <div className="text-center py-5" style={{color: '#6c757d'}}>
+                        <i className="fas fa-folder-open" style={{fontSize: '48px', marginBottom: '15px', opacity: 0.5}}></i>
+                        <p style={{fontSize: '16px', margin: 0}}>No hay documentos cargados aún</p>
+                      </div>
+                    ) : (
+                      <div className="row">
+                        {archivosCargados.map((archivo, idx) => (
+                          <div key={idx} className="col-md-6 col-lg-4 mb-3">
+                            <div className="card h-100" style={{border: '1px solid #e0e0e0', borderRadius: '8px', transition: 'all 0.3s ease'}}>
+                              <div className="card-body" style={{padding: '20px'}}>
+                                <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
+                                  <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                    <i className="fas fa-file-pdf" style={{fontSize: '24px', color: 'var(--st-green)'}}></i>
+                                    <span style={{fontSize: '15px', fontWeight: '500', flex: 1, wordBreak: 'break-word'}}>
+                                      {archivo.nombre || 'Sin nombre'}
+                                    </span>
+                                  </div>
+                                  <button
+                                    onClick={() => {
+                                      const token = getToken();
+                                      fetch(archivo.downloadUrl, {
+                                        headers: { 'Authorization': `Bearer ${token}` }
+                                      })
+                                      .then(res => res.blob())
+                                      .then(blob => {
+                                        const url = window.URL.createObjectURL(blob);
+                                        const a = document.createElement('a');
+                                        a.href = url;
+                                        a.download = archivo.nombre + archivo.ext;
+                                        a.click();
+                                      });
+                                    }}
+                                    className="btn btn-sm btn-primary"
+                                    style={{width: '100%', padding: '8px 12px'}}
+                                  >
+                                    <i className="fas fa-download me-2"></i> Descargar
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           )}

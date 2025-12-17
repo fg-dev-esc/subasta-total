@@ -26,7 +26,8 @@ const Auth = () => {
     email: '',
     password: '',
     telefono: '',
-    aceptaTerminos: false
+    aceptaTerminos: false,
+    aceptaPrivacidad: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -139,6 +140,11 @@ const Auth = () => {
       return;
     }
 
+    if (!registerData.aceptaPrivacidad) {
+      setSubmitMessage('Debes aceptar la política de privacidad.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitMessage('');
 
@@ -174,7 +180,8 @@ const Auth = () => {
         email: '',
         password: '',
         telefono: '',
-        aceptaTerminos: false
+        aceptaTerminos: false,
+        aceptaPrivacidad: false
       });
 
       // Redirigir al usuario después de registro exitoso
@@ -371,8 +378,8 @@ const Auth = () => {
 
                       <div className="st-form-group">
                         <label className="st-checkbox-label">
-                          <input 
-                            type="checkbox" 
+                          <input
+                            type="checkbox"
                             className="st-checkbox"
                             name="aceptaTerminos"
                             checked={registerData.aceptaTerminos}
@@ -380,7 +387,23 @@ const Auth = () => {
                             required
                           />
                           <span className="st-checkbox-text">
-                            Acepto los <a href="https://subastatotalprod.blob.core.windows.net/generico/Terminos%20y%20Condiciones%20Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">términos y condiciones</a> y la <a href="https://subastatotalprod.blob.core.windows.net/generico/Aviso_Privacidad_Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">política de privacidad</a>
+                            Acepto los <a href="https://subastatotalprod.blob.core.windows.net/generico/Terminos%20y%20Condiciones%20Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">términos y condiciones</a>
+                          </span>
+                        </label>
+                      </div>
+
+                      <div className="st-form-group">
+                        <label className="st-checkbox-label">
+                          <input
+                            type="checkbox"
+                            className="st-checkbox"
+                            name="aceptaPrivacidad"
+                            checked={registerData.aceptaPrivacidad}
+                            onChange={handleRegisterChange}
+                            required
+                          />
+                          <span className="st-checkbox-text">
+                            Acepto la <a href="https://subastatotalprod.blob.core.windows.net/generico/Aviso_Privacidad_Ok.pdf" className="st-link" target="_blank" rel="noopener noreferrer">política de privacidad</a>
                           </span>
                         </label>
                       </div>
