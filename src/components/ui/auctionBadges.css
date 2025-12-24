@@ -1,10 +1,146 @@
-/* Badge de estado - esquina superior izquierda */
+/* ============================================
+   BADGES DE SUBASTA - SISTEMA HOMOGÉNEO
+   Colores oficiales de Subasta Total
+   ============================================ */
+
+/* Variables de colores */
+:root {
+  --st-color-active: #21504c;   /* Verde oscuro Subasta Total */
+  --st-color-closed: #6c757d;   /* Gris para cerradas */
+  --st-color-timer: #dc3545;    /* Rojo para cuenta regresiva */
+  --st-badge-radius: 8px;
+}
+
+/* ============================================
+   BADGE DE ESTADO (ACTIVA / CERRADA)
+   ============================================ */
+
+.st-auction-badge {
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: var(--st-badge-radius);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Variante ACTIVA - Verde oscuro Subasta Total */
+.st-badge-active {
+  background: var(--st-color-active);
+  color: white;
+}
+
+/* Variante CERRADA - Gris */
+.st-badge-closed {
+  background: var(--st-color-closed);
+  color: white;
+}
+
+/* Posiciones del badge */
+.st-badge-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.st-badge-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.st-badge-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.st-badge-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Hover effect */
+.st-auction-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   TIMER DE CUENTA REGRESIVA
+   ============================================ */
+
+.st-auction-timer {
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: var(--st-badge-radius);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Timer para subasta ACTIVA - Rojo */
+.st-timer-active {
+  background: var(--st-color-timer);
+  color: white;
+  animation: pulse-timer 2s ease-in-out infinite;
+}
+
+/* Posiciones del timer */
+.st-timer-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.st-timer-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.st-timer-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.st-timer-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Animación de pulso sutil para el timer */
+@keyframes pulse-timer {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 16px rgba(220, 53, 69, 0.5);
+  }
+}
+
+/* Hover effect del timer */
+.st-auction-timer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* ============================================
+   ESTILOS LEGACY (compatibilidad)
+   ============================================ */
+
+/* Badge de estado antiguo - mantener para retrocompatibilidad */
 .st-auction-status-badge {
   position: absolute;
   top: 20px;
   left: 20px;
   padding: 8px 16px;
-  border-radius: var(--st-radius-lg);
+  border-radius: var(--st-badge-radius);
   font-weight: 700;
   font-size: 13px;
   display: flex;
@@ -14,23 +150,23 @@
 }
 
 .st-auction-status-badge.active {
-  background: #28a745;
+  background: var(--st-color-active);
   color: white;
 }
 
 .st-auction-status-badge.inactive {
-  background: #6c757d;
+  background: var(--st-color-closed);
   color: white;
 }
 
-/* Badge de timer - esquina superior derecha */
+/* Timer badge antiguo - mantener para retrocompatibilidad */
 .st-auction-timer-badge {
   position: absolute;
   top: 20px;
   right: 20px;
   padding: 8px 16px;
-  border-radius: var(--st-radius-lg);
-  background: #dc3545;
+  border-radius: var(--st-badge-radius);
+  background: var(--st-color-timer);
   color: white;
   font-weight: 700;
   font-size: 13px;
@@ -40,20 +176,68 @@
   z-index: 20;
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+
 @media (max-width: 768px) {
+  .st-auction-badge,
+  .st-auction-timer,
   .st-auction-status-badge,
   .st-auction-timer-badge {
-    font-size: 12px;
-    padding: 8px 14px;
-    top: 15px;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .st-badge-top-left,
+  .st-timer-top-left {
+    top: 12px;
+    left: 12px;
+  }
+
+  .st-badge-top-right,
+  .st-timer-top-right {
+    top: 12px;
+    right: 12px;
+  }
+
+  .st-badge-bottom-left,
+  .st-timer-bottom-left {
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .st-badge-bottom-right,
+  .st-timer-bottom-right {
+    bottom: 12px;
+    right: 12px;
   }
 
   .st-auction-status-badge {
-    left: 15px;
+    top: 12px;
+    left: 12px;
   }
 
   .st-auction-timer-badge {
-    right: 15px;
+    top: 12px;
+    right: 12px;
+  }
+
+  /* Reducir animación en móvil para mejor performance */
+  .st-timer-active {
+    animation: none;
+  }
+}
+
+/* ============================================
+   PRINT - Ocultar badges en impresión
+   ============================================ */
+
+@media print {
+  .st-auction-badge,
+  .st-auction-timer,
+  .st-auction-status-badge,
+  .st-auction-timer-badge {
+    display: none !important;
   }
 }

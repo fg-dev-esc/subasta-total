@@ -4,6 +4,8 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../db/firebase';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import { API_CONFIG, buildUrl } from '../../config/apiConfig';
+import AuctionBadge from '../../components/ui/AuctionBadge';
+import AuctionTimer from '../../components/ui/AuctionTimer';
 import './homepage.css';
 
 const Homepage = () => {
@@ -70,11 +72,19 @@ const Homepage = () => {
                   nuevoPrecio = pujasOrdenadas[0].Monto;
                 }
 
-                // Actualizar el producto en el estado
+                // Actualizar el producto en el estado con datos de Firebase
                 setProductos(prev =>
                   prev.map(p =>
                     p.torreID === torre.torreID
-                      ? { ...p, precioActual: nuevoPrecio, ofertas: pujas.length }
+                      ? {
+                          ...p,
+                          precioActual: nuevoPrecio,
+                          ofertas: pujas.length,
+                          // Datos para badges en tiempo real
+                          fechaFin: firebaseData.fechaFin,
+                          fechaInicio: firebaseData.fechaInicio,
+                          fueAdjudicado: firebaseData.fueAdjudicado
+                        }
                       : p
                   )
                 );
@@ -244,14 +254,16 @@ const Homepage = () => {
               {productos.map((producto) => (
                 <div key={producto.torreID} className="col-md-6 col-lg-4 mb-4">
                   <div className="st-property-card">
-                    <div className="st-property-image">
+                    <div className="st-property-image" style={{ position: 'relative' }}>
                       <img
                         src={producto.urlImgPrincipal}
                         alt={producto.nombre}
                       />
-                      <div className="st-property-status-badge">
-                        <span className="badge bg-success">{producto.ofertas} Ofertas</span>
-                      </div>
+                      {/* Badge de estado: ACTIVA / CERRADA */}
+                      <AuctionBadge torre={producto} position="top-left" />
+
+                      {/* Timer de cuenta regresiva (solo si activa) */}
+                      <AuctionTimer torre={producto} position="top-right" />
                     </div>
                     <div className="st-property-content">
                       <h4 className="st-property-title text-center">{producto.nombre}</h4>

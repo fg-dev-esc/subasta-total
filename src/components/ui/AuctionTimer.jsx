@@ -1,61 +1,75 @@
 import React, { useState, useEffect } from 'react';
+import { calculateTimeLeft, formatTimeLeft, isAuctionActive } from '../../utils/auctionHelpers';
 import './auctionBadges.css';
 
-const AuctionTimer = ({ endDate, displayMode = 'badge' }) => {
+/**
+ * Componente de cuenta regresiva para subastas activas
+ * Solo se muestra si la subasta está activa
+ * Color rojo (#dc3545) para indicar urgencia
+ *
+ * @param {Object} props
+ * @param {Object} props.torre - Datos de la torre desde Firebase/API
+ * @param {string} props.endDate - Fecha de fin (opcional, se usa torre.fechaFin si no se provee)
+ * @param {string} props.className - Clases CSS adicionales
+ * @param {string} props.position - Posición del timer ('top-right', 'top-left', etc.)
+ */
+const AuctionTimer = ({ torre, endDate, className = '', position = 'top-right' }) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
+    isExpired: false
   });
 
+  // Determinar la fecha de fin
+  const finalEndDate = endDate || torre?.fechaFin;
+
+  // Verificar si la subasta está activa
+  const isActive = torre ? isAuctionActive(torre) : false;
+
   useEffect(() => {
-    if (!endDate) return;
+    // Si no está activa o no hay fecha de fin, no hacer nada
+    if (!isActive || !finalEndDate) {
+      setTimeLeft({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        isExpired: true
+      });
+      return;
+    }
 
-    const calculateTimeLeft = () => {
-      const now = new Date().getTime();
-      const end = new Date(endDate).getTime();
-      const distance = end - now;
-
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
+    const updateTimer = () => {
+      const newTimeLeft = calculateTimeLeft(finalEndDate);
+      setTimeLeft(newTimeLeft);
     };
 
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    // Actualizar inmediatamente
+    updateTimer();
+
+    // Actualizar cada segundo
+    const timer = setInterval(updateTimer, 1000);
 
     return () => clearInterval(timer);
-  }, [endDate]);
+  }, [finalEndDate, isActive]);
 
-  const formatTime = () => {
-    if (timeLeft.days > 0) {
-      return `${timeLeft.days}d ${String(timeLeft.hours).padStart(2, '0')}:${String(timeLeft.minutes).padStart(2, '0')}:${String(timeLeft.seconds).padStart(2, '0')}`;
-    }
-    return `${String(timeLeft.hours).padStart(2, '0')}:${String(timeLeft.minutes).padStart(2, '0')}:${String(timeLeft.seconds).padStart(2, '0')}`;
-  };
-
-  // Si displayMode es 'text', solo retornar el texto con icono
-  if (displayMode === 'text') {
-    return (
-      <strong className="st-timer-text">
-        <i className="far fa-clock"></i> {formatTime()}
-      </strong>
-    );
+  // No mostrar si expiró o no está activa
+  if (timeLeft.isExpired || !isActive) {
+    return null;
   }
 
-  // Por defecto, mostrar el badge completo
+  const displayTime = formatTimeLeft(timeLeft);
+
+  if (!displayTime) {
+    return null;
+  }
+
   return (
-    <div className="st-auction-timer-badge">
+    <div className={`st-auction-timer st-timer-active st-timer-${position} ${className}`}>
       <i className="fas fa-clock"></i>
-      <span>{formatTime()}</span>
+      <span>{displayTime}</span>
     </div>
   );
 };

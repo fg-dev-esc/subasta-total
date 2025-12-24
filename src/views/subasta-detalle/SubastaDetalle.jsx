@@ -4,6 +4,8 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../db/firebase';
 import useScrollTrigger from '../../hooks/useScrollTrigger';
 import { API_CONFIG, buildUrl } from '../../config/apiConfig';
+import AuctionBadge from '../../components/ui/AuctionBadge';
+import AuctionTimer from '../../components/ui/AuctionTimer';
 import './subasta-detalle.css';
 
 const SubastaDetalle = () => {
@@ -67,11 +69,19 @@ const SubastaDetalle = () => {
                   nuevoPrecio = pujasOrdenadas[0].Monto;
                 }
 
-                // Actualizar la torre en el estado
+                // Actualizar la torre en el estado con datos de Firebase
                 setTorres(prev =>
                   prev.map(t =>
                     t.torreID === torre.torreID
-                      ? { ...t, precioActual: nuevoPrecio, ofertas: pujas.length }
+                      ? {
+                          ...t,
+                          precioActual: nuevoPrecio,
+                          ofertas: pujas.length,
+                          // Datos para badges en tiempo real
+                          fechaFin: firebaseData.fechaFin,
+                          fechaInicio: firebaseData.fechaInicio,
+                          fueAdjudicado: firebaseData.fueAdjudicado
+                        }
                       : t
                   )
                 );
@@ -208,18 +218,17 @@ const SubastaDetalle = () => {
               {torres.map((torre, index) => (
                 <div key={torre.torreID} className="col-lg-4 col-md-6 mb-4">
                   <div className="st-property-card">
-                    <div className="st-property-image">
+                    <div className="st-property-image" style={{ position: 'relative' }}>
                       <img
                         src={torre.urlImgPrincipal || ''}
                         alt={torre.nombre}
                         className="img-fluid"
                       />
-                      <div className="st-property-status">
-                        <span className="badge bg-success">
-                          <i className="fas fa-gavel me-1"></i>
-                          En Subasta
-                        </span>
-                      </div>
+                      {/* Badge de estado: ACTIVA / CERRADA */}
+                      <AuctionBadge torre={torre} position="top-left" />
+
+                      {/* Timer de cuenta regresiva (solo si activa) */}
+                      <AuctionTimer torre={torre} position="top-right" />
                     </div>
                     
                     <div className="st-property-content">

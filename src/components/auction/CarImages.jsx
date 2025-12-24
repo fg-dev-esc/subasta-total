@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AuctionStatus from '../ui/AuctionStatus';
+import AuctionBadge from '../ui/AuctionBadge';
 import AuctionTimer from '../ui/AuctionTimer';
 import './carImages.css';
 
@@ -45,11 +45,11 @@ const CarImages = ({ propertyData, userBidStatus }) => {
       <div className="col-lg-8">
         {/* Imagen principal con badges */}
         <div className="st-car-single-main-image">
-          {/* Badge Estado - esquina superior izquierda */}
-          <AuctionStatus isActive={true} />
+          {/* Badge Estado: ACTIVA / CERRADA - esquina superior izquierda */}
+          <AuctionBadge torre={propertyData} position="top-left" />
 
-          {/* Badge Timer - esquina superior derecha */}
-          <AuctionTimer endDate={propertyData.fechaFin} />
+          {/* Timer de cuenta regresiva - esquina superior derecha (solo si activa) */}
+          <AuctionTimer torre={propertyData} position="top-right" />
 
           {/* Imagen principal */}
           <div className="st-main-image-container" onClick={openModal}>

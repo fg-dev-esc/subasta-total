@@ -163,6 +163,14 @@ const Detalle = () => {
               usuario: ofertas[0].UsuarioPujaID
             }));
           }
+
+          // Actualizar propertyData con datos de Firebase para badges
+          setPropertyData(prev => prev ? {
+            ...prev,
+            fechaFin: data.fechaFin,
+            fechaInicio: data.fechaInicio,
+            fueAdjudicado: data.fueAdjudicado
+          } : prev);
         }
       },
       (error) => {
