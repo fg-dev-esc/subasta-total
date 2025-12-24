@@ -343,7 +343,7 @@ const Detalle = () => {
                     {/* Oferta Actual */}
                     {(ofertaMayor || ofertaActual) && (
                       <div className="st-oferta-actual">
-                        <span className="st-oferta-label">Oferta Actual</span>
+                        <span className="st-oferta-label">Máxima Oferta</span>
                         <span className="st-oferta-monto">
                           {formatPrice(ofertaMayor?.monto || ofertaActual?.monto)}
                         </span>
@@ -463,7 +463,7 @@ const Detalle = () => {
                         onClick={() => navigate('/contacto')}
                       >
                         <i className="fas fa-info-circle"></i>
-                        Más Información
+                        Contáctanos para cualquier duda
                       </button>
                     </div>
                   </>

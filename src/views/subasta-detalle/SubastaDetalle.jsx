@@ -247,7 +247,7 @@ const SubastaDetalle = () => {
                       <div className="st-property-specs-simple mb-3">
                         <div className="st-spec-simple">
                           <div className="st-spec-label">
-                            <span className="text-muted">Precio Actual</span>
+                            <span className="text-muted">Máxima Oferta</span>
                           </div>
                           <div className="st-spec-value fw-bold text-success">
                             {formatPrice(torre.precioActual || 0)}

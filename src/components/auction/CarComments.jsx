@@ -102,7 +102,7 @@ const CarComments = ({ torreID, propertyData }) => {
         {/* Primera fila */}
         <div className="st-stats-row">
           <div className="st-stat-item">
-            <small>Oferta Actual:</small>
+            <small>Máxima Oferta:</small>
             <strong className="st-stat-current-bid">{formatCurrency(currentBid)}</strong>
           </div>
           <div className="st-stat-item">
